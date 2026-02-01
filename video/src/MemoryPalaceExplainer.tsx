@@ -80,6 +80,20 @@ export const MemoryPalaceExplainer: React.FC = () => {
         <Audio src={staticFile(`audio/${SCENES[7].audioFile}`)} volume={0.9} />
       </Sequence>
 
+      {/* Background music - low volume, fades in/out */}
+      <Audio
+        src={staticFile("audio/background-music.mp3")}
+        volume={(f) =>
+          interpolate(
+            f,
+            [0, 60, durationInFrames - 90, durationInFrames],
+            [0, 0.12, 0.12, 0],
+            { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+          )
+        }
+        loop
+      />
+
       {/* Progress bar */}
       <div
         style={{
