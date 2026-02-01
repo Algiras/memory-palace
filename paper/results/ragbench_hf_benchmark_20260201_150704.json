@@ -1,0 +1,27 @@
+{
+  "timestamp": "2026-02-01T15:07:04.334695",
+  "dataset": "RAGBench-hotpotqa",
+  "num_samples": 100,
+  "results": {
+    "Flat RAG": {
+      "relevance": 0.4978247862133479,
+      "faithfulness": 0.6722930861987422,
+      "completeness": 0.5771967157369634,
+      "avg_context_size": 2532.18,
+      "n_samples": 100
+    },
+    "Memory Palace": {
+      "relevance": 0.4745608578522328,
+      "faithfulness": 0.6521378815059997,
+      "completeness": 0.5771967157369634,
+      "avg_context_size": 2119.3,
+      "n_samples": 100,
+      "avg_hops": 2.0
+    }
+  },
+  "sota_comparison": {
+    "gpt4_faithfulness": 0.75,
+    "roberta_faithfulness": 0.82,
+    "deberta_faithfulness": 0.85
+  }
+}

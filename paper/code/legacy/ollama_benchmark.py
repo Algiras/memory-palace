@@ -34,7 +34,7 @@ if env_path.exists():
 # Ollama configuration
 OLLAMA_BASE_URL = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434")
 EMBEDDING_MODEL = os.environ.get("OLLAMA_EMBED_MODEL", "nomic-embed-text")
-LLM_MODEL = os.environ.get("OLLAMA_LLM_MODEL", "llama3.2")
+LLM_MODEL = os.environ.get("OLLAMA_LLM_MODEL", "ministral-3:8b")
 
 
 # =============================================================================

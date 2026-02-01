@@ -1,15 +1,45 @@
 # Red Queen Protocol
 
 > "Now, here, you see, it takes all the running you can do, to keep in the same place."
-> — The Red Queen, Through the Looking-Glass
+> — The Red Queen, *Through the Looking-Glass* (Lewis Carroll, 1871)
 
 ## Concept
 
 In evolutionary biology, the Red Queen hypothesis explains that organisms must constantly adapt just to maintain relative fitness against co-evolving competitors.
 
-Applied to memory systems: **constant adversarial testing is required just to maintain knowledge** - without it, memories decay.
+Applied to memory systems: **constant adversarial testing is required just to maintain knowledge** - without it, memories decay and hallucinations creep in.
 
-## Architecture
+## Key Results
+
+| Metric | Before RQ | After RQ (5 rounds) | Improvement |
+|--------|-----------|---------------------|-------------|
+| Weak Memory Retention | 52% | 75% | +23% |
+| Retrievals Needed | 9.1 | 5.7 | -37% |
+| Hallucination Detection | N/A | F1=0.92 | New |
+
+## Two-Phase Architecture
+
+The Red Queen Protocol operates in two phases:
+
+### Phase 1: Pre-Learning (Before Deployment)
+
+Run adversarial rounds *before* memories are needed. This proactively identifies and strengthens weak spots.
+
+```bash
+# Run 5 pre-learning rounds (optimal for weak memories)
+/memory-palace red-queen --pre-learning 5
+```
+
+**Why Pre-Learning Works:**
+- Tests memories against harder thresholds (base probability 0.5 vs 0.7)
+- Weak encodings (SMASHIN=0) benefit most: 37% fewer retrievals
+- Strong encodings (SMASHIN=12) are already resilient
+
+### Phase 2: Runtime Testing (Continuous)
+
+Four specialized agents continuously challenge memories during normal operation.
+
+## Agent Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐

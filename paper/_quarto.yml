@@ -1,6 +1,8 @@
 project:
   type: manuscript
   output-dir: _output
+  resources:
+    - figures/*
   render:
     - index.qmd
     - sections/*.qmd

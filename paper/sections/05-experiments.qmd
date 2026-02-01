@@ -6,11 +6,12 @@ We evaluate the Memory Palace system across three dimensions: (1) retrieval accu
 
 #### BEIR Benchmark
 
-For zero-shot retrieval evaluation, we use the BEIR benchmark [@yang2018hotpotqa], which includes:
+For zero-shot retrieval evaluation, we use the BEIR benchmark [@thakur2021beir], which includes:
 
 - **Natural Questions**: Google search queries with Wikipedia answers
 - **HotpotQA**: Multi-hop reasoning questions requiring evidence from multiple documents
 - **MS MARCO**: Real Bing search queries with human-annotated passages
+- **PubMed (TREC-COVID)**: Biomedical literature retrieval with COVID-19 research queries
 
 **Dataset Statistics:**
 
@@ -19,6 +20,9 @@ For zero-shot retrieval evaluation, we use the BEIR benchmark [@yang2018hotpotqa
 | Natural Questions | 3,452 | 2.68M | QA |
 | HotpotQA | 7,405 | 5.23M | Multi-hop |
 | MS MARCO | 6,980 | 8.84M | Passage Ranking |
+| TREC-COVID (PubMed) | 50 | 171K | Bio-Medical |
+
+The PubMed/TREC-COVID dataset provides a challenging large-scale evaluation with scientific terminology and domain-specific retrieval requirements.
 
 #### RAGBench
 
@@ -54,9 +58,9 @@ We compare against the following state-of-the-art retrieval systems:
 
 1. **Flat RAG**: Standard vector similarity search over embedded chunks using cosine similarity.
 
-2. **Contriever** [@karpukhin2020dense]: Self-supervised dense retriever trained on unlabeled data with contrastive learning.
+2. **Contriever** [@izacard2022contriever]: Self-supervised dense retriever trained on unlabeled data with contrastive learning.
 
-3. **ColBERT**: Late interaction model computing fine-grained relevance between query and document tokens.
+3. **ColBERT** [@khattab2020colbert]: Late interaction model computing fine-grained relevance between query and document tokens.
 
 #### Hierarchical and Graph-Based RAG
 
@@ -88,7 +92,7 @@ We compare against the following state-of-the-art retrieval systems:
 All experiments were conducted on:
 
 - Apple M2 Max with 32GB RAM (local inference)
-- Ollama v0.1.29 with llama3.2 (8B) and nomic-embed-text
+- Ollama with ministral-3:8b and nomic-embed-text
 - Google Gemini API (gemini-pro) for cloud comparison
 
 #### Retrieval Experiment Protocol
@@ -109,3 +113,14 @@ We evaluate context efficiency across corpus sizes:
 2. Execute 100 random queries per corpus size
 3. Measure context bytes loaded per query
 4. Compare flat retrieval vs hierarchical 2-hop retrieval
+
+#### Red Queen Pre-Learning Protocol
+
+We evaluate the impact of adversarial pre-learning rounds on retrieval performance:
+
+1. Initialize 100 memories with varying SMASHIN scores (0, 6, 12)
+2. Run 0, 3, or 5 Red Queen adversarial rounds before learning
+3. Simulate 30 days of retrieval with spaced intervals
+4. Measure: total retrievals needed, final retention, RQ boosts applied
+
+Each Red Queen round tests all memories against a harder threshold (base probability 0.5 vs 0.7 for normal retrieval), boosting weak memories that fail the adversarial test.

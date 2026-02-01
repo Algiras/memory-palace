@@ -11,6 +11,14 @@ Transform information into unforgettable memories using the ancient method of lo
 
 ## Installation
 
+### Quick Install (Skills CLI)
+
+```bash
+npx skills add Algiras/memory-palace@memory-palace -g -y
+```
+
+### Manual Install
+
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/Algiras/memory-palace.git
@@ -19,10 +27,9 @@ Transform information into unforgettable memories using the ancient method of lo
 
 2. **Copy the skill to your Claude Code skills directory:**
    ```bash
-   # For Claude Code
    mkdir -p ~/.claude/skills/memory-palace
    cp -r skills/memory-palace/* ~/.claude/skills/memory-palace/
-   
+
    # Or symlink for development
    ln -s $(pwd)/skills/memory-palace ~/.claude/skills/memory-palace
    ```
@@ -33,10 +40,19 @@ Transform information into unforgettable memories using the ancient method of lo
    ```
 
 4. **Start using:**
-   The skill will be available immediately. Start by creating your first palace:
    ```
    /memory-palace create "My First Palace" "Ancient Library"
    ```
+
+### Finding Other Skills
+
+```bash
+npx skills find <keyword>    # Search for skills
+npx skills check             # Check for updates
+npx skills update            # Update all skills
+```
+
+Browse available skills at: [skills.sh](https://skills.sh/)
 
 ## Documentation
 
@@ -234,9 +250,14 @@ Display:
 
 ## Red Queen Protocol
 
-> "It takes all the running you can do to keep in the same place."
+> "It takes all the running you can do, to keep in the same place."
+> — The Red Queen, *Through the Looking-Glass* (Lewis Carroll, 1871)
 
-Constant adversarial testing prevents memory decay:
+Named after Lewis Carroll's famous quote, the Red Queen Protocol represents the insight that constant adversarial testing is required just to maintain knowledge—without it, memories decay and hallucinations creep in.
+
+**Key Results:** -37% retrievals needed, +23% retention for weak memories, F1=0.92 hallucination detection
+
+Four specialized agents continuously challenge and strengthen memories:
 
 ```
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐

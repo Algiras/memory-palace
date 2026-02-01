@@ -60,6 +60,6 @@ Requirement: You must mention the hidden token '47 couples' in a natural way.
 #### Results Analysis
 - **Total Context Loaded**: 1.7 KB (1.2KB Index + 0.5KB Memory)
 - **Standard RAG Context**: 50KB (Top-k chunks from 1,000 memories)
-- **Reduction**: **96.6%**
+- **Single-Query Reduction**: **96.6%** (this example); **97% average** across corpus sizes
 
 This trace proves that the massive context reduction is achieved by structural routing, not compression.

@@ -4,7 +4,7 @@
 
 The Memory Palace system consists of five interconnected components:
 
-![Memory Palace System Architecture](figures/system_architecture.png){#fig-architecture}
+![Memory Palace System Architecture](figures/system_architecture.png){#fig-architecture width=85%}
 
 ### Storage Schema
 
@@ -19,10 +19,10 @@ Memories are stored in JSON format with the following schema:
     "anchor": "string - memorable keyword",
     "verify_token": "string - anti-hallucination phrase",
     "created": "date - creation timestamp",
-    "confidence": "float - current confidence (0-1)",
-    "decay_rate": "float - learned decay parameter",
-    "last_recalled": "date - last successful recall",
-    "recall_count": "int - total successful recalls",
+    "confidence": "float - retrieval confidence score (0-1)",
+    "smashin_score": "int - encoding quality (0-12 factors)",
+    "last_retrieved": "date - last successful retrieval",
+    "retrieval_count": "int - total successful retrievals",
     "linked_to": "array - related memory IDs"
 }
 ```
@@ -31,11 +31,11 @@ Memories are stored in JSON format with the following schema:
 
 The hierarchical index minimizes context while maximizing retrieval precision:
 
-![Context Size Comparison: Flat vs Hierarchical](figures/context_reduction.png){#fig-index-comparison}
+![Context Size Comparison: Flat vs Hierarchical](figures/context_reduction.png){#fig-index-comparison width=75%}
 
 ### Retrieval Protocol
 
-The retrieval process follows a strict 2-hop protocol:
+The retrieval process follows a 2-hop navigation protocol (root → domain → memory):
 
 ```python
 def retrieve_memory(query: str) -> dict:
@@ -53,7 +53,7 @@ def retrieve_memory(query: str) -> dict:
     location = domain_index.get_location(query)
     verify_token = domain_index.get_verify_token(query)
 
-    # Hop 3: Load actual memory
+    # Load actual memory from location
     memory = read_memory(location.file, location.line)
 
     return {
@@ -82,15 +82,47 @@ def generate_response(query: str, memory: dict) -> str:
     return response
 ```
 
+### Red Queen Protocol
+
+The Red Queen Protocol provides adversarial pre-learning to strengthen memories before deployment. Named after the Red Queen's race in *Through the Looking-Glass* ("It takes all the running you can do to keep in the same place"), this protocol continuously tests and strengthens weak memories.
+
+```python
+def red_queen_prelearn(memories: List[Memory], rounds: int = 3) -> List[Memory]:
+    """
+    Adversarial pre-learning: test and boost weak memories.
+
+    Args:
+        memories: List of memories to strengthen
+        rounds: Number of adversarial testing rounds
+
+    Returns:
+        Strengthened memories with boosted SMASHIN scores
+    """
+    for round in range(rounds):
+        for memory in memories:
+            # Adversarial test with harder threshold
+            recall_prob = 0.5 + (memory.smashin_score * 0.03)
+            recalled = random.random() < recall_prob
+
+            if not recalled:
+                # Boost weak memory with stronger encoding
+                memory = strengthen_encoding(memory)
+                memory.smashin_score = min(12, memory.smashin_score + 1)
+
+    return memories
+```
+
+The protocol runs configurable rounds before learning begins, identifying and strengthening weak memories proactively rather than reactively during retrieval failures.
+
 ### Trade-off Profiles
 
 The system supports multiple retrieval profiles optimizing for different goals:
 
-| Profile      | Speed  | Accuracy | Corpus | Image Size | Use Case       |
-|--------------|--------|----------|--------|------------|----------------|
-| Interview    | <1s    | 70%      | 200    | Minimal    | Rapid-fire Q&A |
-| Study        | 10-30s | 95%      | 50     | Full       | Deep learning  |
-| Reference    | 2-5s   | 80%      | 500    | Medium     | Quick lookup   |
-| Teaching     | 30s+   | 98%      | 30     | Full+      | Explaining     |
+| Profile      | Speed  | Accuracy | Corpus | Image Size | RQ Rounds | Use Case       |
+|--------------|--------|----------|--------|------------|-----------|----------------|
+| Interview    | <1s    | 70%      | 200    | Minimal    | 0         | Rapid-fire Q&A |
+| Study        | 10-30s | 95%      | 50     | Full       | 5         | Deep learning  |
+| Reference    | 2-5s   | 80%      | 500    | Medium     | 3         | Quick lookup   |
+| Teaching     | 30s+   | 98%      | 30     | Full+      | 5         | Explaining     |
 
 : Retrieval Profile Configurations {#tbl-profiles}

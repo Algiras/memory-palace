@@ -30,19 +30,19 @@ Each factor is scored 0 or 1 based on presence:
 
 **Total SMASHIN SCOPE Score**: Sum of all factors (0-12)
 
-| Score Range | Quality Level | Expected Decay Rate |
-|-------------|---------------|---------------------|
-| 0-3 | Poor | λ = 0.15-0.20 |
-| 4-6 | Moderate | λ = 0.08-0.12 |
-| 7-9 | Good | λ = 0.04-0.06 |
-| 10-12 | Excellent | λ = 0.015-0.025 |
+| Score Range | Quality Level | Expected Recall@1 |
+|-------------|---------------|-------------------|
+| 0-3 | Poor | 65-72% |
+| 4-6 | Moderate | 75-82% |
+| 7-9 | Good | 83-88% |
+| 10-12 | Excellent | 89-96% |
 
 #### Example Encodings by Score
 
 ##### Low Score (3): Two-Phase Commit
 > "A transaction that happens in two phases."
 
-Missing: Substitute (abstract), Movement, Absurd, Sensory, Humor, Interact, Scale, Position, Emotion
+Missing: Substitute (abstract), Movement, Absurd, Sensory, Humor, Interact, Oversize, Position, Emotion
 
 ##### Medium Score (7): Two-Phase Commit
 > "Imagine 47 couples at a wedding ceremony, all standing frozen like statues. They can't move until the priest says 'I do' for everyone at once."
@@ -57,7 +57,7 @@ All 12 factors present with high intensity.
 
 #### Visualizing Memory Strength
 
-![SMASHIN SCOPE Memory Strength Factors](figures/smashin_scope_layers.png){#fig-smashin-layers}
+![SMASHIN SCOPE Memory Strength Factors](figures/smashin_scope_layers.png){#fig-smashin-layers width=80%}
 
 #### Memory Template
 
@@ -84,7 +84,7 @@ All 12 factors present with high intensity.
 ### Metadata
 - SMASHIN Score: X/12
 - Created: YYYY-MM-DD
-- Last Recalled: YYYY-MM-DD
+- Last Retrieved: YYYY-MM-DD
 - Confidence: 0.XX
 ```
 

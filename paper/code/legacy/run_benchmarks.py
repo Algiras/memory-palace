@@ -62,10 +62,19 @@ class MemoryBenchmark:
         method_name: str,
         n_cards: int = 100,
         days: int = 30,
-        smashin_score: int = 0
+        smashin_score: int = 0,
+        red_queen_rounds: int = 0
     ) -> Dict:
         """
         Simulate learning N cards over D days.
+
+        Args:
+            method_name: Algorithm to use
+            n_cards: Number of cards to simulate
+            days: Duration of simulation
+            smashin_score: SMASHIN SCOPE encoding score (0-12)
+            red_queen_rounds: Number of Red Queen adversarial rounds before learning
+
         Returns metrics about retention and efficiency.
         """
         method = self.methods.get(method_name)
@@ -81,6 +90,19 @@ class MemoryBenchmark:
                 smashin_score=smashin_score if method_name == 'Memory Palace' else 0
             )
             cards.append(card)
+
+        # Red Queen pre-learning rounds (Memory Palace only)
+        rq_boosts = 0
+        if red_queen_rounds > 0 and method_name == 'Memory Palace' and method:
+            for rq_round in range(red_queen_rounds):
+                for card in cards:
+                    # Simulate adversarial test
+                    base_prob = 0.5 + (card.smashin_score * 0.03)  # Lower than normal
+                    recalled = random.random() < base_prob
+
+                    if not recalled and hasattr(method, 'red_queen_boost'):
+                        card = method.red_queen_boost(card)
+                        rq_boosts += 1
 
         total_reviews = 0
         daily_retention = []
@@ -169,7 +191,9 @@ class MemoryBenchmark:
             'final_retention': final_retention,
             'avg_retention': avg_retention,
             'daily_retention': daily_retention,
-            'reviews_per_card': total_reviews / n_cards
+            'reviews_per_card': total_reviews / n_cards,
+            'red_queen_rounds': red_queen_rounds,
+            'red_queen_boosts': rq_boosts
         }
 
     def benchmark_decay_prediction(self, n_samples: int = 500) -> List[BenchmarkResult]:
@@ -254,13 +278,23 @@ class MemoryBenchmark:
 
         return results
 
-    def benchmark_learning_efficiency(self, n_cards: int = 100, days: int = 30) -> List[Dict]:
+    def benchmark_learning_efficiency(
+        self,
+        n_cards: int = 100,
+        days: int = 30,
+        red_queen_rounds: int = 0
+    ) -> List[Dict]:
         """
         Benchmark learning efficiency: reviews needed vs retention achieved.
+
+        Args:
+            n_cards: Number of cards to simulate
+            days: Duration of simulation
+            red_queen_rounds: Red Queen adversarial rounds before learning (Memory Palace only)
         """
         print("\n" + "=" * 60)
         print("BENCHMARK: Learning Efficiency")
-        print(f"Cards: {n_cards}, Duration: {days} days")
+        print(f"Cards: {n_cards}, Duration: {days} days, Red Queen Rounds: {red_queen_rounds}")
         print("=" * 60)
 
         results = []
@@ -271,7 +305,9 @@ class MemoryBenchmark:
             if method_name == 'Memory Palace':
                 for score in [0, 6, 12]:
                     result = self.simulate_learning_session(
-                        method_name, n_cards, days, smashin_score=score
+                        method_name, n_cards, days,
+                        smashin_score=score,
+                        red_queen_rounds=red_queen_rounds
                     )
                     result['method'] = f"Memory Palace (SMASHIN={score})"
                     results.append(result)
@@ -280,6 +316,8 @@ class MemoryBenchmark:
                     print(f"  Reviews/Card:     {result['reviews_per_card']:.1f}")
                     print(f"  Final Retention:  {result['final_retention']:.2%}")
                     print(f"  Avg Interval:     {result['avg_interval']:.1f} days")
+                    if result['red_queen_boosts'] > 0:
+                        print(f"  RQ Boosts:        {result['red_queen_boosts']}")
             else:
                 result = self.simulate_learning_session(method_name, n_cards, days)
                 results.append(result)
@@ -361,19 +399,26 @@ class MemoryBenchmark:
 
         return results
 
-    def run_all_benchmarks(self) -> Dict:
-        """Run all benchmarks and compile results."""
+    def run_all_benchmarks(self, red_queen_rounds: int = 0) -> Dict:
+        """Run all benchmarks and compile results.
+
+        Args:
+            red_queen_rounds: Number of Red Queen adversarial rounds before learning
+        """
         print("\n" + "=" * 60)
         print("MEMORY PALACE EVALUATION SUITE")
         print("=" * 60)
 
         all_results = {}
+        all_results['config'] = {'red_queen_rounds': red_queen_rounds}
 
         # 1. Decay prediction
         all_results['decay_prediction'] = self.benchmark_decay_prediction(500)
 
-        # 2. Learning efficiency
-        all_results['learning_efficiency'] = self.benchmark_learning_efficiency(100, 30)
+        # 2. Learning efficiency (with Red Queen pre-learning)
+        all_results['learning_efficiency'] = self.benchmark_learning_efficiency(
+            100, 30, red_queen_rounds=red_queen_rounds
+        )
 
         # 3. Retrieval accuracy
         all_results['retrieval'] = self.benchmark_retrieval_accuracy(50)
@@ -389,7 +434,8 @@ class MemoryBenchmark:
 
         print("\nLearning Efficiency (higher retention, fewer reviews = better):")
         for r in all_results['learning_efficiency']:
-            print(f"  {r['method']}: Retention={r['final_retention']:.2%}, Reviews/Card={r['reviews_per_card']:.1f}")
+            rq_info = f", RQ Boosts={r.get('red_queen_boosts', 0)}" if r.get('red_queen_boosts') else ""
+            print(f"  {r['method']}: Retention={r['final_retention']:.2%}, Reviews/Card={r['reviews_per_card']:.1f}{rq_info}")
 
         return all_results
 
@@ -414,9 +460,19 @@ def save_results(results: Dict, filename: str):
 
 
 if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser(description="Run Memory Palace benchmarks")
+    parser.add_argument(
+        "--red-queen-rounds", "-rq",
+        type=int,
+        default=0,
+        help="Number of Red Queen adversarial rounds before learning (default: 0)"
+    )
+    args = parser.parse_args()
+
     # Run benchmarks
     benchmark = MemoryBenchmark()
-    results = benchmark.run_all_benchmarks()
+    results = benchmark.run_all_benchmarks(red_queen_rounds=args.red_queen_rounds)
 
     # Save results
     save_results(results, f"benchmark_results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json")

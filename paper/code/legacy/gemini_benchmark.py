@@ -519,7 +519,7 @@ To compare with local Ollama results:
 1. Run: python ollama_benchmark.py
 2. Compare accuracy and latency between:
    - Gemini embedding-001 vs nomic-embed-text
-   - Gemini Pro vs llama3.2
+   - Gemini Pro vs ministral-3:8b
 
 Key differences:
 - Gemini: Higher quality embeddings, cloud-based, API costs

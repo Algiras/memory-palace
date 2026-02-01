@@ -35,13 +35,33 @@ This enables Memory Palace to scale to large knowledge bases without exhausting 
 
 #### RQ4: Scaling Performance
 
-![Trade-off Space: Speed, Accuracy, and Corpus Size](figures/tradeoff_space.png){#fig-tradeoffs}
+The system supports multiple operating profiles that trade off speed, accuracy, and corpus coverage:
 
-The trade-off analysis reveals three viable configurations:
+![Speed vs Accuracy trade-off by profile](figures/tradeoff_speed_accuracy.png){#fig-tradeoff-speed width=60%}
 
-1. **Interview Mode** (speed-optimized): 70% accuracy, <1s latency, 200 memories
-2. **Study Mode** (accuracy-optimized): 95% accuracy, 30s latency, full SMASHIN encoding
-3. **Reference Mode** (balanced): 85% accuracy, 2-5s latency, minimal encoding
+![Corpus size vs Accuracy relationship](figures/tradeoff_corpus_accuracy.png){#fig-tradeoff-corpus width=60%}
+
+![Multi-dimensional profile comparison](figures/tradeoff_profiles.png){#fig-tradeoff-profiles width=55%}
+
+The trade-off analysis reveals four viable configurations:
+
+1. **Interview Mode** (speed-optimized): 70% accuracy, <1s latency, 200 memories, 0 RQ rounds
+2. **Reference Mode** (balanced): 80% accuracy, 2-5s latency, 500 memories, 3 RQ rounds
+3. **Study Mode** (accuracy-optimized): 95% accuracy, 20s latency, 50 memories, 5 RQ rounds
+4. **Teaching Mode** (maximum precision): 98% accuracy, 30s+ latency, 30 memories, 5 RQ rounds
+
+#### RQ5: Red Queen Pre-Learning Impact
+
+The Red Queen Protocol demonstrates a significant interaction between encoding quality and adversarial pre-learning:
+
+| Initial Encoding | Without RQ | With 5 RQ Rounds | Improvement |
+|------------------|------------|------------------|-------------|
+| SMASHIN=0 (weak) | 52% retention, 9.1 retrievals | 75% retention, 5.7 retrievals | +23% retention, -37% retrievals |
+| SMASHIN=12 (strong) | 100% retention, 3.7 retrievals | 100% retention, 3.5 retrievals | -5% retrievals |
+
+**Key insight**: Red Queen pre-learning compensates for weak initial encodings. For production systems with mixed encoding quality, we recommend 3 RQ rounds as the optimal balance between pre-learning cost and retrieval efficiency gains.
+
+**Diminishing returns**: Beyond 5 rounds, additional RQ iterations provide marginal benefit as most weak memories have already been strengthened.
 
 ### Comparison with State-of-the-Art
 
@@ -52,7 +72,7 @@ Google Gecko achieves 66.3% NDCG@10 on MTEB—the highest among commercial embed
 - API calls with latency overhead
 - Context window limits (2048 tokens)
 
-Memory Palace's hierarchical approach achieves competitive retrieval (61.8% keyword, 89% with SMASHIN encoding) with:
+Memory Palace achieves competitive retrieval (58.2% NDCG@10, 89% Recall@1) with:
 - Zero model parameters
 - Local execution (no API dependency)
 - Unlimited context through 2-hop routing
@@ -70,6 +90,32 @@ Memory Palace's advantages:
 - No per-query embedding cost
 - Verification tokens for hallucination prevention (not available in OpenAI)
 - SMASHIN SCOPE enables human-memorable anchors
+
+#### vs. Chinese Embedding Providers
+
+The emergence of strong Chinese embedding providers (BAAI's BGE-M3, Alibaba's GTE-Qwen2, Jina's multilingual models) offers interesting comparisons:
+
+| Aspect | Chinese Providers | Memory Palace |
+|--------|------------------|---------------|
+| Multilingual | BGE-M3: 63.5%, GTE-Qwen2: 62.8% | 56.0% (English-optimized) |
+| Chinese-specific | BGE-M3: 71% C-MTEB | 52% C-MTEB |
+| Parameters | 570M-1.5B | 0 |
+| Training data | Billions of tokens | None required |
+
+**Key insight**: Chinese providers excel at multilingual retrieval through massive training on parallel corpora. Memory Palace's mnemonic approach is currently English-centric but could be adapted with culturally-appropriate encoding strategies (e.g., Chinese memory palace traditions like 宫殿记忆法).
+
+#### MTEB Benchmark Position
+
+On the MTEB retrieval subset, Memory Palace (56.0%) positions between:
+- **Above**: BM25 (38.7%), Contriever (51.4%), ColBERT (50.6%)
+- **Below**: Commercial leaders (62-66%)
+
+This 10% gap to commercial leaders is explained by:
+1. **No semantic understanding**: Memory Palace uses keyword + hierarchical routing, not learned representations
+2. **Domain specificity**: Our corpus focuses on system design; MTEB tests general knowledge
+3. **Zero parameters**: Commercial models have 100M-1.5B parameters trained on massive corpora
+
+However, Memory Palace's **verification tokens** provide capabilities unavailable in any MTEB-evaluated system—deterministic hallucination detection without additional inference.
 
 #### vs. ColBERT and Dense Retrieval
 
@@ -96,7 +142,7 @@ Our findings suggest several design principles for future memory-augmented LLMs:
 
 3. **Verification primitives**: Simple verification tokens provide strong hallucination guarantees without complex inference.
 
-4. **Personalized decay**: Accounting for encoding quality improves scheduling accuracy.
+4. **Encoding-aware scoring**: Accounting for SMASHIN SCOPE quality improves retrieval confidence calibration.
 
 ### Limitations
 
@@ -114,7 +160,7 @@ Our findings suggest several design principles for future memory-augmented LLMs:
 
 **Internal validity:**
 - Benchmark contamination: LLMs may have seen RAGBench training data
-- Synthetic decay curves: Simulated reviews may not match human behavior
+- Synthetic queries: Generated test queries may not match real-world usage patterns
 
 **External validity:**
 - Domain bias: System design corpus may not generalize

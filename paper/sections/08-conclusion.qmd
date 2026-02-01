@@ -1,16 +1,16 @@
 ## Conclusion {#sec-conclusion}
 
-We presented Memory Palace, a novel knowledge management system that bridges ancient mnemonic techniques with modern retrieval-augmented generation. Our approach introduces three key innovations:
+We presented Memory Palace, a knowledge management system that integrates ancient mnemonic techniques with modern retrieval-augmented generation. This work introduces four key innovations:
 
 ### Key Contributions
 
-1. **SMASHIN SCOPE Encoding**: A systematic 12-factor framework for creating memorable, multi-channel memory representations. Memories with full SMASHIN SCOPE encoding exhibit **13x slower decay** than unencoded information, validating the effectiveness of method of loci principles documented in neuroscience research.
+1. **SMASHIN SCOPE Encoding**: A systematic 12-factor framework for creating memorable, multi-channel memory representations. Memories with full SMASHIN SCOPE encoding achieve **89% Recall@1** compared to 72% for unencoded flat retrieval, validating the effectiveness of structured encoding for LLM memory systems.
 
 2. **Hierarchical Memory Index**: A three-level index structure that reduces retrieval context by **97%** (from 46.5KB to 1.2KB) while improving recall accuracy. This enables efficient scaling to large knowledge bases without exhausting LLM context windows.
 
-3. **Verification Token System**: A simple yet effective hallucination prevention mechanism achieving **F1=0.92** for grounding verification—outperforming more complex approaches like SelfCheckGPT (0.75) and NLI-based methods (0.71).
+3. **Verification Token System**: A simple yet effective hallucination prevention mechanism achieving **F1=0.92** for grounding verification—outperforming more complex approaches like FActScore (0.83), RefChecker (0.78), and SelfCheckGPT (0.75).
 
-4. **Red Queen Protocol**: A multi-agent adversarial testing framework that continuously validates memory retrieval quality and strengthens weak entries through automated re-encoding.
+4. **Red Queen Protocol**: A configurable adversarial pre-learning framework that strengthens weak memories before deployment. With 5 pre-learning rounds, weakly-encoded memories (SMASHIN=0) show **37% fewer retrievals needed** while improving retention from 52%→75%.
 
 ### Practical Impact
 
@@ -18,7 +18,7 @@ Memory Palace enables practitioners to:
 
 - Build maintainable knowledge bases that scale without context explosion
 - Detect and prevent LLM hallucination with high precision
-- Optimize study time through accurate decay prediction
+- Optimize retrieval through encoding-aware confidence scoring
 - Maintain knowledge through continuous adversarial testing (Red Queen Protocol)
 
 The system is released as an open-source Claude Code skill, enabling direct integration into AI-assisted workflows.
@@ -41,19 +41,22 @@ Several directions warrant further investigation:
 
 ### Reproducibility
 
-All code, data, and trained models are available at:
+All code and data are included in the paper repository:
 
-- **Code**: `github.com/memory-palace/paper/code`
-- **Dataset**: `huggingface.co/datasets/memory-palace/system-design-corpus`
-- **Benchmarks**: `paper/results/*.json`
+- **Repository**: `github.com/algimantask/memory-palace`
+- **Visualization Code**: `paper/code/visualize_plotly.py`
+- **Benchmark Results**: `paper/results/*.json`
+- **System Design Corpus**: `palaces/system-design-palace.json` (92 memories)
 
 The system can be installed as a Claude Code skill:
 ```bash
-claude skill install memory-palace
+npx skills add algimantask/memory-palace@memory-palace
 ```
+
+Note: Benchmark comparisons use published MTEB, BEIR, and C-MTEB scores from respective model papers and leaderboards. Our corpus is domain-specific (system design) and results reflect this specialization.
 
 ### Closing Remarks
 
-The method of loci has persisted for over two millennia because it aligns with fundamental properties of human memory—spatial navigation, vivid imagery, and emotional salience. By encoding these principles into AI systems, we create knowledge management tools that respect human cognitive architecture while leveraging computational scale.
+The method of loci has persisted for over two millennia because it aligns with fundamental properties of human memory—spatial navigation, vivid imagery, and emotional salience. By encoding these principles into AI systems, we create knowledge management tools that respect human cognitive architecture and leverage computational scale.
 
-Memory Palace demonstrates that ancient wisdom and modern technology are not opposing forces, but complementary approaches to the enduring challenge of learning and remembering. As LLMs continue to expand in capability and context, principled memory management will become increasingly critical. We hope this work contributes to that foundation.
+Memory Palace demonstrates that ancient wisdom and modern technology are complementary rather than opposing approaches to the enduring challenge of learning and remembering. As LLMs continue to expand in capability and context, principled memory management will become increasingly critical. We hope this work contributes to that foundation.

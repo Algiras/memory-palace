@@ -88,13 +88,25 @@ The weights $\alpha=0.5$, $\beta=0.3$, $\gamma=0.2$ are tuned on a held-out vali
 
 ### Red Queen Protocol
 
-Adversarial testing using four specialized agents to maintain memory quality:
+> "It takes all the running you can do, to keep in the same place."
+> — The Red Queen, *Through the Looking-Glass* [@carroll1871looking]
+
+Named after Lewis Carroll's famous quote, the Red Queen Protocol represents the insight that constant adversarial testing is required just to maintain knowledge quality—without it, memories decay and hallucinations creep in.
+
+**Two-Phase Architecture:**
+
+1. **Pre-Learning Phase**: Before deployment, run configurable adversarial rounds (0-5) to proactively identify and strengthen weak memories
+2. **Runtime Phase**: Four specialized agents continuously challenge memories during operation
 
 | Agent | Model | Role |
 |-------|-------|------|
-| Examiner | Haiku | Generate challenging retrieval queries |
-| Learner | Haiku | Attempt retrieval using only index anchors |
-| Evaluator | Haiku | Score retrieval accuracy, identify gaps |
-| Evolver | Opus | Re-encode weak memories with stronger SMASHIN SCOPE |
+| Examiner | Haiku | Generate challenging retrieval queries targeting weak spots |
+| Learner | Haiku | Attempt retrieval using only index anchors (blind recall) |
+| Evaluator | Haiku | Score retrieval accuracy, identify gaps and misconceptions |
+| Evolver | Opus | Re-encode weak memories with stronger SMASHIN SCOPE images |
 
-The protocol runs continuously, strengthening memories that score below retrieval thresholds and ensuring verification tokens remain effective.
+**Pre-Learning Mechanism:**
+
+During pre-learning, memories are tested against harder thresholds (base probability 0.5 vs 0.7 for normal retrieval). Weak memories that fail are immediately boosted by the Evolver agent before deployment, reducing downstream retrieval failures.
+
+The protocol ensures memories remain robust and verification tokens effective throughout the system lifecycle.

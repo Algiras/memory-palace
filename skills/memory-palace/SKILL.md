@@ -13,13 +13,16 @@ Transform information into unforgettable memories using the ancient method of lo
 |---------|-------------|
 | `/memory-palace create <name> [theme]` | Create a new memory palace |
 | `/memory-palace store <topic>` | Store a memory in current palace |
-| `/memory-palace recall [topic]` | Walk through to recall memories |
+| `/memory-palace recall [topic]` | Walk through with semantic search |
+| `/memory-palace define <concept>` | Instant one-sentence lookup |
+| `/memory-palace navigate [destination]` | Cross-palace exploration with heat maps |
 | `/memory-palace list` | Show all palaces |
 | `/memory-palace open <name>` | Set active palace |
 | `/memory-palace tour` | Full walkthrough of current palace |
 | `/memory-palace add-locus <name>` | Add a new location |
 | `/memory-palace red-queen [strategy]` | Run adversarial recall testing |
-| `/memory-palace status` | Show memory statistics |
+| `/memory-palace interview [topic] [duration]` | Timed rapid-fire Q&A mode |
+| `/memory-palace status` | Show memory statistics with decay prediction |
 
 ## Quick Start
 
@@ -192,9 +195,14 @@ Display:
 
 ## Red Queen Protocol
 
-> "It takes all the running you can do to keep in the same place."
+> "It takes all the running you can do, to keep in the same place."
+> — The Red Queen, *Through the Looking-Glass* (Lewis Carroll, 1871)
 
-Constant adversarial testing prevents memory decay:
+Named after Lewis Carroll's famous quote, the Red Queen Protocol represents the insight that constant adversarial testing is required just to maintain knowledge—without it, memories decay and hallucinations creep in.
+
+**Key Results:** -37% retrievals needed, +23% retention for weak memories, F1=0.92 hallucination detection
+
+Four specialized agents continuously challenge and strengthen memories:
 
 ```
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐

@@ -9,7 +9,7 @@ Uses widely accepted open datasets with Gemini/Ollama models:
 
 Models:
 - Gemini: Google's embedding-001 + gemini-pro
-- Ollama: nomic-embed-text + llama3.2 (local)
+- Ollama: nomic-embed-text + ministral-3:8b (local)
 
 Compares:
 - Flat RAG (standard vector similarity)
@@ -56,7 +56,7 @@ class OllamaBackend:
         self.requests = requests
         self.base_url = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434")
         self.embed_model = os.environ.get("OLLAMA_EMBED_MODEL", "nomic-embed-text")
-        self.llm_model = os.environ.get("OLLAMA_LLM_MODEL", "llama3.2")
+        self.llm_model = os.environ.get("OLLAMA_LLM_MODEL", "ministral-3:8b")
         self.name = f"Ollama ({self.embed_model})"
 
     def is_available(self) -> bool:

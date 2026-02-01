@@ -8,7 +8,7 @@ The method of loci dates to ancient Greece, attributed to the poet Simonides of 
 2. Placing memorable images at specific locations (loci)
 3. Mentally walking through the palace to recall information
 
-Modern studies confirm its effectiveness. @bower1970analysis showed 2-3x improvement in recall when using the method of loci compared to rote memorization. @legge2012building found that even brief training improved memory performance significantly.
+Modern studies confirm its effectiveness. [@bower1970analysis] showed 2-3x improvement in recall when using the method of loci compared to rote memorization. [@legge2012building] found that even brief training improved memory performance significantly.
 
 ### LLM Memory Systems
 
@@ -24,7 +24,7 @@ RAG systems address LLM limitations by retrieving relevant documents before gene
 
 - **Dense Retrieval**: Using embeddings for semantic search [@karpukhin2020dense]
 - **Multi-hop RAG**: Reasoning across multiple documents [@yang2018hotpotqa]
-- **Self-RAG**: Adaptive retrieval decisions [@asai2023self]
+- **ColBERT** [@khattab2020colbert]: Late interaction retrieval with fine-grained relevance
 
 ### Evaluation Benchmarks
 
@@ -32,7 +32,7 @@ Several benchmarks evaluate RAG and QA systems:
 
 | Benchmark | Focus | Size |
 |-----------|-------|------|
-| BEIR [@yang2018hotpotqa] | Zero-shot retrieval | 18 datasets |
+| BEIR [@thakur2021beir] | Zero-shot retrieval | 18 datasets |
 | RAGBench [@friel2024ragbench] | Industry RAG | 100K |
 | RepLiQA [@monteiro2024repliqa] | Unseen content | 5 splits |
 | RAGAS [@es2023ragas] | Reference-free eval | Framework |
