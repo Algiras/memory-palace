@@ -54,7 +54,7 @@ SCENES = [
     },
     {
         "id": "08-outro",
-        "text": "Get started today. Install the skill with npx skills add memory palace. Ancient wisdom meets modern AI.",
+        "text": "Get started today. Install with npx skills add, then specify memory-palace. Ancient wisdom meets modern AI.",
     },
 ]
 
