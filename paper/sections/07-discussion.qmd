@@ -78,24 +78,6 @@ ColBERT's late interaction achieves 52.4% NDCG on Natural Questions. Memory Pala
 - Hierarchical index (efficient narrowing)
 - Verification integration (confidence scoring)
 
-#### vs. FSRS
-
-FSRS represents the current state-of-the-art in open-source spaced repetition, achieving 20-30% fewer reviews than SM-2 [@ye2024fsrs]. Memory Palace further reduces reviews by incorporating encoding quality—a dimension FSRS ignores.
-
-However, FSRS excels in:
-- Cold-start performance (good defaults from 10k user dataset)
-- Simplicity (no image encoding required)
-- Platform availability (integrated into Anki)
-
-#### vs. Cognitive Workspace
-
-Recent work on Cognitive Workspace [@cognitive2025] proposes active memory management for LLMs, achieving 58.6% memory reuse compared to 0% for traditional RAG. Our hierarchical index provides similar benefits through a different mechanism—explicit structure vs. learned management.
-
-Key differences:
-- Cognitive Workspace: Emergent memory organization
-- Memory Palace: Explicit spatial-semantic hierarchy
-- Trade-off: Flexibility vs. interpretability
-
 #### vs. MemGPT
 
 MemGPT [@packer2023memgpt] implements virtual context management inspired by OS paging. Memory Palace differs in:
@@ -124,7 +106,7 @@ Our findings suggest several design principles for future memory-augmented LLMs:
 
 3. **Scale testing**: We tested up to 1,000 memories. Behavior at 10,000+ memories is untested.
 
-4. **User study absence**: Our decay model uses proxy metrics (FSRS dataset) rather than direct user studies.
+4. **User study absence**: We rely on automated benchmarks rather than direct user studies of retrieval quality.
 
 5. **Language limitations**: All experiments were conducted in English. Effectiveness in other languages is unknown.
 
@@ -136,7 +118,7 @@ Our findings suggest several design principles for future memory-augmented LLMs:
 
 **External validity:**
 - Domain bias: System design corpus may not generalize
-- User population: FSRS-Anki users are self-selected memorizers
+- User population: System design corpus may not represent general knowledge domains
 
 **Construct validity:**
 - SMASHIN scoring is subjective

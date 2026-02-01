@@ -1,22 +1,24 @@
 ## Experiments {#sec-experiments}
 
-We evaluate the Memory Palace system across four dimensions: (1) retrieval accuracy compared to standard RAG, (2) hallucination prevention effectiveness, (3) memory decay prediction accuracy, and (4) learning efficiency versus state-of-the-art spaced repetition algorithms.
+We evaluate the Memory Palace system across three dimensions: (1) retrieval accuracy compared to standard RAG systems, (2) hallucination prevention effectiveness, and (3) context efficiency at scale.
 
 ### Datasets
 
-#### FSRS-Anki Dataset
+#### BEIR Benchmark
 
-For decay model validation, we use the open-source FSRS-Anki-20k dataset [@ye2024fsrs], containing over 1.7 billion review records from approximately 20,000 Anki users. This dataset provides ground truth for human memory decay patterns across diverse learning materials.
+For zero-shot retrieval evaluation, we use the BEIR benchmark [@yang2018hotpotqa], which includes:
+
+- **Natural Questions**: Google search queries with Wikipedia answers
+- **HotpotQA**: Multi-hop reasoning questions requiring evidence from multiple documents
+- **MS MARCO**: Real Bing search queries with human-annotated passages
 
 **Dataset Statistics:**
 
-| Statistic | Value |
-|-----------|-------|
-| Total reviews | 1.7 billion |
-| Users | ~20,000 |
-| Average cards per user | 2,500 |
-| Time span | 2018-2024 |
-| Languages | Multi-lingual |
+| Dataset | Queries | Corpus Size | Task Type |
+|---------|---------|-------------|-----------|
+| Natural Questions | 3,452 | 2.68M | QA |
+| HotpotQA | 7,405 | 5.23M | Multi-hop |
+| MS MARCO | 6,980 | 8.84M | Passage Ranking |
 
 #### RAGBench
 
@@ -46,25 +48,23 @@ We constructed a domain-specific corpus of 93 memories covering system design co
 
 ### Baselines
 
-We compare against the following state-of-the-art systems:
+We compare against the following state-of-the-art retrieval systems:
 
-#### Spaced Repetition Algorithms
+#### Dense Retrieval Systems
 
-1. **SM-2** [@wozniak1990optimization]: The classic SuperMemo algorithm used in Anki and Mnemosyne. Tracks easiness factor (EF) and inter-repetition interval.
+1. **Flat RAG**: Standard vector similarity search over embedded chunks using cosine similarity.
 
-2. **FSRS** [@ye2024fsrs]: Free Spaced Repetition Scheduler based on the DSR (Difficulty, Stability, Retrievability) model. Currently the state-of-the-art open-source algorithm, achieving 20-30% fewer reviews than SM-2 for equivalent retention.
+2. **Contriever** [@karpukhin2020dense]: Self-supervised dense retriever trained on unlabeled data with contrastive learning.
 
-3. **Leitner System**: Simple box-based system where cards advance through boxes based on correct answers.
+3. **ColBERT**: Late interaction model computing fine-grained relevance between query and document tokens.
 
-#### RAG Systems
+#### Hierarchical and Graph-Based RAG
 
-1. **Flat RAG**: Standard vector similarity search over embedded chunks.
+4. **RAPTOR** [@sarthi2024raptor]: Hierarchical RAG using recursive abstractive processing for tree-organized retrieval.
 
-2. **RAPTOR** [@sarthi2024raptor]: Hierarchical RAG using recursive abstractive processing for tree-organized retrieval.
+5. **GraphRAG** [@edge2024graphrag]: Knowledge graph-augmented retrieval for multi-hop reasoning.
 
-3. **GraphRAG** [@edge2024graphrag]: Knowledge graph-augmented retrieval for multi-hop reasoning.
-
-4. **HyDE** [@gao2022hyde]: Hypothetical document embeddings for improved query-document matching.
+6. **HyDE** [@gao2022hyde]: Hypothetical document embeddings for improved query-document matching.
 
 ### Evaluation Metrics
 
@@ -74,12 +74,6 @@ We compare against the following state-of-the-art systems:
 - **MRR**: Mean Reciprocal Rank of the first correct result
 - **Context Size**: Total characters loaded into LLM context
 - **Retrieval Latency**: Time from query to memory retrieval
-
-#### Decay Prediction Metrics
-
-- **MAE**: Mean Absolute Error between predicted and actual recall probability
-- **RMSE**: Root Mean Square Error
-- **AUC-ROC**: Area under ROC curve for binary retention prediction
 
 #### Hallucination Metrics
 
@@ -107,21 +101,11 @@ For each query:
 4. Verify response contains expected information and verification token
 5. Measure latency and context size
 
-#### Decay Prediction Protocol
+#### Scaling Protocol
 
-We partition the FSRS-Anki dataset:
+We evaluate context efficiency across corpus sizes:
 
-- Training: 80% of users (calibrate decay parameters)
-- Validation: 10% (hyperparameter tuning)
-- Test: 10% (final evaluation)
-
-For each review event, we predict the probability of successful recall and compare against the binary outcome (pass/fail).
-
-#### Learning Efficiency Protocol
-
-We simulate learning sessions over 30 days:
-
-1. Initialize with 50 new memories
-2. Schedule reviews according to each algorithm
-3. Simulate recall success based on ground truth decay curves
-4. Measure total reviews required to maintain target retention (90%)
+1. Initialize memory corpus at sizes: 10, 50, 100, 200, 500, 1000 memories
+2. Execute 100 random queries per corpus size
+3. Measure context bytes loaded per query
+4. Compare flat retrieval vs hierarchical 2-hop retrieval

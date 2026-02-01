@@ -72,33 +72,29 @@ To prevent LLM hallucination, each memory includes a unique verification token�
 
 : Example Verification Tokens {#tbl-verify-tokens}
 
-### Decay Model
+### Retrieval Confidence Scoring
 
-We model confidence decay using an exponential function:
+Each retrieved memory receives a confidence score based on multiple signals:
 
-$$C(t) = C_0 \cdot e^{-\lambda t}$$
+$$\text{score}(m, q) = \alpha \cdot \text{sim}(m, q) + \beta \cdot \text{verify}(m) + \gamma \cdot \text{smashin}(m)$$
 
 where:
 
-- $C(t)$ is confidence at time $t$
-- $C_0$ is initial confidence after learning
-- $\lambda$ is the decay rate (learned per memory)
+- $\text{sim}(m, q)$ is the semantic similarity between memory $m$ and query $q$
+- $\text{verify}(m)$ is 1 if verification token is present, 0 otherwise
+- $\text{smashin}(m)$ is the normalized SMASHIN SCOPE factor count (0-1)
 
-The decay rate $\lambda$ is calibrated based on:
-
-1. **Recall quality**: Higher quality → lower decay
-2. **Repetition count**: More reviews → lower decay
-3. **Memory strength**: SMASHIN SCOPE factor count → lower decay
+The weights $\alpha=0.5$, $\beta=0.3$, $\gamma=0.2$ are tuned on a held-out validation set.
 
 ### Red Queen Protocol
 
-Adversarial testing using four specialized agents:
+Adversarial testing using four specialized agents to maintain memory quality:
 
 | Agent | Model | Role |
 |-------|-------|------|
-| Examiner | Haiku | Generate challenging questions |
-| Learner | Haiku | Attempt blind recall |
-| Evaluator | Haiku | Score accuracy, find gaps |
-| Evolver | Opus | Strengthen weak memories |
+| Examiner | Haiku | Generate challenging retrieval queries |
+| Learner | Haiku | Attempt retrieval using only index anchors |
+| Evaluator | Haiku | Score retrieval accuracy, identify gaps |
+| Evolver | Opus | Re-encode weak memories with stronger SMASHIN SCOPE |
 
-The protocol runs continuously, evolving memories that fall below confidence thresholds.
+The protocol runs continuously, strengthening memories that score below retrieval thresholds and ensuring verification tokens remain effective.

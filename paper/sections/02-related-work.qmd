@@ -10,19 +10,13 @@ The method of loci dates to ancient Greece, attributed to the poet Simonides of 
 
 Modern studies confirm its effectiveness. @bower1970analysis showed 2-3x improvement in recall when using the method of loci compared to rote memorization. @legge2012building found that even brief training improved memory performance significantly.
 
-### Spaced Repetition Systems
+### LLM Memory Systems
 
-The Ebbinghaus forgetting curve [@ebbinghaus1885memory] describes how memory retention decays exponentially without reinforcement:
+Several approaches address LLM memory limitations:
 
-$$R(t) = e^{-t/S}$$
-
-where $R$ is retention, $t$ is time since learning, and $S$ is memory stability.
-
-Modern spaced repetition algorithms build on this foundation:
-
-- **SM-2** (SuperMemo): Adjusts review intervals based on recall quality [@wozniak1990optimization]
-- **FSRS** (Free Spaced Repetition Scheduler): Uses machine learning to optimize intervals [@ye2024fsrs]
-- **Anki**: Popular implementation with customizable algorithms
+- **MemGPT** [@packer2023memgpt]: Virtual context management inspired by OS memory paging, using tiered storage for long-term retention
+- **Self-RAG** [@asai2023self]: Adaptive retrieval with self-reflection, deciding when external knowledge is needed
+- **Context distillation**: Compressing retrieved documents to fit context windows while preserving key information
 
 ### Retrieval-Augmented Generation
 
@@ -38,20 +32,20 @@ Several benchmarks evaluate RAG and QA systems:
 
 | Benchmark | Focus | Size |
 |-----------|-------|------|
-| RAGBench [@chen2024ragbench] | Industry RAG | 100K |
+| BEIR [@yang2018hotpotqa] | Zero-shot retrieval | 18 datasets |
+| RAGBench [@friel2024ragbench] | Industry RAG | 100K |
 | RepLiQA [@monteiro2024repliqa] | Unseen content | 5 splits |
 | RAGAS [@es2023ragas] | Reference-free eval | Framework |
-| FSRS-Anki [@ye2024fsrs] | Memory decay | 1.7B reviews |
 
 : Key evaluation benchmarks {#tbl-benchmarks}
 
 ### Gap in Literature
 
-No existing system combines:
+No existing LLM memory system combines:
 
 1. Mnemonic encoding principles with RAG retrieval
-2. Hierarchical indexing with hallucination detection
-3. Spaced repetition calibrated to individual decay rates
-4. Multi-agent adversarial testing for memory strengthening
+2. Hierarchical indexing for context-efficient retrieval
+3. Embedded verification tokens for hallucination detection
+4. Multi-agent adversarial testing for quality assurance
 
 Our work addresses this gap.

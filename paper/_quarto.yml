@@ -1,9 +1,31 @@
 project:
   type: manuscript
   output-dir: _output
+  render:
+    - index.qmd
+    - sections/*.qmd
 
 manuscript:
   article: index.qmd
+  
+book:
+  title: "Memory Palace: Method of Loci for LLM Memory Systems"
+  author: "Memory Palace Research Team"
+  date: last-modified
+  chapters:
+    - index.qmd
+    - sections/01-introduction.qmd
+    - sections/02-related-work.qmd
+    - sections/03-methodology.qmd
+    - sections/04-system-architecture.qmd
+    - sections/05-experiments.qmd
+    - sections/06-results.qmd
+    - sections/07-discussion.qmd
+    - sections/08-conclusion.qmd
+  appendices:
+    - sections/appendix-a-smashin-scope.qmd
+    - sections/appendix-b-code.qmd
+    - sections/appendix-c-trace.qmd
 
 format:
   html:

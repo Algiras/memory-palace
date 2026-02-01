@@ -2,12 +2,12 @@
 
 This appendix provides key implementation details for reproducing the Memory Palace system.
 
-#### Decay Model Implementation
+#### Confidence Scoring Implementation
 
 ```python
 import numpy as np
 from dataclasses import dataclass
-from datetime import datetime, timedelta
+from typing import List
 
 @dataclass
 class Memory:
@@ -15,54 +15,44 @@ class Memory:
     subject: str
     image: str
     content: str
+    verify_token: str
     smashin_score: int  # 0-12
-    created: datetime
-    last_recalled: datetime
-    recall_count: int
-    confidence: float = 1.0
+    embedding: List[float]
 
-def calculate_decay_rate(smashin_score: int, recall_count: int) -> float:
+def calculate_retrieval_score(
+    memory: Memory,
+    query: str,
+    query_embedding: List[float],
+    response: str,
+    alpha: float = 0.5,
+    beta: float = 0.3,
+    gamma: float = 0.2
+) -> float:
     """
-    Calculate decay rate λ based on encoding strength and practice.
+    Calculate retrieval confidence score.
 
-    λ = λ_base * (1 - 0.05 * S) * (0.9 ^ sqrt(n))
+    score = α * sim(m, q) + β * verify(m) + γ * smashin(m)
 
     where:
-    - λ_base = 0.20 (baseline decay for unencoded memory)
-    - S = SMASHIN SCOPE score (0-12)
-    - n = number of successful recalls
+    - sim(m, q) = cosine similarity between memory and query embeddings
+    - verify(m) = 1 if verification token present in response, 0 otherwise
+    - smashin(m) = normalized SMASHIN SCOPE score (0-1)
     """
-    lambda_base = 0.20
-    encoding_factor = 1 - 0.05 * smashin_score  # 0.40 at S=12
-    practice_factor = 0.9 ** np.sqrt(recall_count)  # Diminishing returns
+    # Semantic similarity
+    similarity = cosine_similarity(memory.embedding, query_embedding)
 
-    return lambda_base * encoding_factor * practice_factor
+    # Verification token check
+    verify_score = 1.0 if memory.verify_token.lower() in response.lower() else 0.0
 
-def predict_confidence(memory: Memory, target_date: datetime) -> float:
-    """
-    Predict confidence at target_date using exponential decay.
+    # SMASHIN SCOPE encoding quality
+    smashin_normalized = memory.smashin_score / 12.0
 
-    C(t) = C_0 * exp(-λ * t)
-    """
-    days_elapsed = (target_date - memory.last_recalled).days
-    decay_rate = calculate_decay_rate(memory.smashin_score, memory.recall_count)
+    return alpha * similarity + beta * verify_score + gamma * smashin_normalized
 
-    return memory.confidence * np.exp(-decay_rate * days_elapsed)
-
-def schedule_review(memory: Memory, target_retention: float = 0.9) -> datetime:
-    """
-    Calculate optimal review date to maintain target retention.
-
-    Solve: target = confidence * exp(-λ * t)
-    t = -ln(target/confidence) / λ
-    """
-    decay_rate = calculate_decay_rate(memory.smashin_score, memory.recall_count)
-
-    if memory.confidence <= target_retention:
-        return datetime.now()  # Review immediately
-
-    days_until_threshold = -np.log(target_retention / memory.confidence) / decay_rate
-    return memory.last_recalled + timedelta(days=int(days_until_threshold))
+def cosine_similarity(a: List[float], b: List[float]) -> float:
+    """Calculate cosine similarity between two vectors."""
+    a, b = np.array(a), np.array(b)
+    return float(np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b)))
 ```
 
 #### Hierarchical Index Implementation

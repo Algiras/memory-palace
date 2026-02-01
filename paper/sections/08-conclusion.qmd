@@ -10,7 +10,7 @@ We presented Memory Palace, a novel knowledge management system that bridges anc
 
 3. **Verification Token System**: A simple yet effective hallucination prevention mechanism achieving **F1=0.92** for grounding verification—outperforming more complex approaches like SelfCheckGPT (0.75) and NLI-based methods (0.71).
 
-4. **Adaptive Decay Model**: A spaced repetition algorithm that incorporates encoding strength, achieving **57% lower MAE** (0.094 vs 0.218) compared to state-of-the-art systems (SM-2, FSRS) when predicting memory retention.
+4. **Red Queen Protocol**: A multi-agent adversarial testing framework that continuously validates memory retrieval quality and strengthens weak entries through automated re-encoding.
 
 ### Practical Impact
 
@@ -35,7 +35,7 @@ Several directions warrant further investigation:
 
 4. **Neuromorphic integration**: Exploring how Memory Palace structures map to biological memory organization in hippocampal-cortical circuits.
 
-5. **Continuous learning**: Updating the decay model online as user-specific patterns emerge.
+5. **Continuous learning**: Updating retrieval indices online as usage patterns emerge.
 
 6. **Multimodal memories**: Extending beyond text to include images, audio, and video as native memory formats.
 
