@@ -8,13 +8,15 @@ Memory without testing is belief without verification. This system combines the 
 
 **The Solution:** Four specialized agents (Examiner, Learner, Evaluator, Evolver) continuously challenge your knowledge, identifying gaps before they become failures.
 
-**Key Results:** 97% context reduction, 92% hallucination detection F1, +23% retention with Red Queen pre-learning
-
 [![Website](https://img.shields.io/badge/Website-Live-blue)](https://algiras.github.io/memory-palace/)
 [![Paper](https://img.shields.io/badge/Paper-Read-green)](https://algiras.github.io/memory-palace/book/)
 [![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
-**Current Status**: 97% context reduction, 92% hallucination detection F1, Red Queen pre-learning enabled
+```bash
+npx skills add https://github.com/Algiras/memory-palace --skill memory-palace-red-queen
+```
+
+**Key Results:** 97% context reduction | 92% hallucination detection F1 | +23% retention with Red Queen pre-learning
 
 ## Key Results
 
