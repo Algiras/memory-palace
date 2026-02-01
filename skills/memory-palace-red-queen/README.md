@@ -55,10 +55,10 @@ Memories are stored locally in `~/memory/`:
 
 ## Installation
 
-### Method 1: Quick Install (Skills CLI)
+### Method 1: npm (Recommended)
 
 ```bash
-npx skills add https://github.com/Algiras/memory-palace --skill memory-palace-red-queen
+npx memory-palace-red-queen
 ```
 
 ### Method 2: Direct Copy

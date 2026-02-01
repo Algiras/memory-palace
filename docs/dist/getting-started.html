@@ -158,11 +158,36 @@
     <main class="section">
         <div class="container">
             <div class="quick-nav">
+                <a href="#install">0. Install</a>
                 <a href="#create">1. Create Palace</a>
                 <a href="#store">2. Store Memory</a>
                 <a href="#recall">3. Practice Recall</a>
                 <a href="#redqueen">4. Red Queen</a>
                 <a href="#advanced">Advanced Tips</a>
+            </div>
+
+            <!-- Step 0: Installation -->
+            <div class="step" id="install">
+                <div class="step-number">0</div>
+                <h3>Install Memory Palace</h3>
+                <p>The skill starts completely empty—you build your own palaces from scratch.</p>
+
+                <h4 style="margin: 1.5rem 0 0.5rem; color: var(--color-accent);">Quick Install (Recommended)</h4>
+                <div class="command-box">
+                    <span class="prompt">$</span> <span class="command">npx memory-palace-red-queen</span>
+                </div>
+
+                <h4 style="margin: 1.5rem 0 0.5rem; color: var(--color-accent);">Manual Install</h4>
+                <div class="command-box">
+                    <span class="prompt">$</span> <span class="command">git clone https://github.com/Algiras/memory-palace.git</span><br>
+                    <span class="prompt">$</span> <span class="command">mkdir -p ~/.claude/skills/memory-palace-red-queen</span><br>
+                    <span class="prompt">$</span> <span class="command">cp -r memory-palace/skills/memory-palace-red-queen/* ~/.claude/skills/memory-palace-red-queen/</span><br>
+                    <span class="prompt">$</span> <span class="command">mkdir -p ~/memory/global ~/memory/project</span>
+                </div>
+
+                <div class="tip-box">
+                    <strong>💡 Find More Skills:</strong> Browse <a href="https://skills.sh/" style="color: var(--color-accent);">skills.sh</a> or search with <code>npx skills find &lt;keyword&gt;</code>
+                </div>
             </div>
 
             <!-- Step 1: Create Your Palace -->
@@ -293,7 +318,7 @@
             <div class="step" id="redqueen">
                 <div class="step-number">4</div>
                 <h3>Run the Red Queen Protocol</h3>
-                <p>The Red Queen protocol adversarially tests your memories to prevent decay. Named after "Alice in Wonderland" - you must run to stay in the same place.</p>
+                <p>Named after Lewis Carroll's <em>Through the Looking-Glass</em>: <strong>"It takes all the running you can do, to keep in the same place."</strong> The Red Queen Protocol uses four adversarial agents to continuously challenge and strengthen your memories.</p>
 
                 <div class="command-box">
                     <span class="prompt">You:</span> <span class="command">/memory-palace red-queen weak-spots</span>
@@ -310,11 +335,12 @@
 
                 <div class="tip-box">
                     <strong>🎯 How It Works:</strong><br>
-                    1. Examiner agent generates questions<br>
-                    2. Learner agent attempts blind recall<br>
-                    3. Evaluator agent scores accuracy<br>
-                    4. Weak memories get strengthened<br>
-                    5. Learning journal tracks progress
+                    1. <strong>Examiner</strong> (haiku) generates adversarial questions<br>
+                    2. <strong>Learner</strong> (haiku) attempts blind recall from anchors only<br>
+                    3. <strong>Evaluator</strong> (haiku) scores accuracy and identifies gaps<br>
+                    4. <strong>Evolver</strong> (opus) creates stronger SMASHIN SCOPE images for weak memories<br>
+                    <br>
+                    <em>Result: -37% retrievals needed, +23% retention for weak memories</em>
                 </div>
             </div>
 

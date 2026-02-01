@@ -29,10 +29,10 @@ Studies show untested memories decay 40% within 24 hours. The Red Queen Protocol
 
 ## Installation
 
-### Quick Install (Skills CLI)
+### Quick Install (Recommended)
 
 ```bash
-npx skills add https://github.com/Algiras/memory-palace --skill memory-palace-red-queen
+npx memory-palace-red-queen
 ```
 
 ### Manual Install
