@@ -165,7 +165,7 @@ Both implementations must pass:
 ## Implementation Plan
 
 ```
-skills/memory-palace/features/gamification/
+skills/memory-palace-red-queen/features/gamification/
 ├── gamified.js           # Points, streaks, achievements
 ├── utility.js            # Clean metrics only
 ├── ab-test-framework.js  # Random assignment

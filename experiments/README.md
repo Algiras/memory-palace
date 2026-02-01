@@ -184,7 +184,7 @@ Check individual READMEs for detailed findings.
 - [SQLite Backend](sqlite/README.md) - Database migration guide
 - [Semantic Search](embeddings/README.md) - Vector similarity guide
 - [Performance](performance/README.md) - Optimization strategies
-- [Skills Production](../skills/memory-palace/README.md) - Current production skill
+- [Skills Production](../skills/memory-palace-red-queen/README.md) - Current production skill
 
 ---
 

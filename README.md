@@ -196,7 +196,7 @@ The easiest way to install Memory Palace is using the Skills CLI:
 
 ```bash
 # Install the skill directly from GitHub
-npx skills add https://github.com/Algiras/memory-palace -s memory-palace -g -y
+npx skills add https://github.com/Algiras/memory-palace --skill memory-palace-red-queen
 
 # Verify installation
 /memory-palace status
@@ -237,14 +237,14 @@ git clone https://github.com/Algiras/memory-palace.git
 cd memory-palace
 
 # 2. Copy skill files to Claude Code skills directory
-mkdir -p ~/.claude/skills/memory-palace
-cp -r skills/memory-palace/* ~/.claude/skills/memory-palace/
+mkdir -p ~/.claude/skills/memory-palace-red-queen
+cp -r skills/memory-palace-red-queen/* ~/.claude/skills/memory-palace-red-queen/
 
 # 3. Create storage directories
 mkdir -p ~/memory/global ~/memory/project
 
 # 4. Verify installation
-ls ~/.claude/skills/memory-palace/
+ls ~/.claude/skills/memory-palace-red-queen/
 # Should show: README.md, SKILL.md, commands/, subagents/, etc.
 ```
 
@@ -256,7 +256,7 @@ git clone https://github.com/Algiras/memory-palace.git
 cd memory-palace
 
 # Create symlink for easy updates
-ln -s $(pwd)/skills/memory-palace ~/.claude/skills/memory-palace
+ln -s $(pwd)/skills/memory-palace-red-queen ~/.claude/skills/memory-palace-red-queen
 
 # Create storage directories
 mkdir -p ~/memory/global ~/memory/project
@@ -265,8 +265,8 @@ mkdir -p ~/memory/global ~/memory/project
 ### Method 3: Manual Installation
 
 1. Download the repository: `git clone https://github.com/Algiras/memory-palace.git`
-2. Copy the `skills/memory-palace/` folder contents
-3. Paste into `~/.claude/skills/memory-palace/` (create if doesn't exist)
+2. Copy the `skills/memory-palace-red-queen/` folder contents
+3. Paste into `~/.claude/skills/memory-palace-red-queen/` (create if doesn't exist)
 4. Create `~/memory/global` and `~/memory/project` directories
 
 ### Verify Installation
@@ -304,7 +304,7 @@ You should see a message like:
 
 ```bash
 # Remove the skill
-rm -rf ~/.claude/skills/memory-palace
+rm -rf ~/.claude/skills/memory-palace-red-queen
 
 # Optional: Remove stored memories (backup first!)
 rm -rf ~/memory/

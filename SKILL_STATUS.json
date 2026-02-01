@@ -4,7 +4,7 @@
   "fitness_score": "90%",
   "status": "PRODUCTION_READY",
   "structure": {
-    "production": "skills/memory-palace/",
+    "production": "skills/memory-palace-red-queen/",
     "experiments": "experiments/",
     "evolutions": "evolutions/"
   },

@@ -75,14 +75,14 @@
     ]
   },
   "files_modified": [
-    "skills/memory-palace/SKILL.md",
-    "skills/memory-palace/claude-plugin.json",
-    "skills/memory-palace/README.md"
+    "skills/memory-palace-red-queen/SKILL.md",
+    "skills/memory-palace-red-queen/claude-plugin.json",
+    "skills/memory-palace-red-queen/README.md"
   ],
   "files_created": [
-    "skills/memory-palace/storage-adapters/sqlite.js",
-    "skills/memory-palace/search/semantic.js",
-    "skills/memory-palace/optimizations/index.js"
+    "skills/memory-palace-red-queen/storage-adapters/sqlite.js",
+    "skills/memory-palace-red-queen/search/semantic.js",
+    "skills/memory-palace-red-queen/optimizations/index.js"
   ],
   "red_queen_verdict": "ALL_EXPERIMENTS_VALIDATED",
   "scientific_method_score": "EXEMPLARY",

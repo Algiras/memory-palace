@@ -56,8 +56,8 @@ export const SCENES = [
   {
     id: "outro",
     title: "Get Started",
-    subtitle: "npx skills add https://github.com/Algiras/memory-palace -s memory-palace -g -y",
-    durationInFrames: 245, // ~8.2s
+    subtitle: "npx skills add --skill memory-palace-red-queen",
+    durationInFrames: 430, // ~14.3s - matched to new audio
     audioFile: "08-outro.wav",
   },
 ];

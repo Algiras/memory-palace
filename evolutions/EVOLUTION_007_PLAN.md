@@ -115,7 +115,7 @@ Move from laboratory-perfect to real-world-ready. Focus on user experience, cros
 ## 🗂️ Implementation Structure
 
 ```
-skills/memory-palace/
+skills/memory-palace-red-queen/
 ├── features/
 │   ├── cross-palace/
 │   │   ├── linker.js           # Auto-link memories

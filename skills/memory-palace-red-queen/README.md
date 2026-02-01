@@ -55,22 +55,28 @@ Memories are stored locally in `~/memory/`:
 
 ## Installation
 
-### Method 1: Direct Copy
+### Method 1: Quick Install (Skills CLI)
+
+```bash
+npx skills add https://github.com/Algiras/memory-palace --skill memory-palace-red-queen
+```
+
+### Method 2: Direct Copy
 
 ```bash
 # From the root of the repository
-mkdir -p ~/.claude/skills/memory-palace
-cp -r skills/memory-palace/* ~/.claude/skills/memory-palace/
+mkdir -p ~/.claude/skills/memory-palace-red-queen
+cp -r skills/memory-palace-red-queen/* ~/.claude/skills/memory-palace-red-queen/
 
 # Create storage directories
 mkdir -p ~/memory/global ~/memory/project
 ```
 
-### Method 2: Symlink (Development)
+### Method 3: Symlink (Development)
 
 ```bash
 # From the root of the repository
-ln -s $(pwd)/skills/memory-palace ~/.claude/skills/memory-palace
+ln -s $(pwd)/skills/memory-palace-red-queen ~/.claude/skills/memory-palace-red-queen
 mkdir -p ~/memory/global ~/memory/project
 ```
 
@@ -91,7 +97,7 @@ Expected output:
 ## Directory Structure
 
 ```
-skills/memory-palace/
+skills/memory-palace-red-queen/
 ├── README.md                 # This file
 ├── SKILL.md                  # Core skill documentation (detailed reference)
 ├── commands/                 # Command implementations

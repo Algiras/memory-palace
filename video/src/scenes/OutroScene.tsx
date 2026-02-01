@@ -81,7 +81,7 @@ export const OutroScene: React.FC = () => {
               color: COLORS.primary,
             }}
           >
-            npx skills add https://github.com/Algiras/memory-palace -s memory-palace -g -y
+            npx skills add https://github.com/Algiras/memory-palace --skill memory-palace-red-queen
           </code>
         </div>
 

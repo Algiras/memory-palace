@@ -50,7 +50,7 @@ All code and data are included in the paper repository:
 
 The system can be installed as a Claude Code skill:
 ```bash
-npx skills add https://github.com/Algiras/memory-palace -s memory-palace -g -y
+npx skills add https://github.com/Algiras/memory-palace --skill memory-palace-red-queen
 ```
 
 Note: Benchmark comparisons use published MTEB, BEIR, and C-MTEB scores from respective model papers and leaderboards. Our corpus is domain-specific (system design) and results reflect this specialization.
