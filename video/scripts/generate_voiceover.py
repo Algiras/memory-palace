@@ -54,7 +54,7 @@ SCENES = [
     },
     {
         "id": "08-outro",
-        "text": "Get started today. Install the skill with npx skills add, from github dot com slash Algiras slash memory palace, with the skill flag memory palace red queen. Ancient wisdom meets modern AI.",
+        "text": "Get started today. Install with npx memory palace red queen. That's all you need. Ancient wisdom meets modern AI.",
     },
 ]
 

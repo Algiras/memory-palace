@@ -1,0 +1,34 @@
+{
+  "name": "memory-palace-red-queen",
+  "version": "1.0.0",
+  "description": "Memory Palace + Red Queen Protocol - A Claude Code plugin/skill for durable knowledge through vivid encoding + adversarial testing",
+  "bin": {
+    "memory-palace-red-queen": "./bin/cli.js"
+  },
+  "scripts": {
+    "postinstall": "node bin/cli.js install --silent"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "skill",
+    "memory",
+    "memory-palace",
+    "red-queen",
+    "mnemonic",
+    "method-of-loci",
+    "ai",
+    "llm"
+  ],
+  "author": "Algiras",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Algiras/memory-palace.git"
+  },
+  "homepage": "https://algiras.github.io/memory-palace/",
+  "files": [
+    "bin/",
+    "skills/"
+  ]
+}

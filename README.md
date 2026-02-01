@@ -1,8 +1,8 @@
 # Memory Palace + Red Queen
 
-> **Transform information into durable knowledge through vivid encoding + adversarial testing.**
+> **A Claude Code skill for durable knowledge through vivid encoding + adversarial testing.**
 
-Memory without testing is belief without verification. This system combines the ancient *method of loci* (vivid spatial encoding) with the **Red Queen Protocol** (continuous adversarial testing) to create memories that stick and stay accurate.
+Memory without testing is belief without verification. This **Claude Code plugin** combines the ancient *method of loci* (vivid spatial encoding) with the **Red Queen Protocol** (continuous adversarial testing) to create memories that stick and stay accurate.
 
 **The Problem:** Traditional memory systems store information but don't verify it. Result? Confident hallucinations and rapid decay.
 
@@ -11,8 +11,13 @@ Memory without testing is belief without verification. This system combines the 
 [![Website](https://img.shields.io/badge/Website-Live-blue)](https://algiras.github.io/memory-palace/)
 [![Paper](https://img.shields.io/badge/Paper-Read-green)](https://algiras.github.io/memory-palace/book/)
 [![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
+[![npm](https://img.shields.io/npm/v/memory-palace-red-queen)](https://www.npmjs.com/package/memory-palace-red-queen)
 
 ```bash
+# Install via npm (recommended)
+npx memory-palace-red-queen
+
+# Or via Skills CLI
 npx skills add https://github.com/Algiras/memory-palace --skill memory-palace-red-queen
 ```
 
