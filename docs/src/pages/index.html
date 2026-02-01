@@ -61,24 +61,15 @@
                 </div>
             </div>
             <div class="hero-visual">
-                <div class="palace-preview">
+                <div class="palace-preview empty">
                     <div class="locus active">
                         <span class="locus-icon">🏛️</span>
-                        <span class="locus-name">Your Palace</span>
+                        <span class="locus-name">Your Empty Palace</span>
                     </div>
-                    <div class="memory-chain">
-                        <div class="memory">
-                            <span class="memory-icon">🐉</span>
-                            <span class="memory-text">Key Concept</span>
-                        </div>
-                        <div class="memory">
-                            <span class="memory-icon">⚖️</span>
-                            <span class="memory-text">Framework</span>
-                        </div>
-                        <div class="memory">
-                            <span class="memory-icon">💾</span>
-                            <span class="memory-text">Pattern</span>
-                        </div>
+                    <div class="empty-state">
+                        <span class="empty-icon">✨</span>
+                        <span class="empty-text">Start building your memories</span>
+                        <code class="empty-command">/memory-palace create "My Palace"</code>
                     </div>
                 </div>
             </div>
@@ -206,6 +197,50 @@
                 
                 <div class="text-center mt-4">
                     <a href="/evolutions/" class="btn btn-outline">View All 8 Evolutions</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="install" class="section section-dark">
+            <div class="container">
+                <h2>Installation</h2>
+                <p class="section-intro">The skill starts empty. Build your own palaces from scratch.</p>
+                
+                <div class="install-steps">
+                    <div class="install-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Clone the repository</h4>
+                            <code>git clone https://github.com/Algiras/memory-palace.git</code>
+                        </div>
+                    </div>
+                    <div class="install-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Copy to skills directory</h4>
+                            <code>cp -r memory-palace/skills/memory-palace ~/.claude/skills/</code>
+                        </div>
+                    </div>
+                    <div class="install-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Create your first palace</h4>
+                            <code>/memory-palace create "My Palace" "Ancient Library"</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="install-note">
+                    <strong>Storage location:</strong> <code>~/memory/</code> - Your palaces are stored locally in JSON format
+                </div>
+                
+                <div class="install-download" style="margin-top: 2rem; text-align: center;">
+                    <p style="color: var(--color-text-secondary); margin-bottom: 1rem;">
+                        📄 Academic Paper (PDF) - Coming with first release
+                    </p>
+                    <a href="https://github.com/Algiras/memory-palace/releases" class="btn btn-outline">
+                        View Releases
+                    </a>
                 </div>
             </div>
         </section>

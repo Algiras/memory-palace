@@ -7,6 +7,45 @@ description: Build and navigate hierarchical memory palaces using the method of 
 
 Transform information into unforgettable memories using the ancient method of loci combined with the Red Queen adversarial learning protocol.
 
+> **Note:** This skill starts with **zero memories**. You build your own palaces from scratch using the commands below.
+
+## Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Algiras/memory-palace.git
+   cd memory-palace
+   ```
+
+2. **Copy the skill to your Claude Code skills directory:**
+   ```bash
+   # For Claude Code
+   mkdir -p ~/.claude/skills/memory-palace
+   cp -r skills/memory-palace/* ~/.claude/skills/memory-palace/
+   
+   # Or symlink for development
+   ln -s $(pwd)/skills/memory-palace ~/.claude/skills/memory-palace
+   ```
+
+3. **Initialize storage:**
+   ```bash
+   mkdir -p ~/memory/global ~/memory/project
+   ```
+
+4. **Start using:**
+   The skill will be available immediately. Start by creating your first palace:
+   ```
+   /memory-palace create "My First Palace" "Ancient Library"
+   ```
+
+## Documentation
+
+- **Website:** https://algiras.github.io/memory-palace/
+- **Paper:** https://algiras.github.io/memory-palace/book/
+- **Getting Started:** https://algiras.github.io/memory-palace/getting-started/
+- **Evolution History:** https://algiras.github.io/memory-palace/evolutions/
+- **Releases:** https://github.com/Algiras/memory-palace/releases
+
 ## Commands
 
 | Command | Description |

@@ -260,6 +260,115 @@ body {
     font-size: 1.25rem;
 }
 
+/* Empty State */
+.palace-preview.empty {
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    gap: 0.75rem;
+    flex: 1;
+    text-align: center;
+}
+
+.empty-icon {
+    font-size: 2.5rem;
+    opacity: 0.5;
+}
+
+.empty-text {
+    color: var(--color-text-secondary);
+    font-size: 0.9375rem;
+}
+
+.empty-command {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    background: var(--color-bg);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+    color: var(--color-accent);
+    margin-top: 0.5rem;
+}
+
+/* Installation Section */
+.install-steps {
+    max-width: 600px;
+    margin: 3rem auto;
+}
+
+.install-step {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    padding: 1.5rem;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+}
+
+.install-step .step-number {
+    width: 2.5rem;
+    height: 2.5rem;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.install-step .step-content {
+    flex: 1;
+}
+
+.install-step h4 {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+}
+
+.install-step code {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    background: var(--color-bg-secondary);
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    overflow-x: auto;
+}
+
+.install-note {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(88, 166, 255, 0.1);
+    border: 1px solid var(--color-accent);
+    border-radius: var(--radius);
+    max-width: 600px;
+    margin: 2rem auto 0;
+    font-size: 0.9375rem;
+}
+
+.install-note code {
+    font-family: var(--font-mono);
+    background: var(--color-bg);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+
 /* Sections */
 .section {
     padding: 5rem 0;
