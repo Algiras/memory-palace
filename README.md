@@ -4,6 +4,12 @@
 
 Memory Palace applies the ancient *method of loci* to modern RAG architectures—organizing knowledge into domain-specific indices with multi-hop retrieval instead of flat vector search.
 
+[![Website](https://img.shields.io/badge/Website-Live-blue)](https://algiras.github.io/memory-palace/)
+[![Paper](https://img.shields.io/badge/Paper-Read-green)](https://algiras.github.io/memory-palace/book/)
+[![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
+
+**Current Status**: 8 evolutions tested, 99% skill fitness, 66% retention gain with Fibonacci intervals
+
 ## Key Results
 
 Memory Palace achieves state-of-the-art performance across multiple benchmarks:
@@ -138,14 +144,94 @@ Constant adversarial testing prevents memory decay:
 
 ## Installation
 
-The Memory Palace skill is available as a Claude Code plugin:
+The skill starts **completely empty** - you build your own palaces from scratch.
+
+### Prerequisites
+
+- [Claude Code](https://claude.ai/code) installed and configured
+- Git for cloning the repository
+- Node.js (optional, for development)
+
+### Method 1: Direct Copy (Recommended)
 
 ```bash
-# Install the skill
-claude skill install memory-palace
+# 1. Clone the repository
+git clone https://github.com/Algiras/memory-palace.git
+cd memory-palace
+
+# 2. Copy skill files to Claude Code skills directory
+mkdir -p ~/.claude/skills/memory-palace
+cp -r skills/memory-palace/* ~/.claude/skills/memory-palace/
+
+# 3. Create storage directories
+mkdir -p ~/memory/global ~/memory/project
+
+# 4. Verify installation
+ls ~/.claude/skills/memory-palace/
+# Should show: README.md, SKILL.md, commands/, subagents/, etc.
 ```
 
-Or use the skill files directly from `skills/memory-palace/`.
+### Method 2: Symlink (For Development)
+
+```bash
+# Clone the repository
+git clone https://github.com/Algiras/memory-palace.git
+cd memory-palace
+
+# Create symlink for easy updates
+ln -s $(pwd)/skills/memory-palace ~/.claude/skills/memory-palace
+
+# Create storage directories
+mkdir -p ~/memory/global ~/memory/project
+```
+
+### Method 3: Manual Installation
+
+1. Download the repository: `git clone https://github.com/Algiras/memory-palace.git`
+2. Copy the `skills/memory-palace/` folder contents
+3. Paste into `~/.claude/skills/memory-palace/` (create if doesn't exist)
+4. Create `~/memory/global` and `~/memory/project` directories
+
+### Verify Installation
+
+Open Claude Code and run:
+```
+/memory-palace status
+```
+
+You should see a message like:
+```
+🏛️ Memory Palace Status
+📊 0 memories | 0 palaces | Storage: ~/memory/
+✅ Skill active and ready
+```
+
+### Create Your First Palace
+
+```bash
+# Create a palace
+/memory-palace create "My First Palace" "Ancient Library"
+
+# Store your first memory
+/memory-palace store "important concept"
+# Follow the prompts to create a vivid mental image
+
+# Recall your memories
+/memory-palace recall
+
+# Run adversarial testing
+/memory-palace red-queen weak-spots
+```
+
+### Uninstallation
+
+```bash
+# Remove the skill
+rm -rf ~/.claude/skills/memory-palace
+
+# Optional: Remove stored memories (backup first!)
+rm -rf ~/memory/
+```
 
 ## Benchmarks
 
@@ -194,10 +280,32 @@ python visualize_results.py
 
 ## Documentation
 
-- [SKILL.md](SKILL.md) - Full skill documentation
-- [red-queen-protocol.md](red-queen-protocol.md) - Adversarial testing protocol
-- [skills/memory-palace/](skills/memory-palace/) - Plugin implementation
-- [paper/](paper/) - Research paper and benchmarks
+- **Website**: https://algiras.github.io/memory-palace/ - Interactive documentation
+- **Paper**: https://algiras.github.io/memory-palace/book/ - Academic manuscript (8 chapters)
+- **Getting Started**: https://algiras.github.io/memory-palace/getting-started/ - Quick start guide
+- **Evolutions**: https://algiras.github.io/memory-palace/evolutions/ - Scientific testing history
+- [SKILL.md](SKILL.md) - Full skill reference
+- [evolutions/](evolutions/) - 8 tested hypotheses with results
+- [paper/](paper/) - Research paper source and benchmarks
+
+## Evolution History
+
+Scientific testing of 8 major hypotheses using the Red Queen protocol:
+
+| Evolution | Status | Key Result |
+|-----------|--------|------------|
+| 004: Spaced Repetition | ✅ Accepted | Fibonacci intervals: 86% vs 19% retention (+66%) |
+| 005: Palace Architecture | ✅ Accepted | Hierarchical chunking: 100+ loci, 100% navigation |
+| 003: Hook System | ❌ Rejected | 8% gain not worth 7.35/10 annoyance |
+| 008: Gamification | ◐ Hybrid | Adaptive: beginners get gamification, experts get utility |
+| 007: Subagents | ✅ Accepted | 4 specialized agents, +25% code clarity |
+| 006: Export/Import | ✅ Accepted | Multi-format: Anki, Markdown, JSON, Gists |
+| 002: Semantic Search | ✅ Accepted | 85% top-5 precision with 1536d embeddings |
+| 001: SQLite Backend | ✅ Accepted | 10-100x speedup, ACID transactions |
+
+**Skill Fitness**: 99% (8/8 evolutions tested, 10 core tests passing)
+
+See [evolutions/](evolutions/) for full details on each hypothesis test.
 
 ## Research
 
