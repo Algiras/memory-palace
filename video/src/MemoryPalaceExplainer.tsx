@@ -73,11 +73,11 @@ export const MemoryPalaceExplainer: React.FC = () => {
         <Audio src={staticFile(`audio/${SCENES[4].audioFile}`)} volume={0.9} />
       </Sequence>
 
-      {/* Scene 6: Red Queen Protocol - Blur transition for mystery */}
+      {/* Scene 6: Red Queen Protocol - Fade transition */}
       <Sequence from={getSceneStart(5)} durationInFrames={SCENES[5].durationInFrames}>
-        <BlurTransition durationInFrames={SCENES[5].durationInFrames} fadeInFrames={25} fadeOutFrames={20}>
+        <FadeTransition durationInFrames={SCENES[5].durationInFrames} fadeInFrames={25} fadeOutFrames={20}>
           <RedQueenScene />
-        </BlurTransition>
+        </FadeTransition>
         <Audio src={staticFile(`audio/${SCENES[5].audioFile}`)} volume={0.9} />
       </Sequence>
 
