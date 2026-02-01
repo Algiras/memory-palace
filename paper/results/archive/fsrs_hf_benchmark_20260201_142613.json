@@ -1,0 +1,51 @@
+{
+  "timestamp": "2026-02-01T14:26:13.048984",
+  "dataset": "FSRS-Anki-20k",
+  "num_users": 5,
+  "results": {
+    "SM-2": {
+      "mae": NaN,
+      "rmse": NaN,
+      "accuracy": NaN,
+      "auc": NaN,
+      "n_users": 0,
+      "n_predictions": 0
+    },
+    "FSRS": {
+      "mae": NaN,
+      "rmse": NaN,
+      "accuracy": NaN,
+      "auc": NaN,
+      "n_users": 0,
+      "n_predictions": 0
+    },
+    "Memory Palace (S=0)": {
+      "mae": NaN,
+      "rmse": NaN,
+      "accuracy": NaN,
+      "auc": NaN,
+      "n_users": 0,
+      "n_predictions": 0
+    },
+    "Memory Palace (S=6)": {
+      "mae": NaN,
+      "rmse": NaN,
+      "accuracy": NaN,
+      "auc": NaN,
+      "n_users": 0,
+      "n_predictions": 0
+    },
+    "Memory Palace (S=12)": {
+      "mae": NaN,
+      "rmse": NaN,
+      "accuracy": NaN,
+      "auc": NaN,
+      "n_users": 0,
+      "n_predictions": 0
+    }
+  },
+  "sota_comparison": {
+    "sm2_published_auc": "0.65-0.70",
+    "fsrs_published_auc": "0.70-0.75"
+  }
+}

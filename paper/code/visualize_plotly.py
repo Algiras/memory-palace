@@ -17,7 +17,8 @@ try:
 except ImportError:
     print("Installing plotly and kaleido for export...")
     import subprocess
-    subprocess.check_call(["pip", "install", "plotly", "kaleido", "pandas"])
+    import sys
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "plotly", "kaleido", "pandas"])
     import plotly.graph_objects as go
     import plotly.express as px
     from plotly.subplots import make_subplots
@@ -25,22 +26,50 @@ except ImportError:
 OUTPUT_DIR = Path(__file__).parent.parent / 'figures'
 OUTPUT_DIR.mkdir(exist_ok=True)
 
-# Academic color palette
+# Okabe-Ito Colorblind-Friendly Palette (Publication Standard)
+# Source: https://personal.sron.nl/~pault/ and Wong 2011 Nature Methods
+OKABE_ITO = {
+    'orange': '#E69F00',
+    'sky_blue': '#56B4E9',
+    'bluish_green': '#009E73',
+    'yellow': '#F0E442',
+    'blue': '#0072B2',
+    'vermillion': '#D55E00',
+    'reddish_purple': '#CC79A7',
+    'black': '#000000'
+}
+
+# Shorthand for plotting
 COLORS = {
-    'primary': '#2563eb',      # Blue
-    'secondary': '#16a34a',    # Green
-    'tertiary': '#dc2626',     # Red
-    'quaternary': '#9333ea',   # Purple
+    'primary': OKABE_ITO['blue'],
+    'secondary': OKABE_ITO['bluish_green'],
+    'tertiary': OKABE_ITO['vermillion'],
+    'quaternary': OKABE_ITO['reddish_purple'],
+    'highlight': OKABE_ITO['orange'],
     'gray': '#6b7280',
     'light_gray': '#e5e7eb',
 }
 
-# Common layout settings for academic papers
+# Color list for multi-series plots
+COLOR_LIST = [
+    OKABE_ITO['blue'],
+    OKABE_ITO['orange'],
+    OKABE_ITO['bluish_green'],
+    OKABE_ITO['vermillion'],
+    OKABE_ITO['reddish_purple'],
+    OKABE_ITO['sky_blue'],
+]
+
+# Common layout settings for academic papers (Publication Standard)
+# Font: Arial 8-14pt, white background, minimal margins
 LAYOUT_TEMPLATE = dict(
-    font=dict(family="Arial, sans-serif", size=14),
+    font=dict(family="Arial, Helvetica, sans-serif", size=12),
     paper_bgcolor='white',
     plot_bgcolor='white',
     margin=dict(l=60, r=40, t=60, b=60),
+    # Remove gridlines for cleaner look
+    xaxis=dict(showgrid=False, linecolor='black', linewidth=1, mirror=True),
+    yaxis=dict(showgrid=True, gridcolor='#f0f0f0', linecolor='black', linewidth=1, mirror=True),
 )
 
 
@@ -97,6 +126,14 @@ def plot_retrieval_comparison():
         barmode='group',
         legend=dict(x=0.02, y=0.98),
         height=500
+    )
+
+    # Add delta annotation for Recall@1
+    fig.add_annotation(
+        x=methods[-1], y=recall_1[-1],
+        text="+17%", showarrow=True, arrowhead=2,
+        ax=0, ay=-40, row=1, col=1,
+        font=dict(color=COLORS['primary'], size=12)
     )
 
     fig.update_yaxes(title_text='Score', range=[0, 1.1], row=1, col=1)
@@ -158,6 +195,7 @@ def plot_context_scaling():
         xaxis_title='Number of Memories',
         yaxis_title='Context Size (KB)',
         yaxis_type='log',
+        yaxis_range=[-0.1, 3],  # 0.8KB to 1000KB
         legend=dict(x=0.02, y=0.98),
         height=500
     )
@@ -201,7 +239,14 @@ def plot_hallucination_detection():
     )
 
     fig.update_yaxes(title_text='F1 Score', range=[0, 1.1], row=1, col=1)
-    fig.update_yaxes(title_text='Relative Compute Cost', type='log', row=1, col=2)
+    fig.update_yaxes(title_text='Relative Compute Cost', type='log', range=[-2.1, 1], row=1, col=2)  # 0.01x to 10x
+
+    # Add 600x cheaper annotation
+    fig.add_annotation(
+        text="<b>600x Cheaper</b>", x=methods[-1], y=compute_cost[-1],
+        showarrow=True, arrowhead=2, ax=-60, ay=-40,
+        row=1, col=2, font=dict(color=COLORS['secondary'], size=12)
+    )
 
     save_figure(fig, 'hallucination_detection')
 
@@ -229,7 +274,8 @@ def plot_sota_comparison():
 
     # Add horizontal line for Memory Palace
     fig.add_hline(y=0.582, line_dash="dash", line_color=COLORS['secondary'],
-                  annotation_text="Memory Palace (0 params)")
+                  annotation_text="Memory Palace (0 trainable params)",
+                  annotation_position="top left")
 
     fig.update_layout(
         **LAYOUT_TEMPLATE,

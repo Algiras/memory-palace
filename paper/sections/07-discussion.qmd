@@ -118,7 +118,7 @@ Our findings suggest several design principles for future memory-augmented LLMs:
 
 ### Limitations
 
-1. **Manual encoding overhead**: SMASHIN SCOPE encoding requires human or LLM creative effort. Full automation remains challenging.
+1. **Manual encoding overhead**: SMASHIN SCOPE encoding requires human or LLM creative effort. Full automation without quality degradation remains a challenge, though preliminary experiments with Opus-class models show promise.
 
 2. **Domain specificity**: Our corpus focuses on system design. Generalization to other domains needs validation.
 

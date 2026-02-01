@@ -1,0 +1,51 @@
+{
+  "timestamp": "2026-02-01T14:26:27.976002",
+  "dataset": "FSRS-Anki-20k",
+  "num_users": 5,
+  "results": {
+    "SM-2": {
+      "mae": 0.2662478607758679,
+      "rmse": 0.5138350769694442,
+      "accuracy": 0.7346938775510204,
+      "auc": 0.18040221216691804,
+      "n_users": 5,
+      "n_predictions": 245
+    },
+    "FSRS": {
+      "mae": 0.27888670676941707,
+      "rmse": 0.508973720097065,
+      "accuracy": 0.7224489795918367,
+      "auc": 0.18004524886877832,
+      "n_users": 5,
+      "n_predictions": 245
+    },
+    "Memory Palace (S=0)": {
+      "mae": 0.26590175939053673,
+      "rmse": 0.5141386677786255,
+      "accuracy": 0.7346938775510204,
+      "auc": 0.18043740573152336,
+      "n_users": 5,
+      "n_predictions": 245
+    },
+    "Memory Palace (S=6)": {
+      "mae": 0.26549454698524744,
+      "rmse": 0.5144574894765117,
+      "accuracy": 0.7346938775510204,
+      "auc": 0.18164906988436397,
+      "n_users": 5,
+      "n_predictions": 245
+    },
+    "Memory Palace (S=12)": {
+      "mae": 0.2653661719991684,
+      "rmse": 0.5144643771036816,
+      "accuracy": 0.7346938775510204,
+      "auc": 0.15429864253393663,
+      "n_users": 5,
+      "n_predictions": 245
+    }
+  },
+  "sota_comparison": {
+    "sm2_published_auc": "0.65-0.70",
+    "fsrs_published_auc": "0.70-0.75"
+  }
+}

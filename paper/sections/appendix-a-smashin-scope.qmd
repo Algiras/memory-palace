@@ -55,6 +55,10 @@ Missing: Sensory, Humor, Color
 
 All 12 factors present with high intensity.
 
+#### Visualizing Memory Strength
+
+![SMASHIN SCOPE Memory Strength Factors](figures/smashin_scope_layers.png){#fig-smashin-layers}
+
 #### Memory Template
 
 ```markdown

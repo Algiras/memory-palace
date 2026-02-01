@@ -43,3 +43,5 @@ abstract: |
 {{< include sections/appendix-a-smashin-scope.qmd >}}
 
 {{< include sections/appendix-b-code.qmd >}}
+
+{{< include sections/appendix-c-trace.qmd >}}

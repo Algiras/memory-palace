@@ -271,6 +271,10 @@ def load_ragbench_dataset(subset: str = "hotpotqa", num_samples: int = 500) -> L
             break
 
         # Handle different dataset formats
+        if i == 0:
+             print(f"Debug - Item keys: {item.keys()}")
+             if 'context' in item: print(f"Debug - context type: {type(item['context'])}")
+        
         if 'question' in item:
             query = item['question']
         elif 'query' in item:
@@ -299,6 +303,9 @@ def load_ragbench_dataset(subset: str = "hotpotqa", num_samples: int = 500) -> L
                 sentences = ctx.get('sentences', [])
                 for title, sents in zip(titles, sentences):
                     contexts.append(f"{title}: {' '.join(sents)}")
+        elif 'documents' in item:
+            # RAGBench official format
+            contexts = item['documents']
         else:
             contexts = []
 

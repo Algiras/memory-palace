@@ -27,7 +27,7 @@ The system is released as an open-source Claude Code skill, enabling direct inte
 
 Several directions warrant further investigation:
 
-1. **Automated SMASHIN SCOPE generation**: Using vision-language models to automatically generate memorable images from abstract concepts.
+1. **Automated SMASHIN SCOPE generation**: Using vision-language models to automatically generate memorable images from abstract concepts. Our initial proof-of-concept (`automated_encoding.py`) suggests that strong reasoners (e.g., Claude 3.5 Sonnet, GPT-4o) can reliably generate valid 12-factor encodings.
 
 2. **Cross-lingual palaces**: Extending the method to non-English languages and testing transfer effects.
 

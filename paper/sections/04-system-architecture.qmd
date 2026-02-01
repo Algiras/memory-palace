@@ -4,29 +4,7 @@
 
 The Memory Palace system consists of five interconnected components:
 
-```
-                    ┌─────────────────────────────────────┐
-                    │              Query                   │
-                    └─────────────────┬───────────────────┘
-                                      │
-                    ┌─────────────────▼───────────────────┐
-                    │        Hierarchical Index           │
-                    │  ┌─────────────────────────────┐   │
-                    │  │ Level 0: Root Index          │   │
-                    │  │ Level 1: Domain Indices      │   │
-                    │  │ Level 2: Memory Files        │   │
-                    │  └─────────────────────────────┘   │
-                    └─────────────────┬───────────────────┘
-                                      │
-          ┌───────────────────────────┼───────────────────────────┐
-          │                           │                           │
-┌─────────▼─────────┐     ┌──────────▼──────────┐     ┌──────────▼──────────┐
-│  Retrieval Engine │     │    Verification     │     │  Memory Management  │
-│  - Keyword Match  │     │  - Token Checker    │     │  - Spaced Repetition│
-│  - Semantic Search│     │  - Hallucination    │     │  - Decay Model      │
-│  - Graph Traversal│     │    Detector         │     │  - Red Queen        │
-└───────────────────┘     └─────────────────────┘     └─────────────────────┘
-```
+![Memory Palace System Architecture](figures/system_architecture.png){#fig-architecture}
 
 ### Storage Schema
 
@@ -108,11 +86,11 @@ def generate_response(query: str, memory: dict) -> str:
 
 The system supports multiple retrieval profiles optimizing for different goals:
 
-| Profile | Speed | Accuracy | Corpus | Image Size | Use Case |
-|---------|-------|----------|--------|------------|----------|
-| Interview | <1s | 70% | 200 | Minimal | Rapid-fire Q&A |
-| Study | 10-30s | 95% | 50 | Full | Deep learning |
-| Reference | 2-5s | 80% | 500 | Medium | Quick lookup |
-| Teaching | 30s+ | 98% | 30 | Full+ | Explaining |
+| Profile      | Speed  | Accuracy | Corpus | Image Size | Use Case       |
+|--------------|--------|----------|--------|------------|----------------|
+| Interview    | <1s    | 70%      | 200    | Minimal    | Rapid-fire Q&A |
+| Study        | 10-30s | 95%      | 50     | Full       | Deep learning  |
+| Reference    | 2-5s   | 80%      | 500    | Medium     | Quick lookup   |
+| Teaching     | 30s+   | 98%      | 30     | Full+      | Explaining     |
 
 : Retrieval Profile Configurations {#tbl-profiles}
