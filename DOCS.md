@@ -9,7 +9,7 @@ Transform information into unforgettable memories using the ancient method of lo
 ### Quick Install (Skills CLI)
 
 ```bash
-npx skills add Algiras/memory-palace@memory-palace -g -y
+npx skills add https://github.com/Algiras/memory-palace -s memory-palace -g -y
 ```
 
 ### Manual Install

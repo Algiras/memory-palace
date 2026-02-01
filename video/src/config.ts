@@ -56,7 +56,7 @@ export const SCENES = [
   {
     id: "outro",
     title: "Get Started",
-    subtitle: "npx skills add memory-palace",
+    subtitle: "npx skills add https://github.com/Algiras/memory-palace -s memory-palace -g -y",
     durationInFrames: 245, // ~8.2s
     audioFile: "08-outro.wav",
   },

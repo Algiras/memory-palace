@@ -190,7 +190,7 @@ The easiest way to install Memory Palace is using the Skills CLI:
 
 ```bash
 # Install the skill directly from GitHub
-npx skills add Algiras/memory-palace@memory-palace -g -y
+npx skills add https://github.com/Algiras/memory-palace -s memory-palace -g -y
 
 # Verify installation
 /memory-palace status
