@@ -1,7 +1,7 @@
 {
   "name": "memory-palace-red-queen",
   "version": "1.0.0",
-  "description": "Memory Palace + Red Queen Protocol - A Claude Code plugin/skill for durable knowledge through vivid encoding + adversarial testing",
+  "description": "Memory Palace + Red Queen Protocol - A Claude Code skill for durable knowledge through vivid encoding + adversarial testing",
   "bin": {
     "memory-palace-red-queen": "./bin/cli.js"
   },

@@ -2,7 +2,7 @@
 
 > **A Claude Code skill for durable knowledge through vivid encoding + adversarial testing.**
 
-Memory without testing is belief without verification. This **Claude Code plugin** combines the ancient *method of loci* (vivid spatial encoding) with the **Red Queen Protocol** (continuous adversarial testing) to create memories that stick and stay accurate.
+Memory without testing is belief without verification. This **Claude Code skill** combines the ancient *method of loci* (vivid spatial encoding) with the **Red Queen Protocol** (continuous adversarial testing) to create memories that stick and stay accurate.
 
 **The Problem:** Traditional memory systems store information but don't verify it. Result? Confident hallucinations and rapid decay.
 

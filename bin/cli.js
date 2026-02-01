@@ -36,7 +36,7 @@ function copyRecursive(src, dest) {
 function install() {
   log('');
   log('🏛️  Memory Palace + Red Queen');
-  log('   Installing Claude Code plugin/skill...');
+  log('   Installing Claude Code skill...');
   log('');
 
   // Find skill source directory
