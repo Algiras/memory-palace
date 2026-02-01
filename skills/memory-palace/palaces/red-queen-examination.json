@@ -1,0 +1,78 @@
+{
+  "examination": "Red Queen Protocol - System Design Challenge",
+  "date_created": "2026-02-01",
+  "total_questions": 5,
+  "instructions": "Answer each question by recalling the memory palace anchors and details. These questions connect multiple concepts and require deep understanding.",
+  "questions": [
+    {
+      "id": 1,
+      "type": "comparison",
+      "difficulty": 4,
+      "question": "Compare and contrast 2PC (Wedding Ceremony) and Saga pattern (Relay Race Backwards). When would you choose one over the other? What are the specific failure modes of each, and how do they relate to the split-brain and cascade failure problems?",
+      "recall_anchors": [
+        "sd-031: Two-Phase Commit (Wedding Ceremony) - coordinator dies mid-ceremony = blocking forever",
+        "sd-032: Saga Pattern (Relay Race Backwards) - compensating transactions, no global lock, eventually consistent",
+        "fm-001: Cascade Failure (Dominoes) - one service failure cascades",
+        "fm-004: Split-Brain (Two Kings) - multiple leaders causing data divergence"
+      ],
+      "depth_focus": "Understand the fundamental difference: 2PC's atomic all-or-nothing vs Saga's distributed compensating transactions. How does 2PC's blocking nature prevent split-brain but cause availability issues? How does Saga avoid blocking but require compensating transaction design?"
+    },
+    {
+      "id": 2,
+      "type": "failure_mode",
+      "difficulty": 5,
+      "question": "A distributed cache is implemented with the Cache-Aside pattern (Librarian Notebook) using write-behind optimization (Procrastinator Clerk). A network partition occurs lasting 30 seconds, and during this partition a critical service receives 10,000 writes. Describe the exact failure cascade: What happens to the cache? What happens to the database? Which data is at risk? How would this differ if using write-through instead?",
+      "recall_anchors": [
+        "sd-015: Cache-Aside (Librarian) - app checks cache, misses go to DB, app invalidates on write",
+        "sd-017: Write-Behind Cache (Procrastinator) - writes to cache immediately, async batch DB updates",
+        "fm-002: Thundering Herd (Buffalo Stampede) - cache expiry causes simultaneous backend requests",
+        "fm-007: Write-Behind Crash - cache fails before writes persist, data loss"
+      ],
+      "depth_focus": "Trace the failure mode step by step. During partition: writes go to cache only (no DB sync possible). Upon partition heal: which writes get applied to DB? What if the cache node crashes? This combines network failure with cache architecture choices."
+    },
+    {
+      "id": 3,
+      "type": "scenario",
+      "difficulty": 4,
+      "question": "You're building a real-time user activity tracking system for a social media platform. Users are globally distributed. You need <100ms latency for activity reads, but the writes must be durable (can't lose activity logs). Your data is naturally shardable by user_id. Given the CAP theorem constraints, would you design this as CP or AP? How would you use consistent hashing (Clock with Gnomes) and replication (Master Scribe) to achieve your goals? What trade-offs are you making?",
+      "recall_anchors": [
+        "sd-004: CAP Theorem (Three-Headed Dragon) - choose 2 of 3",
+        "sd-005: CP Systems (Bank Vault) - consistency over availability",
+        "sd-006: AP Systems (Convenience Store Clones) - availability over consistency",
+        "sd-023: Consistent Hashing (Clock with Gnomes) - minimal data movement on server changes",
+        "sd-022: Database Replication (Master Scribe) - master write, apprentice readers"
+      ],
+      "depth_focus": "This requires recognizing that 'globally distributed' + 'high availability' + 'durability' pushes toward AP. Use consistent hashing to distribute users evenly (avoiding hot spots). Use master-slave replication for read scaling. Accept eventual consistency between replicas. How does this interact with write-behind caching?"
+    },
+    {
+      "id": 4,
+      "type": "deep_dive",
+      "difficulty": 4,
+      "question": "Explain the complete failure prevention mechanism when using a Circuit Breaker (Electrical Breaker) combined with the Bulkhead pattern (Ship Compartments). Walk through the state machine: what triggers the transition from Closed to Open? Why does the Half-Open state exist? How does Bulkhead prevent cascade failures that circuit breaker alone cannot stop? Provide a concrete scenario where circuit breaker fails but bulkhead succeeds.",
+      "recall_anchors": [
+        "sd-042: Circuit Breaker (Electrical Breaker) - states: Closed (normal), Open (failing fast), Half-Open (testing)",
+        "sd-043: Bulkhead (Ship Compartments) - isolation via thread/connection pool partitioning",
+        "fm-001: Cascade Failure (Dominoes) - one failure spreads to dependents",
+        "fm-003: Retry Storm (Hammering Sick Service) - retries amplify load"
+      ],
+      "depth_focus": "Circuit breaker prevents cascade by failing fast, but a single service saturating shared resources can still cascade. Bulkhead separates resource pools - if service A consumes all threads, B still has its own. Together: circuit breaker stops bad requests fast, bulkhead stops resource exhaustion from spreading. Scenario: Service B calls Service A (slow). Circuit breaker opens after failures. But during that period, B's thread pool exhausted by pending requests. With bulkhead, B's pool limited - other services unaffected."
+    },
+    {
+      "id": 5,
+      "type": "cross_cutting",
+      "difficulty": 5,
+      "question": "Design a fault-tolerant distributed transaction system using the palace concepts. A user needs to: (1) withdraw money from Account A (shard 1), (2) deposit to Account B (shard 2), (3) log transaction in event log (shard 3). This must be atomic and durable. Which consistency model would you use (Strong/Eventual/Weak)? Would you use 2PC, Saga, or event sourcing? How do clock skew (Timezone Nightmare) and leader election (Pirate Mutiny) affect your design? If the network partitions after step 2 completes, what happens? How does this relate to split-brain failure?",
+      "recall_anchors": [
+        "sd-007/008/009: Consistency models (Drill Sergeant / Lazy Monks / Jumbotron)",
+        "sd-031: Two-Phase Commit (Wedding Ceremony) - atomic but blocking",
+        "sd-032: Saga Pattern (Relay Race) - distributed with compensating transactions",
+        "sd-038: Event Sourcing (Bank Receipts) - immutable event log, replay for state",
+        "sd-033/034/035: Clock skew & Logical clocks (Timezone / Lamport Counter / Scoreboard)",
+        "sd-029: Leader Election (Paxos/Raft Council of Wizards)",
+        "fm-004: Split-Brain (Two Kings) - network partition causes multiple leaders",
+        "fm-005: Zombie Leader (Dead King) - old leader issues stale commands"
+      ],
+      "depth_focus": "This is a comprehensive question combining distributed transactions, consistency, consensus, time, and failure modes. Key insights: (1) Saga is more available than 2PC but requires compensating logic; (2) Event sourcing provides audit trail and temporal queries; (3) Clock skew means you can't rely on wall-clock timestamps for ordering; use logical clocks; (4) Leader election prevents split-brain but requires quorum (majority); (5) Network partition after step 2: if partition isolates shard 3, the log isn't updated - reconciliation needed on partition heal using event sourcing approach. This combines nearly every major concept in the palace."
+    }
+  ]
+}

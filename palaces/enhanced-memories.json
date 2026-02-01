@@ -1,0 +1,43 @@
+{
+  "name": "Enhanced Memories - Red Queen Strengthened",
+  "created": "2026-02-01",
+  "description": "Strengthened versions of weak memories identified by Red Queen protocol",
+  "enhancements": [
+    {
+      "original_id": "sd-023",
+      "concept": "Consistent Hashing with Virtual Nodes",
+      "original_image": "Clock face with gnomes, data thrown like darts rolls clockwise",
+      "enhanced_image": "A CLOCK FACE with SERVER GNOMES sitting at different hours, but EACH GNOME IS ACTUALLY 3 HOLOGRAPHIC CLONES spread around the clock! When you throw a dart, it sticks and rolls clockwise to the NEAREST CLONE. Now here's the MAGIC: if one gnome leaves, his THREE CLONES are spread across the ring, so his keys distribute smoothly to THREE different neighbors instead of ONE! You HEAR the satisfying 'whoosh-whoosh-whoosh' of data spreading evenly, not piling up. The gnomes GLOW BRIGHTER at clone-positions because they're handling LOAD BALANCING. New gnome joins? Insert all 3 clones at once - WHOOOOSH - load rebalances perfectly! The hologram flickers: 'I'm fake but I matter!'",
+      "key_addition": "Virtual nodes = multiple hash positions per physical server for even distribution",
+      "sensory_details": ["WHOOSH of smooth redistribution", "Gnomes glowing brighter at clone positions", "Holographic shimmer feels like gel", "Absence of pile-ups"],
+      "emotional_hook": "Relief watching data spread evenly. Surprise that 'fake' virtual nodes solve real problems."
+    },
+    {
+      "original_id": "sd-004",
+      "concept": "CAP Theorem with Concrete Examples",
+      "original_image": "Three-headed dragon, only 2 heads breathe at once",
+      "enhanced_image": "THREE-HEADED DRAGON with CONCRETE STATUES around it!\n\nLEFT (CP): ROBOT BANKER statue clutching a LEDGER marked 'ATOMIC TRUTH'. Network down? Robot LOCKS the vault with BZZZZZZT and CLICK-CLICK-CLICK of bolts. Customers POUND on glass SCREAMING but robot holds firm: 'I will NOT guess!' Statue has CRACKS forming but won't break.\n\nRIGHT (AP): CLONE STORE statues - multiple GLITTERY CLONES operating during a storm. Each clone sells the SAME last milk bottle to different customers - 'WAIT, I sold that?!' When storm clears, clones ARGUE trying to reconcile: 'I PROMISED it to him!' 'No, I did!' They fix it with COMPENSATION: 'Free ice cream for both!' Store NEVER closes (green lights) but chaos reigns.\n\nCENTER: Dragon's MIDDLE HEAD tries to breathe all three fires, gets SCORCHED by its own flames, SCREAMS 'PICK TWO!'",
+      "key_addition": "Robot banker (CP) and clone store (AP) as visceral, memorable examples",
+      "sensory_details": ["BZZZZZZT alarm", "CLICK-CLICK-CLICK vault locks", "POUNDING fists on glass", "Clone store: ARGUING voices, spilled milk SQUELCH", "Dragon SCREAMING, sulfur smell"],
+      "emotional_hook": "Empathy for frustrated customers. Humor watching clones argue. Visceral realization: I MUST sacrifice something!"
+    },
+    {
+      "original_id": "sd-031",
+      "concept": "Two-Phase Commit Blocking Failure",
+      "original_image": "Wedding ceremony, priest asks all parties, if all yes then commit",
+      "enhanced_image": "WEDDING CEREMONY with NIGHTMARE potential:\n\nPRIEST in GOLDEN robes. PHASE 1: 'Do you commit?' Bride says 'I DO!' - her heart GLOWS GOLDEN, she's LOCKED IN. Groom says 'I DO!' - GLOWS GOLDEN. All participants locked, glowing, frozen!\n\nThen - CRACK! Priest CLUTCHES HIS CHEST and COLLAPSES! 'PRIEST DIES!'\n\nHORROR: Bride and groom are STILL GLOWING, STILL LOCKED, STILL UNABLE TO MOVE! They can't leave. Minutes... hours... DAYS pass! Decorations WILT. Venue CLOSES. Guests go home. But couple REMAINS, muscles ACHING, staring ahead with HOLLOW EYES. Wedding photos become MOLDY. Skeleton music plays. Sign: '2-PHASE COMMIT: WHERE HOPE GOES TO DIE!'\n\nBACKUP PRIEST stands nervously but is POWERLESS - can't declare them committed, can't reverse vows. Ceremony in LIMBO FOREVER.\n\nContrast: SAGA WEDDING DANCE in background - couples doing a RELAY RACE dance where each phase can UNDO and RUN BACKWARD gracefully. JOYFUL and MOVING!",
+      "key_addition": "PRIEST DEATH = coordinator crash, showing ETERNAL BLOCKING not just failure",
+      "sensory_details": ["Hearts GLOWING GOLDEN (lock state)", "CRACK of heart attack", "SILENCE of frozen ceremony", "ACHE in muscles", "SMELL of decaying flowers", "HOLLOW EYES staring at nothing", "MOLDY wedding photos"],
+      "emotional_hook": "DREAD watching priest die. HORROR of eternal lock. DESPAIR that backup can't help. Makes 2PC's blocking UNFORGETTABLE."
+    },
+    {
+      "original_id": "fm-002",
+      "concept": "Thundering Herd Visceral Stampede",
+      "original_image": "Buffalo stampede all crashing through same door",
+      "enhanced_image": "10,000 BUFFALO stampeding toward a SINGLE TINY BARN DOOR:\n\nGround SHAKES - you FEEL vibration in your chest. BOOM-BOOM-BOOM-BOOM synchronized hooves! DUST CLOUD so thick it CHOKES you. DEAFENING ROAR of snorts and hooves!\n\nThey see the DOOR - 4 feet wide. PANIC! BUFFALO PILE UP, crushing each other! BONES CRACKING! BODIES TRAMPLING bodies! PRESSURE is immense - you FEEL the crushing force. Buffalo at front are FLATTENED, SCREAMING (horrible sound). Those behind PUSH HARDER, unaware of carnage!\n\nDoor SPLINTERING - CRACK-CRACK-CRACK! You SMELL sweat, blood, fear-stink. EARDRUMS bursting from noise. Mountain of TANGLED BUFFALO BODIES at one door. The ones in back are UNAWARE!\n\nSign appears: 'THIS IS CACHE STAMPEDE!'\n\nThen a SECOND DOOR appears! WHOOSH - herd spreads out, BREATHING ROOM! Bottleneck VANISHES! Only TRAUMA remains - scattered buffalo recovering, RELIEF on their faces.\n\nContrast: In another paddock, 10,000 buffalo calmly spreading across 100 BARN DOORS, NO PILE UP, efficient FLOW!",
+      "key_addition": "THE ONE DOOR BOTTLENECK - visceral crushing, the physics of pressure at single point",
+      "sensory_details": ["BOOM-BOOM chest vibration", "CHOKING dust", "SCREAMING buffalo", "CRACK-CRACK splintering wood", "CRUSHING pressure", "Smell of blood and fear", "Ringing ears"],
+      "emotional_hook": "FEAR of being crushed. HELPLESSNESS of herd not knowing why. HORROR of senseless death from ONE bottleneck. RELIEF when multiple doors appear."
+    }
+  ]
+}

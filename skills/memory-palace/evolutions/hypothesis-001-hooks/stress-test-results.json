@@ -1,0 +1,63 @@
+{
+  "timestamp": "2026-02-01T08:39:32.496Z",
+  "config": {
+    "iterations": 100,
+    "testDuration": 1800000,
+    "topicsToMention": [
+      "CAP theorem",
+      "load balancer",
+      "cache",
+      "database",
+      "microservices",
+      "API gateway",
+      "sharding",
+      "event sourcing"
+    ],
+    "offTopicMessages": [
+      "My dog is sick today",
+      "What should I have for lunch?",
+      "The weather is terrible",
+      "I need to buy groceries later",
+      "Weekend plans with family"
+    ],
+    "learningMessages": [
+      "How does consistent hashing work?",
+      "What is the best practice for API design?",
+      "Explain the circuit breaker pattern",
+      "Can you teach me about CQRS?",
+      "How do I implement event sourcing?"
+    ]
+  },
+  "regression": {
+    "passed": 10,
+    "failed": 0,
+    "total": 10
+  },
+  "automated": {
+    "type": "automated",
+    "satisfaction": "2.55",
+    "annoyance": "7.35",
+    "acceptanceRate": "37.5",
+    "interruptions": 40,
+    "avgRecallAccuracy": "85.1",
+    "messagesProcessed": 100,
+    "falsePositives": 1
+  },
+  "manual": {
+    "type": "manual",
+    "satisfaction": "5.00",
+    "annoyance": "0.00",
+    "acceptanceRate": 0,
+    "interruptions": 0,
+    "avgRecallAccuracy": "76.8",
+    "messagesProcessed": 100,
+    "falsePositives": 0
+  },
+  "decision": {
+    "retentionImprovement": 8.3,
+    "satisfactionDiff": -2.45,
+    "verdict": "keep_manual"
+  },
+  "hypothesis": "Hook System vs Manual Triggers",
+  "status": "completed"
+}

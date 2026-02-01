@@ -1,0 +1,118 @@
+## System Architecture {#sec-architecture}
+
+### Overview
+
+The Memory Palace system consists of five interconnected components:
+
+```
+                    ┌─────────────────────────────────────┐
+                    │              Query                   │
+                    └─────────────────┬───────────────────┘
+                                      │
+                    ┌─────────────────▼───────────────────┐
+                    │        Hierarchical Index           │
+                    │  ┌─────────────────────────────┐   │
+                    │  │ Level 0: Root Index          │   │
+                    │  │ Level 1: Domain Indices      │   │
+                    │  │ Level 2: Memory Files        │   │
+                    │  └─────────────────────────────┘   │
+                    └─────────────────┬───────────────────┘
+                                      │
+          ┌───────────────────────────┼───────────────────────────┐
+          │                           │                           │
+┌─────────▼─────────┐     ┌──────────▼──────────┐     ┌──────────▼──────────┐
+│  Retrieval Engine │     │    Verification     │     │  Memory Management  │
+│  - Keyword Match  │     │  - Token Checker    │     │  - Spaced Repetition│
+│  - Semantic Search│     │  - Hallucination    │     │  - Decay Model      │
+│  - Graph Traversal│     │    Detector         │     │  - Red Queen        │
+└───────────────────┘     └─────────────────────┘     └─────────────────────┘
+```
+
+### Storage Schema
+
+Memories are stored in JSON format with the following schema:
+
+```json
+{
+    "id": "string - unique identifier",
+    "subject": "string - topic name",
+    "image": "string - SMASHIN SCOPE encoded image (300-500 chars)",
+    "content": "string - factual information",
+    "anchor": "string - memorable keyword",
+    "verify_token": "string - anti-hallucination phrase",
+    "created": "date - creation timestamp",
+    "confidence": "float - current confidence (0-1)",
+    "decay_rate": "float - learned decay parameter",
+    "last_recalled": "date - last successful recall",
+    "recall_count": "int - total successful recalls",
+    "linked_to": "array - related memory IDs"
+}
+```
+
+### Index Structure
+
+The hierarchical index minimizes context while maximizing retrieval precision:
+
+![Context Size Comparison: Flat vs Hierarchical](figures/context_reduction.png){#fig-index-comparison}
+
+### Retrieval Protocol
+
+The retrieval process follows a strict 2-hop protocol:
+
+```python
+def retrieve_memory(query: str) -> dict:
+    """
+    Hierarchical retrieval with verification.
+    Returns memory only if verify token check passes.
+    """
+    # Hop 1: Root index lookup
+    domain = root_index.match_keyword(query)
+    if not domain:
+        domain = semantic_search(query, root_index.domains)
+
+    # Hop 2: Domain index lookup
+    domain_index = load_index(f"index/{domain}.md")
+    location = domain_index.get_location(query)
+    verify_token = domain_index.get_verify_token(query)
+
+    # Hop 3: Load actual memory
+    memory = read_memory(location.file, location.line)
+
+    return {
+        "memory": memory,
+        "verify_token": verify_token,
+        "hops": 2,
+        "context_size": len(str(memory))
+    }
+
+
+def generate_response(query: str, memory: dict) -> str:
+    """
+    Generate response with hallucination check.
+    """
+    response = llm.generate(
+        prompt=f"Answer based on this memory: {memory['image']}\n\nQuery: {query}"
+    )
+
+    # Verification check
+    if memory["verify_token"] not in response:
+        raise HallucinationError(
+            f"Response lacks verify token '{memory['verify_token']}'. "
+            "LLM may have hallucinated."
+        )
+
+    return response
+```
+
+### Trade-off Profiles
+
+The system supports multiple retrieval profiles optimizing for different goals:
+
+| Profile | Speed | Accuracy | Corpus | Image Size | Use Case |
+|---------|-------|----------|--------|------------|----------|
+| Interview | <1s | 70% | 200 | Minimal | Rapid-fire Q&A |
+| Study | 10-30s | 95% | 50 | Full | Deep learning |
+| Reference | 2-5s | 80% | 500 | Medium | Quick lookup |
+| Teaching | 30s+ | 98% | 30 | Full+ | Explaining |
+
+: Retrieval Profile Configurations {#tbl-profiles}

@@ -1,0 +1,36 @@
+## Introduction {#sec-introduction}
+
+The challenge of long-term knowledge retention has persisted since antiquity. Ancient Greek and Roman orators developed the *method of loci* (memory palace technique) to memorize lengthy speeches by associating information with vivid mental imagery placed in familiar locations [@yates1966art]. Modern cognitive science has validated these techniques, showing that spatial and visual encoding significantly improves recall [@bower1970analysis].
+
+Simultaneously, the rise of Large Language Models (LLMs) has created new challenges in knowledge management. While LLMs excel at generating fluent text, they suffer from:
+
+1. **Hallucination** - generating plausible but incorrect information
+2. **Knowledge cutoff** - inability to access information beyond training data
+3. **Context limitations** - struggling with large knowledge bases
+
+Retrieval-Augmented Generation (RAG) addresses some of these issues by grounding LLM outputs in retrieved documents [@lewis2020retrieval]. However, standard RAG systems lack:
+
+- **Memorability** - retrieved chunks are forgotten across sessions
+- **Personalization** - no adaptation to individual learning patterns
+- **Decay modeling** - no prediction of when knowledge will be forgotten
+
+### Contributions
+
+We present a novel system that bridges ancient mnemonic techniques with modern RAG architectures:
+
+1. **SMASHIN SCOPE Encoding**: A systematic method for transforming abstract concepts into memorable, multi-sensory mental images that encode the same information through redundant channels.
+
+2. **Hierarchical Memory Index**: A three-level index structure that reduces retrieval context by 97% while introducing *verification tokens* to detect LLM hallucination.
+
+3. **Adaptive Decay Model**: A spaced repetition system calibrated against 1.7 billion real flashcard reviews, enabling accurate prediction of when memories will fade.
+
+4. **Red Queen Protocol**: An adversarial multi-agent testing framework that continuously strengthens weak memories.
+
+### Research Questions
+
+We address the following questions:
+
+- **RQ1**: Can structured mnemonic encoding improve recall accuracy compared to standard RAG?
+- **RQ2**: Do verification tokens effectively prevent LLM hallucination?
+- **RQ3**: How accurately can we predict memory decay compared to human ground truth?
+- **RQ4**: What are the trade-offs between retrieval speed, accuracy, and corpus size?

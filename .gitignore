@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+
+# Environment
+.env
+
+# Quarto output
+paper/_output/
+paper/.quarto/
+*.log
+*.aux
+*.out
+*.toc
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Results (optional - comment out to include)
+# paper/results/

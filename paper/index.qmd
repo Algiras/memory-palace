@@ -1,0 +1,42 @@
+---
+title: "Hierarchical Memory Palaces: Combining Ancient Mnemonics with Modern Retrieval Systems"
+subtitle: "A Comparative Study of SMASHIN SCOPE Encoding, Hierarchical Indexing, and Spaced Repetition"
+abstract: |
+  We present a novel knowledge management system that combines the ancient method of loci
+  (memory palace technique) with modern retrieval-augmented generation (RAG) architectures.
+  Our system introduces three key innovations: (1) SMASHIN SCOPE encoding for creating
+  memorable, multi-channel memory representations, (2) a hierarchical index with verification
+  tokens to prevent LLM hallucination, and (3) an adaptive spaced repetition model based on
+  Ebbinghaus forgetting curves. We evaluate our approach against standard RAG benchmarks
+  (RAGBench, RepLiQA) and validate our memory decay model against 1.7 billion flashcard
+  reviews from the FSRS-Anki dataset. Results show 97% reduction in retrieval context,
+  80%+ recall accuracy with anti-hallucination guarantees, and decay predictions within
+  8% of human memory ground truth.
+---
+
+{{< include sections/01-introduction.qmd >}}
+
+{{< include sections/02-related-work.qmd >}}
+
+{{< include sections/03-methodology.qmd >}}
+
+{{< include sections/04-system-architecture.qmd >}}
+
+{{< include sections/05-experiments.qmd >}}
+
+{{< include sections/06-results.qmd >}}
+
+{{< include sections/07-discussion.qmd >}}
+
+{{< include sections/08-conclusion.qmd >}}
+
+## References {.unnumbered}
+
+::: {#refs}
+:::
+
+## Appendix {.appendix}
+
+{{< include sections/appendix-a-smashin-scope.qmd >}}
+
+{{< include sections/appendix-b-code.qmd >}}

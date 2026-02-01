@@ -1,0 +1,25 @@
+{
+  "timestamp": "2026-02-01T12:14:28.710352",
+  "datasets": [
+    {
+      "dataset": "SQuAD v2",
+      "memories": 500,
+      "queries": 500,
+      "flat_accuracy": 1.0,
+      "hier_accuracy": 1.0,
+      "flat_avg_context": 322527.0,
+      "hier_avg_context": 92849.058,
+      "context_reduction": 0.7121200457636105
+    },
+    {
+      "dataset": "TriviaQA",
+      "memories": 500,
+      "queries": 500,
+      "flat_accuracy": 1.0,
+      "hier_accuracy": 1.0,
+      "flat_avg_context": 58921.0,
+      "hier_avg_context": 116827.926,
+      "context_reduction": -0.9827892601958554
+    }
+  ]
+}

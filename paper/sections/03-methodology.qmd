@@ -1,0 +1,104 @@
+## Methodology {#sec-methodology}
+
+### SMASHIN SCOPE Encoding
+
+We developed a systematic framework for creating memorable mental images. SMASHIN SCOPE is an acronym encoding 12 memorability factors:
+
+| Letter | Factor | Description |
+|--------|--------|-------------|
+| S | Substitute | Replace abstract with concrete |
+| M | Movement | Add animation and action |
+| A | Absurd | Make impossible or exaggerated |
+| S | Sensory | Engage all 5 senses |
+| H | Humor | Include funny elements |
+| I | Interact | User participates in scene |
+| N | Numbers | Encode quantities with shapes |
+| S | Symbols | Use visual puns |
+| C | Color | Add vivid, unusual colors |
+| O | Oversize | Dramatic scale changes |
+| P | Position | Precise spatial placement |
+| E | Emotion | Evoke strong feelings |
+
+: SMASHIN SCOPE Encoding Factors {#tbl-smashin-scope}
+
+### Multi-Channel Redundancy
+
+Each memory is encoded through multiple channels, providing resilience to partial information loss:
+
+```
+Concept: 2PC
+    ├── Visual: Stone statues
+    ├── Sensory: Cold granite
+    ├── Emotional: Frozen forever
+    ├── Contrast: Saga divorce
+    └── Scale: 47 couples
+            │
+            ▼
+        [Recall]
+```
+
+### Hierarchical Index Design
+
+We structure memories in a three-level hierarchy to minimize retrieval context:
+
+**Level 0 (Root)**: Domain mapping (~400 chars)
+```
+keyword → domain → anchor
+```
+
+**Level 1 (Domain)**: Location pointers (~300 chars each)
+```
+anchor → file:line → verify_token
+```
+
+**Level 2 (Memory)**: Full SMASHIN SCOPE image (~500 chars)
+
+Total navigational overhead: **2.5KB** vs 46.5KB for flat structure (94.6% reduction).
+
+### Verification Token System
+
+To prevent LLM hallucination, each memory includes a unique verification token—a phrase that:
+
+1. Only exists in the actual stored memory
+2. Appears unrelated to the concept (hard to guess)
+3. Must be present in any valid response
+
+| Concept | Verify Token | Rationale |
+|---------|--------------|-----------|
+| CAP Theorem | two heads breathe | Dragon metaphor specific |
+| Two-Phase Commit | 47 couples | Absurd scale |
+| Write-Behind Cache | 50-foot grandmother | Emotional anchor |
+| Consistent Hashing | gnomes on clock | Unique visual |
+
+: Example Verification Tokens {#tbl-verify-tokens}
+
+### Decay Model
+
+We model confidence decay using an exponential function:
+
+$$C(t) = C_0 \cdot e^{-\lambda t}$$
+
+where:
+
+- $C(t)$ is confidence at time $t$
+- $C_0$ is initial confidence after learning
+- $\lambda$ is the decay rate (learned per memory)
+
+The decay rate $\lambda$ is calibrated based on:
+
+1. **Recall quality**: Higher quality → lower decay
+2. **Repetition count**: More reviews → lower decay
+3. **Memory strength**: SMASHIN SCOPE factor count → lower decay
+
+### Red Queen Protocol
+
+Adversarial testing using four specialized agents:
+
+| Agent | Model | Role |
+|-------|-------|------|
+| Examiner | Haiku | Generate challenging questions |
+| Learner | Haiku | Attempt blind recall |
+| Evaluator | Haiku | Score accuracy, find gaps |
+| Evolver | Opus | Strengthen weak memories |
+
+The protocol runs continuously, evolving memories that fall below confidence thresholds.

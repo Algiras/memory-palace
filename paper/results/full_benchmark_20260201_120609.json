@@ -1,0 +1,75 @@
+{
+  "timestamp": "2026-02-01T12:06:09.499124",
+  "scale_benchmark": {
+    "corpus_sizes": [
+      10,
+      50,
+      100,
+      500,
+      1000
+    ],
+    "flat": [
+      {
+        "corpus_size": 10,
+        "accuracy": 1.0,
+        "avg_context": 2384.0
+      },
+      {
+        "corpus_size": 50,
+        "accuracy": 1.0,
+        "avg_context": 11668.0
+      },
+      {
+        "corpus_size": 100,
+        "accuracy": 1.0,
+        "avg_context": 23261.0
+      },
+      {
+        "corpus_size": 500,
+        "accuracy": 1.0,
+        "avg_context": 117507.0
+      },
+      {
+        "corpus_size": 1000,
+        "accuracy": 1.0,
+        "avg_context": 235050.0
+      }
+    ],
+    "hierarchical": [
+      {
+        "corpus_size": 10,
+        "accuracy": 0.1,
+        "avg_context": 1112.0,
+        "avg_hops": 2.0
+      },
+      {
+        "corpus_size": 50,
+        "accuracy": 0.02,
+        "avg_context": 4497.0,
+        "avg_hops": 2.0
+      },
+      {
+        "corpus_size": 100,
+        "accuracy": 0.01,
+        "avg_context": 8711.0,
+        "avg_hops": 2.0
+      },
+      {
+        "corpus_size": 500,
+        "accuracy": 0.01,
+        "avg_context": 42346.0,
+        "avg_hops": 2.0
+      },
+      {
+        "corpus_size": 1000,
+        "accuracy": 0.01,
+        "avg_context": 84373.0,
+        "avg_hops": 2.0
+      }
+    ]
+  },
+  "hallucination_benchmark": {
+    "with_verify_detection_rate": 1.0,
+    "without_verify_detection_rate": 0.0
+  }
+}

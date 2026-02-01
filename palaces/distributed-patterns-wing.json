@@ -1,0 +1,204 @@
+{
+  "name": "Distributed Patterns Wing",
+  "created": "2026-02-01",
+  "theme": "Extension wing attached to System Design Citadel - Distributed Dome",
+  "description": "Martin Fowler's patterns of distributed systems - advanced concepts for consensus, replication, and coordination",
+  "activeLocus": "wing-entrance",
+  "parentPalace": "system-design-citadel",
+  "attachPoint": "distributed-dome",
+  "loci": [
+    {
+      "id": "wing-entrance",
+      "name": "Patterns Wing Entrance",
+      "anchor": "a doorway with spinning gears",
+      "description": "A brass doorway with visible clockwork gears, leading from the Distributed Dome into a new wing of mechanical precision.",
+      "memories": [],
+      "children": ["durability-hall", "consensus-chamber", "coordination-corridor", "partitioning-pit"],
+      "parent": null
+    },
+    {
+      "id": "durability-hall",
+      "name": "Durability Hall",
+      "anchor": "walls lined with indestructible ledgers",
+      "description": "A hall where nothing is ever lost. Every surface is covered in writing that cannot be erased.",
+      "memories": [
+        {
+          "id": "dp-001",
+          "subject": "Write-Ahead Log (WAL)",
+          "image": "A PARANOID ACCOUNTANT who writes EVERY transaction in a FIREPROOF DIARY before touching the main ledger! 'First I write here, THEN I update the books!' If the building burns down mid-update, the diary survives! He can replay the diary to reconstruct the ledger. The diary is APPEND-ONLY - he never erases, only adds!",
+          "content": "Write-Ahead Log: Before modifying data, write the change to a durable append-only log. If crash occurs, replay log to recover. Foundation of database durability. Used by: PostgreSQL, etcd, Kafka.",
+          "created": "2026-02-01",
+          "linkedTo": ["dp-002", "dp-003"]
+        },
+        {
+          "id": "dp-002",
+          "subject": "Segmented Log",
+          "image": "The paranoid accountant's diary got TOO BIG to carry! So he cuts it into CHAPTERS (segments) - each chapter is a separate book. Old chapters go to the ARCHIVE (cold storage). When searching, check the INDEX to know which chapter to grab. Prevents one MASSIVE UNWIELDY book!",
+          "content": "Segmented Log: Split log into fixed-size segments. Benefits: easier archival, parallel processing, bounded file sizes. Old segments can be deleted or compacted. Index tracks which segment contains what.",
+          "created": "2026-02-01",
+          "linkedTo": ["dp-001"]
+        },
+        {
+          "id": "dp-003",
+          "subject": "Low-Water Mark",
+          "image": "A SWIMMING POOL with a LINE painted on the wall - 'Below this line is SAFE TO DRAIN!' The water below the low-water mark represents OLD LOG ENTRIES that are fully replicated and can be deleted. Above the line? KEEP IT - someone might still need it! The line moves up as followers catch up.",
+          "content": "Low-Water Mark: Index indicating which log entries are safe to discard. All entries below this point are replicated to all nodes or processed. Enables log truncation without data loss. Moves forward as followers acknowledge.",
+          "created": "2026-02-01",
+          "linkedTo": ["dp-001", "dp-004"]
+        },
+        {
+          "id": "dp-004",
+          "subject": "High-Water Mark",
+          "image": "Same pool, but now there's a SECOND LINE higher up - 'Above this line is NOT YET CONFIRMED!' The water above high-water mark is SPECULATIVE - the leader wrote it but followers haven't confirmed. Only serve reads BELOW this line! It's the 'committed' boundary.",
+          "content": "High-Water Mark: Index indicating which log entries are safely committed (replicated to majority). Reads should only return data below this mark. Leader tracks as followers acknowledge. Ensures consistency.",
+          "created": "2026-02-01",
+          "linkedTo": ["dp-003"]
+        }
+      ],
+      "children": [],
+      "parent": "wing-entrance"
+    },
+    {
+      "id": "consensus-chamber",
+      "name": "Consensus Chamber",
+      "anchor": "a round table with voting stones",
+      "description": "A chamber where nodes come to agreement. A round table with glowing stones that light up for votes.",
+      "memories": [
+        {
+          "id": "dp-005",
+          "subject": "Leader and Followers",
+          "image": "A CONDUCTOR leading an ORCHESTRA! The conductor (leader) decides what to play and when. Musicians (followers) WATCH and COPY exactly. If conductor leaves, the FIRST CHAIR violinist takes over. All notes go through the conductor - no musician plays solo! Coordination through hierarchy.",
+          "content": "Leader and Followers: Single node (leader) coordinates all writes, followers replicate. Simplifies consensus - only leader makes decisions. Leader failure triggers election. Used in: Raft, ZooKeeper, Kafka.",
+          "created": "2026-02-01",
+          "linkedTo": ["dp-006", "dp-007"]
+        },
+        {
+          "id": "dp-006",
+          "subject": "Heartbeat",
+          "image": "Every orchestra member wears a HEART MONITOR that beeps to the conductor! 'beep... beep... beep...' If the conductor stops hearing a musician's beep, they're ASSUMED DEAD and replaced by understudy. The conductor also beeps - if musicians stop hearing conductor, they start AUDITIONS for new conductor!",
+          "content": "Heartbeat: Periodic messages indicating liveness. Leader sends to followers (prevent election), followers send to leader (prevent timeout). Missing heartbeats trigger failure detection. Configurable intervals balance detection speed vs network load.",
+          "created": "2026-02-01",
+          "linkedTo": ["dp-005"]
+        },
+        {
+          "id": "dp-007",
+          "subject": "Majority Quorum",
+          "image": "A VOTING BOOTH where you need HALF PLUS ONE to pass a law! 5 voters? Need 3. 7 voters? Need 4. The MAGIC is: two majorities ALWAYS OVERLAP by at least one voter! So two contradicting laws can NEVER both pass - that overlapping voter would have to vote for both. Math prevents split-brain!",
+          "content": "Majority Quorum: Operations require (n/2)+1 nodes to agree. Guarantees any two quorums overlap by at least one node, ensuring consistency. 3 nodes tolerates 1 failure, 5 tolerates 2. Foundation of distributed consensus.",
+          "created": "2026-02-01",
+          "linkedTo": ["dp-005"]
+        },
+        {
+          "id": "dp-008",
+          "subject": "Generation Clock / Epoch",
+          "image": "Every new KING gets a higher NUMBER! King 1 rules, dies, King 2 takes over. If a message arrives from 'King 1', everyone ignores it - 'We serve King 2 now!' The generation number (epoch) prevents ZOMBIE LEADERS from causing chaos. Higher number = more recent authority!",
+          "content": "Generation Clock: Monotonically increasing number identifying leader term/epoch. Older leaders' commands rejected based on stale generation. Prevents split-brain when old leader recovers. Each election increments the generation.",
+          "created": "2026-02-01",
+          "linkedTo": ["dp-005"]
+        },
+        {
+          "id": "dp-009",
+          "subject": "Replicated Log",
+          "image": "The conductor not only plays music but WRITES the score as they go! Every musician COPIES the score exactly. When conductor changes, new conductor continues from where score left off. The SCORE (replicated log) IS the state - replay it to get current song position!",
+          "content": "Replicated Log: Maintain identical ordered log across nodes. State is derived from log replay. Leader appends, followers replicate. Ensures all nodes reach same state. Core of Raft/Paxos - consensus on log entries.",
+          "created": "2026-02-01",
+          "linkedTo": ["dp-001", "dp-005"]
+        }
+      ],
+      "children": [],
+      "parent": "wing-entrance"
+    },
+    {
+      "id": "coordination-corridor",
+      "name": "Coordination Corridor",
+      "anchor": "a hallway with synchronized clocks and locks",
+      "description": "A corridor where timing and coordination mechanisms live. Clocks tick in unison, locks open and close in patterns.",
+      "memories": [
+        {
+          "id": "dp-010",
+          "subject": "Lease",
+          "image": "A RENTAL AGREEMENT with an EXPIRATION DATE! 'You can hold this lock for 30 SECONDS.' If you want to keep it, RENEW before it expires! If you disappear, the lock AUTOMATICALLY RELEASES when lease expires - no deadlock waiting for a dead client. Time-bounded ownership!",
+          "content": "Lease: Time-bounded lock that auto-expires. Holder must renew before expiry or lose ownership. Prevents indefinite locks from failed clients. Used for: leader election (lease on leadership), distributed locks. Trade-off: clock synchronization matters.",
+          "created": "2026-02-01",
+          "linkedTo": ["dp-011"]
+        },
+        {
+          "id": "dp-011",
+          "subject": "Fencing Token",
+          "image": "Every time you get a LEASE, you also get a NUMBERED TICKET. Ticket 47 gets the lock. They do work, but take too long - lease expires. New client gets ticket 48. Original client (47) tries to write but the database checks: '47 < 48? REJECTED!' The token FENCES OUT stale operations!",
+          "content": "Fencing Token: Monotonically increasing token issued with each lock acquisition. Resources reject operations from lower tokens. Prevents zombie clients with expired leases from corrupting data. Essential companion to leases.",
+          "created": "2026-02-01",
+          "linkedTo": ["dp-010"]
+        },
+        {
+          "id": "dp-012",
+          "subject": "State Watch",
+          "image": "A SECURITY CAMERA pointed at a specific KEY! Instead of polling 'has it changed? has it changed?', you register: 'CALL ME when this changes!' The camera watches 24/7 and RINGS YOUR PHONE the moment something happens. Event-driven notification instead of wasteful polling!",
+          "content": "State Watch: Register interest in specific keys/values, get notified on change. Eliminates polling overhead. Used by: ZooKeeper watches, etcd watches, Kubernetes watch API. Enables reactive architectures.",
+          "created": "2026-02-01",
+          "linkedTo": []
+        },
+        {
+          "id": "dp-013",
+          "subject": "Consistent Core",
+          "image": "A TINY ELITE COUNCIL (3-5 members) making all the IMPORTANT decisions, while a HUGE ARMY follows orders. The council uses EXPENSIVE CONSENSUS (Raft/Paxos) because they're few. The army just replicates data - cheap and fast. Elite core handles coordination; masses handle data!",
+          "content": "Consistent Core: Small cluster (3-5 nodes) runs consensus for metadata/coordination. Larger cluster uses cheaper replication for data. Metadata operations go to core; data operations don't need full consensus. Pattern: etcd for Kubernetes coordination.",
+          "created": "2026-02-01",
+          "linkedTo": ["dp-007"]
+        },
+        {
+          "id": "dp-014",
+          "subject": "Idempotent Receiver",
+          "image": "A POST OFFICE that STAMPS every package with a UNIQUE ID on receipt. If the SAME package arrives twice (network retry), clerk checks: 'ID 12345? Already delivered! Tossing duplicate.' The client can RETRY SAFELY because duplicates are detected and ignored. Exactly-once from at-least-once!",
+          "content": "Idempotent Receiver: Track processed request IDs to detect and ignore duplicates. Enables safe retries. Client includes unique ID, server stores seen IDs. Makes at-least-once delivery behave like exactly-once. Storage cost for ID tracking.",
+          "created": "2026-02-01",
+          "linkedTo": []
+        }
+      ],
+      "children": [],
+      "parent": "wing-entrance"
+    },
+    {
+      "id": "partitioning-pit",
+      "name": "Partitioning Pit",
+      "anchor": "a deep pit with data flowing into different channels",
+      "description": "A pit where data flows in and gets sorted into different channels, each leading to different storage nodes.",
+      "memories": [
+        {
+          "id": "dp-015",
+          "subject": "Fixed Partitions",
+          "image": "A PARKING LOT with PERMANENT PAINTED LINES! 100 spaces, always 100 spaces - even if you add more cars (data) or more parking attendants (nodes). Attendants are ASSIGNED spaces to manage. Add an attendant? Reassign some spaces. But the LINES NEVER MOVE. Stable partitions, flexible assignment!",
+          "content": "Fixed Partitions: Pre-define partition count (e.g., 100), assign to nodes. Adding/removing nodes reassigns partitions, not data. Simpler than dynamic partitioning. Trade-off: choose partition count wisely - too few = hotspots, too many = overhead.",
+          "created": "2026-02-01",
+          "linkedTo": ["dp-016"]
+        },
+        {
+          "id": "dp-016",
+          "subject": "Key-Range Partitions",
+          "image": "A LIBRARY organized by AUTHOR'S LAST NAME! A-F in aisle 1, G-M in aisle 2, N-Z in aisle 3. Looking for 'Smith'? Go straight to aisle 3! Range scans are FAST (all S authors together). But 'S' is POPULAR - that aisle is CROWDED! Hotspots happen when ranges have uneven popularity.",
+          "content": "Key-Range Partitions: Divide key space into contiguous ranges. Enables efficient range queries. Risk: uneven distribution causes hotspots. Solutions: dynamic range splitting, adding random prefix to hot keys. Used by: HBase, BigTable.",
+          "created": "2026-02-01",
+          "linkedTo": ["dp-015"]
+        },
+        {
+          "id": "dp-017",
+          "subject": "Gossip Dissemination",
+          "image": "HIGH SCHOOL RUMORS! Alice tells a SECRET to 3 random classmates. Each of them tells 3 more random people. Within a few rounds, EVERYONE knows! No central announcer needed. It's EXPONENTIAL spread with REDUNDANCY (you'll hear it multiple times). Eventually consistent information propagation!",
+          "content": "Gossip Protocol: Each node periodically shares state with random peers. Information spreads exponentially. Tolerates failures - no single point of failure. Eventual consistency. Used by: Cassandra membership, SWIM failure detection. Trade-off: convergence time.",
+          "created": "2026-02-01",
+          "linkedTo": []
+        },
+        {
+          "id": "dp-018",
+          "subject": "Emergent Leader",
+          "image": "A WAITING ROOM where the person who's been waiting LONGEST becomes the LEADER! No election needed - just check timestamps. If current leader leaves, the NEXT OLDEST automatically takes over. Seniority-based leadership without voting overhead. Age = authority!",
+          "content": "Emergent Leader: Select leader based on deterministic criteria (oldest, lowest ID). No explicit election needed. Leader emerges from sorting nodes. Simple but less flexible than election-based approaches. Used when leader role is lightweight.",
+          "created": "2026-02-01",
+          "linkedTo": ["dp-005"]
+        }
+      ],
+      "children": [],
+      "parent": "wing-entrance"
+    }
+  ]
+}

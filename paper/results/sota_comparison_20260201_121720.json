@@ -1,0 +1,43 @@
+{
+  "context_efficiency": [
+    {
+      "corpus_size": 10,
+      "flat_tokens": 5029,
+      "hier_tokens": 880,
+      "reduction_pct": 82.49552594949294
+    },
+    {
+      "corpus_size": 25,
+      "flat_tokens": 13435,
+      "hier_tokens": 1551,
+      "reduction_pct": 88.45110319527886
+    },
+    {
+      "corpus_size": 50,
+      "flat_tokens": 28024,
+      "hier_tokens": 2650,
+      "reduction_pct": 90.54336758968503
+    },
+    {
+      "corpus_size": 75,
+      "flat_tokens": 37171,
+      "hier_tokens": 3369,
+      "reduction_pct": 90.93536509328113
+    }
+  ],
+  "hallucination_detection": {
+    "memory_palace_detection_rate": 100.0,
+    "memory_palace_false_positive_rate": 0.0,
+    "sota_detection_rate": 0,
+    "unique_to_memory_palace": true
+  },
+  "semantic_retrieval": {
+    "keyword_accuracy": 0.2,
+    "embedding_accuracy": 0.6,
+    "sota_advantage": true
+  },
+  "multihop_reasoning": {
+    "success_rate": 0.6666666666666666,
+    "memory_palace_advantage": "linkedTo enables concept graph traversal"
+  }
+}

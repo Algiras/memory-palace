@@ -1,0 +1,18 @@
+{
+  "flat_retrieval": {
+    "accuracy": 0.6842105263157895,
+    "hallucination_rate": 0.05263157894736842,
+    "avg_context_chars": 1195.0,
+    "avg_hops": 1.0,
+    "avg_latency_ms": 0.008269360190943667
+  },
+  "hierarchical_retrieval": {
+    "accuracy": 0.631578947368421,
+    "hallucination_rate": 0.05263157894736842,
+    "avg_context_chars": 762.421052631579,
+    "avg_hops": 1.8421052631578947,
+    "avg_latency_ms": 0.019763645372892682
+  },
+  "n_queries": 19,
+  "n_memories": 8
+}

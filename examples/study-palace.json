@@ -1,0 +1,171 @@
+{
+  "name": "TypeScript Mastery",
+  "created": "2026-02-01",
+  "theme": "Ancient Library",
+  "description": "A palace for mastering TypeScript fundamentals and advanced concepts",
+  "activeLocus": "entrance",
+  "loci": [
+    {
+      "id": "entrance",
+      "name": "Grand Entrance",
+      "anchor": "towering bronze doors with type symbols etched in them",
+      "description": "Massive bronze doors inscribed with T and S intertwined. A wise owl perches above, wearing tiny spectacles. The floor is checkered with TRUE and FALSE tiles.",
+      "memories": [
+        {
+          "id": "mem-001",
+          "subject": "What is TypeScript",
+          "image": "A GIANT STAMP labeled 'TYPE' hovers at the entrance, STAMPING every piece of JavaScript that tries to enter. Unstamped code BOUNCES off an invisible barrier with a loud BOING! The stamp leaves a glowing blue mark that says 'APPROVED - TYPE SAFE'.",
+          "content": "TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. It adds static type checking at compile time.",
+          "created": "2026-02-01",
+          "linkedTo": ["types-hall"]
+        }
+      ],
+      "children": ["types-hall", "functions-wing", "advanced-vault"],
+      "parent": null
+    },
+    {
+      "id": "types-hall",
+      "name": "Hall of Primitive Types",
+      "anchor": "seven pedestals with glowing orbs",
+      "description": "A long hall with seven marble pedestals, each holding a different glowing orb. The orbs pulse with different colors and make distinct sounds.",
+      "memories": [
+        {
+          "id": "mem-002",
+          "subject": "string type",
+          "image": "A ball of YARN (string, get it?) that's BRIGHT PINK and SINGING show tunes. When you pull it, letters tumble out spelling words. It TANGLES around your legs if you try to do math with it.",
+          "content": "string: represents textual data. Declared with quotes. Cannot perform arithmetic operations directly.",
+          "created": "2026-02-01",
+          "linkedTo": []
+        },
+        {
+          "id": "mem-003",
+          "subject": "number type",
+          "image": "A CHROME CALCULATOR the size of a refrigerator, FLOATING and SPINNING. Numbers POUR out of it like a slot machine. It SCREAMS in agony if you feed it letters.",
+          "content": "number: represents both integers and floating-point values. TypeScript doesn't distinguish between int and float.",
+          "created": "2026-02-01",
+          "linkedTo": []
+        },
+        {
+          "id": "mem-004",
+          "subject": "boolean type",
+          "image": "A MASSIVE LIGHT SWITCH on the wall, 10 feet tall. It can ONLY be UP (glowing green TRUE) or DOWN (red FALSE). A tiny gremlin GUARDS it, attacking anyone who tries to set it to 'maybe'.",
+          "content": "boolean: can only be true or false. Used for conditional logic and flags.",
+          "created": "2026-02-01",
+          "linkedTo": []
+        },
+        {
+          "id": "mem-005",
+          "subject": "null and undefined",
+          "image": "Two GHOSTS floating near the floor. NULL is a ghost of a MURDERED variable (it WAS something, now deliberately nothing). UNDEFINED is a ghost that was NEVER BORN (never assigned). They're holding hands but keep PHASING through each other.",
+          "content": "null: intentional absence of value. undefined: variable declared but not assigned. Both represent 'nothing' but with different semantics.",
+          "created": "2026-02-01",
+          "linkedTo": []
+        }
+      ],
+      "children": ["complex-types-alcove"],
+      "parent": "entrance"
+    },
+    {
+      "id": "complex-types-alcove",
+      "name": "Complex Types Alcove",
+      "anchor": "towering shelves of interconnected boxes",
+      "description": "A cozy alcove with shelves reaching to the ceiling, filled with boxes of various shapes that connect with glowing threads.",
+      "memories": [
+        {
+          "id": "mem-006",
+          "subject": "interface",
+          "image": "A BLUEPRINT floating in the air, glowing blue. It shows the SHAPE of a house but isn't a house itself. Objects must MATCH this blueprint exactly or they BURST INTO FLAMES trying to enter the building.",
+          "content": "interface: defines the shape/structure that objects must conform to. Specifies property names and their types.",
+          "created": "2026-02-01",
+          "linkedTo": ["mem-007"]
+        },
+        {
+          "id": "mem-007",
+          "subject": "type alias",
+          "image": "A NAME TAG machine that PRINTS labels and SLAPS them onto things. You feed it a description, it spits out a reusable tag. The machine is covered in stickers of its previous creations: 'User', 'Config', 'ApiResponse'.",
+          "content": "type: creates a name for any type. Can be primitives, unions, intersections, or complex shapes. More flexible than interfaces for unions/intersections.",
+          "created": "2026-02-01",
+          "linkedTo": ["mem-006"]
+        },
+        {
+          "id": "mem-008",
+          "subject": "union types",
+          "image": "A REVOLVING DOOR with multiple panels, each a different color. A value SPINS through and can EXIT as ANY of the panel types. A sign reads 'Pick ONE!' The door makes a slot machine sound: 'string | number | boolean!'",
+          "content": "Union type (A | B): value can be any one of the specified types. Use type guards to narrow down which type you have.",
+          "created": "2026-02-01",
+          "linkedTo": []
+        }
+      ],
+      "children": [],
+      "parent": "types-hall"
+    },
+    {
+      "id": "functions-wing",
+      "name": "Functions Wing",
+      "anchor": "assembly line of magical machines",
+      "description": "An industrial wing with conveyor belts and machines. Each machine takes inputs from hoppers and produces outputs on slides.",
+      "memories": [
+        {
+          "id": "mem-009",
+          "subject": "function type annotations",
+          "image": "A FACTORY MACHINE with LABELED INPUT HOPPERS (param: type) and an OUTPUT CHUTE with a type label. If you drop the WRONG TYPE into a hopper, a BOXING GLOVE punches it back out with a COMPILER ERROR buzzer.",
+          "content": "Function parameters and return types can be annotated: function greet(name: string): string { return `Hello ${name}`; }",
+          "created": "2026-02-01",
+          "linkedTo": []
+        },
+        {
+          "id": "mem-010",
+          "subject": "optional parameters",
+          "image": "An input hopper with a QUESTION MARK floating above it, FLICKERING in and out of existence. Sometimes there's something in it, sometimes it's empty. A sign says 'MAYBE?' The machine works either way, just does less.",
+          "content": "Optional parameters marked with ?: function greet(name: string, title?: string). Must come after required parameters.",
+          "created": "2026-02-01",
+          "linkedTo": []
+        },
+        {
+          "id": "mem-011",
+          "subject": "generics",
+          "image": "A SHAPE-SHIFTING machine labeled with a giant T. Whatever TYPE you feed into the T-slot, the entire machine MORPHS to handle that type. Feed it a number, it becomes a number machine. Feed it a User, it becomes a User machine. It's SHOUTING 'I can be ANYTHING!'",
+          "content": "Generics use type variables like <T> to create reusable components that work with any type while maintaining type safety: function identity<T>(arg: T): T",
+          "created": "2026-02-01",
+          "linkedTo": ["advanced-vault"]
+        }
+      ],
+      "children": [],
+      "parent": "entrance"
+    },
+    {
+      "id": "advanced-vault",
+      "name": "Advanced Concepts Vault",
+      "anchor": "heavy iron door with 'DANGER: ADVANCED' sign",
+      "description": "A secure vault behind a heavy door. Inside are glowing artifacts of great power, each in a protective case with warning labels.",
+      "memories": [
+        {
+          "id": "mem-012",
+          "subject": "type guards",
+          "image": "A BOUNCER at a velvet rope, wearing sunglasses. He INTERROGATES each value: 'typeof you? instanceof what? Do you have this property?' Based on answers, he SORTS them into different VIP sections. After his check, the value's type is NARROWED.",
+          "content": "Type guards narrow types within conditional blocks: typeof, instanceof, 'in' operator, or custom type predicates (is keyword).",
+          "created": "2026-02-01",
+          "linkedTo": ["mem-008"]
+        },
+        {
+          "id": "mem-013",
+          "subject": "mapped types",
+          "image": "A XEROX MACHINE that doesn't just copy - it TRANSFORMS. Feed it a type, set the dial to 'Partial', 'Readonly', or 'Required', and it SPITS OUT a modified version. The original stays intact while copies pour out with modifications.",
+          "content": "Mapped types transform existing types: Partial<T>, Required<T>, Readonly<T>, Pick<T, K>, Omit<T, K>. Create new types by mapping over property keys.",
+          "created": "2026-02-01",
+          "linkedTo": ["mem-011"]
+        },
+        {
+          "id": "mem-014",
+          "subject": "conditional types",
+          "image": "A FORKED PATH where types must choose. A giant IF-THEN-ELSE sign looms overhead. Each type approaches and gets JUDGED: 'Are you extending THIS? Go LEFT (type A). Otherwise? Go RIGHT (type B).' The path splits reality itself.",
+          "content": "Conditional types: T extends U ? X : Y. Enables type-level if/else logic. Combined with infer keyword for powerful type extraction.",
+          "created": "2026-02-01",
+          "linkedTo": []
+        }
+      ],
+      "children": [],
+      "parent": "entrance"
+    }
+  ]
+}

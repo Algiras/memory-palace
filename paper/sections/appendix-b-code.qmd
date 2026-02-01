@@ -1,0 +1,238 @@
+### Appendix B: Implementation Details {#sec-appendix-code}
+
+This appendix provides key implementation details for reproducing the Memory Palace system.
+
+#### Decay Model Implementation
+
+```python
+import numpy as np
+from dataclasses import dataclass
+from datetime import datetime, timedelta
+
+@dataclass
+class Memory:
+    id: str
+    subject: str
+    image: str
+    content: str
+    smashin_score: int  # 0-12
+    created: datetime
+    last_recalled: datetime
+    recall_count: int
+    confidence: float = 1.0
+
+def calculate_decay_rate(smashin_score: int, recall_count: int) -> float:
+    """
+    Calculate decay rate λ based on encoding strength and practice.
+
+    λ = λ_base * (1 - 0.05 * S) * (0.9 ^ sqrt(n))
+
+    where:
+    - λ_base = 0.20 (baseline decay for unencoded memory)
+    - S = SMASHIN SCOPE score (0-12)
+    - n = number of successful recalls
+    """
+    lambda_base = 0.20
+    encoding_factor = 1 - 0.05 * smashin_score  # 0.40 at S=12
+    practice_factor = 0.9 ** np.sqrt(recall_count)  # Diminishing returns
+
+    return lambda_base * encoding_factor * practice_factor
+
+def predict_confidence(memory: Memory, target_date: datetime) -> float:
+    """
+    Predict confidence at target_date using exponential decay.
+
+    C(t) = C_0 * exp(-λ * t)
+    """
+    days_elapsed = (target_date - memory.last_recalled).days
+    decay_rate = calculate_decay_rate(memory.smashin_score, memory.recall_count)
+
+    return memory.confidence * np.exp(-decay_rate * days_elapsed)
+
+def schedule_review(memory: Memory, target_retention: float = 0.9) -> datetime:
+    """
+    Calculate optimal review date to maintain target retention.
+
+    Solve: target = confidence * exp(-λ * t)
+    t = -ln(target/confidence) / λ
+    """
+    decay_rate = calculate_decay_rate(memory.smashin_score, memory.recall_count)
+
+    if memory.confidence <= target_retention:
+        return datetime.now()  # Review immediately
+
+    days_until_threshold = -np.log(target_retention / memory.confidence) / decay_rate
+    return memory.last_recalled + timedelta(days=int(days_until_threshold))
+```
+
+#### Hierarchical Index Implementation
+
+```python
+import json
+from typing import Dict, List, Optional, Tuple
+
+class HierarchicalIndex:
+    """Three-level hierarchical memory index."""
+
+    def __init__(self, root_path: str):
+        self.root_path = root_path
+        self.root_index: Dict[str, str] = {}  # keyword -> domain
+        self.domain_indices: Dict[str, Dict] = {}  # domain -> {topic: location}
+        self._load_indices()
+
+    def retrieve(self, query: str, k: int = 3) -> Tuple[List[dict], int]:
+        """
+        2-hop retrieval: keyword -> domain -> memories
+
+        Returns: (memories, context_size_bytes)
+        """
+        context_size = 0
+
+        # Hop 1: Find domain from keywords
+        keywords = self._extract_keywords(query)
+        domain = None
+
+        for kw in keywords:
+            if kw.lower() in self.root_index:
+                domain = self.root_index[kw.lower()]
+                break
+
+        if not domain:
+            domain = self._semantic_domain_match(query)
+
+        context_size += len(str(self.root_index))
+
+        # Hop 2: Find memories within domain
+        domain_index = self.domain_indices.get(domain, {})
+        context_size += len(str(domain_index))
+
+        # Find top-k matching memories
+        candidates = []
+        for topic, location in domain_index.items():
+            score = self._score_match(query, topic)
+            candidates.append((score, topic, location))
+
+        candidates.sort(reverse=True)
+        top_k = candidates[:k]
+
+        # Load actual memories
+        memories = []
+        for score, topic, location in top_k:
+            memory = self._load_memory(location)
+            memories.append(memory)
+            context_size += len(str(memory))
+
+        return memories, context_size
+```
+
+#### Verification Token Checker
+
+```python
+import re
+from typing import Tuple, Optional
+
+class VerificationChecker:
+    """Check LLM responses for verification tokens."""
+
+    def __init__(self, strict_mode: bool = True):
+        self.strict_mode = strict_mode
+
+    def extract_token(self, memory_image: str) -> Optional[str]:
+        """Extract verification token from memory image."""
+        match = re.search(r'\[Verify:\s*([^\]]+)\]', memory_image)
+        return match.group(1).strip() if match else None
+
+    def check_response(self, response: str, expected_token: str) -> Tuple[bool, str]:
+        """
+        Check if response contains the expected verification token.
+
+        Returns: (is_valid, explanation)
+        """
+        if not expected_token:
+            return True, "No verification token required"
+
+        response_lower = response.lower()
+        token_lower = expected_token.lower()
+
+        if token_lower in response_lower:
+            return True, f"Verification token '{expected_token}' found"
+
+        return False, f"HALLUCINATION SUSPECTED: Token '{expected_token}' not found"
+```
+
+#### Red Queen Protocol
+
+```python
+from enum import Enum
+from dataclasses import dataclass
+from typing import List
+
+class Strategy(Enum):
+    RANDOM = "random"
+    WEAK_SPOTS = "weak-spots"
+    DEPTH_FIRST = "depth-first"
+    ADVERSARIAL = "adversarial"
+
+@dataclass
+class Question:
+    memory_id: str
+    question_text: str
+    difficulty: str
+    expected_elements: List[str]
+
+@dataclass
+class Evaluation:
+    memory_id: str
+    score: float
+    gaps: List[str]
+    should_evolve: bool
+
+async def run_red_queen(
+    palace: dict,
+    strategy: Strategy = Strategy.WEAK_SPOTS,
+    question_count: int = 10
+) -> List[Evaluation]:
+    """
+    Run adversarial testing protocol.
+
+    1. Examiner generates questions
+    2. Learner attempts blind recall
+    3. Evaluator scores and identifies gaps
+    4. Evolver strengthens weak memories
+    """
+    memories = select_memories(palace, strategy, question_count)
+    questions = await generate_questions(memories, strategy)
+    answers = await attempt_recall(questions, anchors_only=True)
+    evaluations = await evaluate_answers(questions, answers, ground_truth=memories)
+
+    weak_memories = [e for e in evaluations if e.should_evolve]
+    if weak_memories:
+        await strengthen_memories(weak_memories, palace)
+
+    return evaluations
+```
+
+#### Running Benchmarks
+
+```bash
+# Setup environment
+cd paper/code
+python -m venv .venv
+source .venv/bin/activate
+pip install numpy pandas matplotlib requests
+
+# Run local Ollama benchmark
+python ollama_benchmark.py
+
+# Run cloud Gemini benchmark
+export GEMINI_API_KEY=your_key_here
+python gemini_benchmark.py
+
+# Generate visualizations
+python visualize_results.py
+
+# Run SOTA comparison
+python sota_comparison.py
+```
+
+All benchmark code and results are available in the `paper/code/` and `paper/results/` directories.

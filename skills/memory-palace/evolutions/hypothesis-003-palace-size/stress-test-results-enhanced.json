@@ -1,0 +1,73 @@
+{
+  "timestamp": "2026-02-01T08:48:24.184Z",
+  "config": {
+    "iterations": 100,
+    "memoriesPerLocus": 5,
+    "testQueries": 100,
+    "humanErrorRate": 0.15,
+    "memoryDecayRate": 0.1,
+    "timePressure": true
+  },
+  "results": [
+    {
+      "type": "small",
+      "name": "Small (5 loci)",
+      "loci": 5,
+      "successRate": "100.0",
+      "avgSteps": "2.0",
+      "avgWrongTurns": "0.00",
+      "avgBacktracks": "0.00",
+      "avgTime": "0.00",
+      "avgMemoryUtil": "39.9",
+      "avgMemoryPressure": "0.0",
+      "avgVisits": "2.0",
+      "totalQueries": 10000,
+      "score": 93.015
+    },
+    {
+      "type": "hierarchical",
+      "name": "Hierarchical (12+3 wings)",
+      "loci": 15,
+      "successRate": "100.0",
+      "avgSteps": "2.6",
+      "avgWrongTurns": "0.09",
+      "avgBacktracks": "0.16",
+      "avgTime": "0.00",
+      "avgMemoryUtil": "47.1",
+      "avgMemoryPressure": "0.0",
+      "avgVisits": "2.3",
+      "totalQueries": 10000,
+      "score": 91.135
+    },
+    {
+      "type": "medium",
+      "name": "Medium (9 loci) - Miller Optimal",
+      "loci": 9,
+      "successRate": "87.6",
+      "avgSteps": "4.4",
+      "avgWrongTurns": "4.31",
+      "avgBacktracks": "0.00",
+      "avgTime": "0.00",
+      "avgMemoryUtil": "47.0",
+      "avgMemoryPressure": "3.9",
+      "avgVisits": "2.6",
+      "totalQueries": 10000,
+      "score": 77.17
+    },
+    {
+      "type": "large",
+      "name": "Large (15 loci) - Flat",
+      "loci": 15,
+      "successRate": "83.3",
+      "avgSteps": "8.1",
+      "avgWrongTurns": "8.36",
+      "avgBacktracks": "0.00",
+      "avgTime": "0.00",
+      "avgMemoryUtil": "75.5",
+      "avgMemoryPressure": "9.0",
+      "avgVisits": "6.0",
+      "totalQueries": 10000,
+      "score": 61.224999999999994
+    }
+  ]
+}

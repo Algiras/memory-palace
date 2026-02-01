@@ -1,0 +1,110 @@
+## Discussion {#sec-discussion}
+
+### Addressing Research Questions
+
+#### RQ1: Mnemonic Encoding vs Standard RAG
+
+Our results demonstrate that structured mnemonic encoding via SMASHIN SCOPE significantly improves retrieval accuracy. The 14% improvement in Recall@3 (0.96 vs 0.84 for flat RAG) can be attributed to two factors:
+
+1. **Multi-channel redundancy**: Each memory is encoded through visual, sensory, emotional, and spatial channels. If one retrieval path fails (e.g., keyword match), alternatives remain available through semantic similarity or anchor association.
+
+2. **Distinctive encoding**: The "absurd" and "exaggerated" factors in SMASHIN SCOPE create unique memory signatures that are easier to discriminate from similar concepts. Traditional RAG systems often struggle with near-duplicate documents.
+
+These findings align with neuroscience research showing that the method of loci activates hippocampal and retrosplenial cortex regions involved in spatial memory, creating "distinctive and stable neural representations" that support robust retrieval [@legrand2024palace].
+
+#### RQ2: Verification Token Effectiveness
+
+The verification token approach achieves remarkable hallucination detection performance (F1=0.92) through a fundamentally different mechanism than existing methods. While techniques like SelfCheckGPT rely on consistency across multiple generations, and NLI models require expensive entailment inference, verification tokens provide a simple, deterministic check.
+
+**Limitations observed:**
+- Tokens occasionally appear in valid responses by coincidence (6% false positive rate)
+- Very short tokens (<3 words) may be easier to hallucinate
+- Domain-specific terminology can make tokens predictable
+
+**Mitigations:**
+We recommend tokens of 3-5 words that are semantically unrelated to the concept (e.g., "47 couples frozen forever" for Two-Phase Commit rather than "transaction protocol").
+
+#### RQ3: Decay Prediction Accuracy
+
+The 57% improvement in MAE demonstrates that incorporating encoding strength into decay models captures human memory dynamics more accurately than time-based models alone. This validates Bjork's New Theory of Disuse [@bjork1992theory], which distinguishes between storage strength (how well encoded) and retrieval strength (how accessible).
+
+Our model's decay rate formula:
+$$\lambda = \lambda_0 \cdot (1 - 0.05 \cdot S)$$
+
+where $S$ is the SMASHIN SCOPE score (0-12), effectively captures the storage strength component missing from SM-2 and FSRS.
+
+#### RQ4: Trade-offs
+
+![Trade-off Space: Speed, Accuracy, and Corpus Size](figures/tradeoff_space.png){#fig-tradeoffs}
+
+The trade-off analysis reveals three viable configurations:
+
+1. **Interview Mode** (speed-optimized): 70% accuracy, <1s latency, 200 memories
+2. **Study Mode** (accuracy-optimized): 95% accuracy, 30s latency, full SMASHIN encoding
+3. **Reference Mode** (balanced): 85% accuracy, 2-5s latency, minimal encoding
+
+### Comparison with State-of-the-Art
+
+#### vs. FSRS
+
+FSRS represents the current state-of-the-art in open-source spaced repetition, achieving 20-30% fewer reviews than SM-2 [@ye2024fsrs]. Memory Palace further reduces reviews by incorporating encoding quality—a dimension FSRS ignores.
+
+However, FSRS excels in:
+- Cold-start performance (good defaults from 10k user dataset)
+- Simplicity (no image encoding required)
+- Platform availability (integrated into Anki)
+
+#### vs. Cognitive Workspace
+
+Recent work on Cognitive Workspace [@cognitive2025] proposes active memory management for LLMs, achieving 58.6% memory reuse compared to 0% for traditional RAG. Our hierarchical index provides similar benefits through a different mechanism—explicit structure vs. learned management.
+
+Key differences:
+- Cognitive Workspace: Emergent memory organization
+- Memory Palace: Explicit spatial-semantic hierarchy
+- Trade-off: Flexibility vs. interpretability
+
+#### vs. MemGPT
+
+MemGPT [@packer2023memgpt] implements virtual context management inspired by OS paging. Memory Palace differs in:
+
+1. **Granularity**: MemGPT operates on document chunks; Memory Palace on structured memories
+2. **Persistence**: MemGPT uses tiered storage; Memory Palace uses spatial hierarchy
+3. **Retrieval**: MemGPT relies on recency; Memory Palace uses keyword + semantic search
+
+### Implications for LLM Memory Systems
+
+Our findings suggest several design principles for future memory-augmented LLMs:
+
+1. **Structure over size**: A well-organized 100-memory palace outperforms a disorganized 1,000-document RAG system.
+
+2. **Multi-channel encoding**: Redundant encoding through multiple modalities (visual, spatial, emotional) improves both storage and retrieval.
+
+3. **Verification primitives**: Simple verification tokens provide strong hallucination guarantees without complex inference.
+
+4. **Personalized decay**: Accounting for encoding quality improves scheduling accuracy.
+
+### Limitations
+
+1. **Manual encoding overhead**: SMASHIN SCOPE encoding requires human or LLM creative effort. Full automation remains challenging.
+
+2. **Domain specificity**: Our corpus focuses on system design. Generalization to other domains needs validation.
+
+3. **Scale testing**: We tested up to 1,000 memories. Behavior at 10,000+ memories is untested.
+
+4. **User study absence**: Our decay model uses proxy metrics (FSRS dataset) rather than direct user studies.
+
+5. **Language limitations**: All experiments were conducted in English. Effectiveness in other languages is unknown.
+
+### Threats to Validity
+
+**Internal validity:**
+- Benchmark contamination: LLMs may have seen RAGBench training data
+- Synthetic decay curves: Simulated reviews may not match human behavior
+
+**External validity:**
+- Domain bias: System design corpus may not generalize
+- User population: FSRS-Anki users are self-selected memorizers
+
+**Construct validity:**
+- SMASHIN scoring is subjective
+- "Hallucination" definition varies across papers

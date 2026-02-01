@@ -1,0 +1,149 @@
+{
+  "name": "ShopFlow Architecture",
+  "created": "2026-02-01",
+  "theme": "Space Station",
+  "description": "Memory palace for the ShopFlow e-commerce platform architecture",
+  "activeLocus": "airlock",
+  "loci": [
+    {
+      "id": "airlock",
+      "name": "Station Airlock",
+      "anchor": "circular door with pressure gauges",
+      "description": "The entry point to the station. Red and green lights indicate system status. A holographic welcome screen shows the ShopFlow logo.",
+      "memories": [
+        {
+          "id": "mem-001",
+          "subject": "System Overview",
+          "image": "A 3D HOLOGRAM of the entire station SPINS before you as you enter. Each module PULSES with activity - orders flowing like GLOWING PARTICLES between sections. A friendly AI voice announces: 'Welcome to ShopFlow Station: Microservices Architecture, 12 services, 3 databases, serving 10M requests/day!'",
+          "content": "ShopFlow is a microservices-based e-commerce platform with 12 independent services, 3 specialized databases (PostgreSQL for users, MongoDB for products, Redis for sessions), handling 10M daily requests.",
+          "created": "2026-02-01",
+          "linkedTo": ["command-bridge", "cargo-hold"]
+        }
+      ],
+      "children": ["command-bridge", "engineering-deck", "cargo-hold", "comms-array"],
+      "parent": null
+    },
+    {
+      "id": "command-bridge",
+      "name": "Command Bridge",
+      "anchor": "panoramic viewport with captain's chair",
+      "description": "The nerve center with a massive viewport showing data streams like stars. Multiple control stations surround the captain's chair.",
+      "memories": [
+        {
+          "id": "mem-002",
+          "subject": "API Gateway",
+          "image": "The CAPTAIN'S CHAIR is actually a giant ROUTER - the captain IS the API Gateway! Every request BEAMS IN through the viewport as a colored light. The captain CATCHES each one and THROWS it to the correct station. Rate limiting shields DEFLECT too many requests from one source.",
+          "content": "Kong API Gateway handles all incoming traffic. Routes to appropriate microservice. Implements rate limiting (1000 req/min per user), JWT validation, and request logging.",
+          "created": "2026-02-01",
+          "linkedTo": ["mem-006"]
+        },
+        {
+          "id": "mem-003",
+          "subject": "Authentication Flow",
+          "image": "A FINGERPRINT SCANNER at the bridge entrance that creates GLOWING TOKENS. Each token is a tiny SPACESHIP that follows the user around. The token spaceship must DOCK at each service or ALARMS blare. Tokens EXPIRE and CRUMBLE TO DUST after 1 hour.",
+          "content": "JWT-based auth with 1-hour expiry. Refresh tokens stored in Redis (7-day expiry). Auth service issues tokens, all other services validate via shared public key.",
+          "created": "2026-02-01",
+          "linkedTo": []
+        }
+      ],
+      "children": [],
+      "parent": "airlock"
+    },
+    {
+      "id": "engineering-deck",
+      "name": "Engineering Deck",
+      "anchor": "humming reactor core visible through floor grating",
+      "description": "The heart of the station. Pipes and conduits run everywhere. Engineers in orange suits monitor pulsing displays.",
+      "memories": [
+        {
+          "id": "mem-004",
+          "subject": "Order Processing Service",
+          "image": "A massive ASSEMBLY LINE where order ROBOTS grab products from conveyor belts. Each robot has a STATE MACHINE brain - it can only be in one state: PENDING (yellow), PROCESSING (blue), SHIPPED (green), or CANCELLED (red). State transitions require PROPER PAPERWORK or the robot REFUSES.",
+          "content": "Order service uses state machine pattern. States: PENDING → PAYMENT_PROCESSING → CONFIRMED → SHIPPED → DELIVERED (or CANCELLED from any state). Kafka events trigger transitions.",
+          "created": "2026-02-01",
+          "linkedTo": ["mem-005"]
+        },
+        {
+          "id": "mem-005",
+          "subject": "Event-Driven Architecture",
+          "image": "PNEUMATIC TUBES connecting every section of the station! Messages WHOOSH through as colored capsules. KAFKA is a giant octopus in the center, catching capsules with tentacles and redirecting them. Each tentacle is labeled with a topic: 'orders', 'inventory', 'notifications'.",
+          "content": "Kafka message bus connects all services. Topics: orders, inventory-updates, user-events, notifications. Each service publishes events and subscribes to relevant topics. At-least-once delivery guaranteed.",
+          "created": "2026-02-01",
+          "linkedTo": ["mem-004"]
+        }
+      ],
+      "children": ["power-core"],
+      "parent": "airlock"
+    },
+    {
+      "id": "power-core",
+      "name": "Power Core",
+      "anchor": "glowing blue reactor cylinder",
+      "description": "The deepest part of engineering. A massive cylindrical reactor hums with energy. Control panels show performance metrics.",
+      "memories": [
+        {
+          "id": "mem-006",
+          "subject": "Caching Strategy",
+          "image": "A CRYSTAL BALL that REMEMBERS everything it's shown. When you ask it a question, it checks its memory FIRST (cache hit = instant glow). If it doesn't know, it sends a MESSENGER to the database (cache miss = waiting). The crystal has a CLEANING GNOME that wipes old memories every 5 minutes.",
+          "content": "Redis caching layer. Strategy: Cache-aside pattern. Product data cached 5min TTL, user sessions cached until expiry, search results cached 1min. Cache invalidation on writes via Kafka events.",
+          "created": "2026-02-01",
+          "linkedTo": ["mem-002"]
+        }
+      ],
+      "children": [],
+      "parent": "engineering-deck"
+    },
+    {
+      "id": "cargo-hold",
+      "name": "Cargo Hold",
+      "anchor": "vast warehouse with floating containers",
+      "description": "Zero-gravity cargo bay with containers floating in organized sections. Robots zip between them moving products.",
+      "memories": [
+        {
+          "id": "mem-007",
+          "subject": "Product Database (MongoDB)",
+          "image": "SHAPE-SHIFTING CONTAINERS that can hold ANYTHING. Unlike rigid boxes, these containers MORPH to fit whatever you put in them. Products with different attributes? No problem - the container ADAPTS. They're organized in COLLECTIONS (aisles) and have INDEXES (robot fast-travel tubes).",
+          "content": "MongoDB stores products. Schema-flexible for varying product attributes. Collections: products, categories, reviews. Indexes on: productId, categoryId, name (text), price. Sharded by categoryId for horizontal scaling.",
+          "created": "2026-02-01",
+          "linkedTo": []
+        },
+        {
+          "id": "mem-008",
+          "subject": "User Database (PostgreSQL)",
+          "image": "A MASSIVE FILING CABINET made of ADAMANTIUM - unbreakable and perfectly organized. Each drawer has EXACTLY the same structure. Try to put something in the wrong format? The drawer SPITS IT BACK. ACID-BREATHING DRAGONS guard the cabinet - they ensure Atomicity, Consistency, Isolation, Durability!",
+          "content": "PostgreSQL for users, orders, payments. ACID compliance critical for financial data. Tables: users, addresses, orders, order_items, payments. Foreign key relationships enforced. Read replicas for scaling queries.",
+          "created": "2026-02-01",
+          "linkedTo": []
+        }
+      ],
+      "children": [],
+      "parent": "airlock"
+    },
+    {
+      "id": "comms-array",
+      "name": "Communications Array",
+      "anchor": "massive satellite dishes and blinking antennae",
+      "description": "The external communication hub. Dishes point in all directions. Screens show real-time message traffic.",
+      "memories": [
+        {
+          "id": "mem-009",
+          "subject": "External API Design",
+          "image": "A UNIVERSAL TRANSLATOR station where internal station language gets converted to EXTERNAL LANGUAGE (REST). Every response is wrapped in a STANDARD ENVELOPE: { data, errors, meta }. Version numbers are painted on DIFFERENT FREQUENCIES - v1 on channel 1, v2 on channel 2.",
+          "content": "REST API with versioning (/api/v1/, /api/v2/). Standard response format: { data: T, errors: Error[], meta: { page, totalPages } }. OpenAPI spec auto-generated. Breaking changes only in major versions.",
+          "created": "2026-02-01",
+          "linkedTo": ["mem-002"]
+        },
+        {
+          "id": "mem-010",
+          "subject": "Third-Party Integrations",
+          "image": "EMBASSY ROOMS for different alien species (third parties). STRIPE aliens handle payments in a secure vault. SENDGRID aliens handle email - they have MESSENGER BIRDS. TWILIO aliens do SMS - they have LOUD SPEAKERS. Each embassy has its own QUARANTINE PROTOCOL (circuit breaker).",
+          "content": "Integrations: Stripe (payments), SendGrid (email), Twilio (SMS), AWS S3 (images). Each wrapped in adapter pattern with circuit breaker (30s timeout, 5 failures = open). Fallback queues for retries.",
+          "created": "2026-02-01",
+          "linkedTo": []
+        }
+      ],
+      "children": [],
+      "parent": "airlock"
+    }
+  ]
+}

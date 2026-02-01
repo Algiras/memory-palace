@@ -1,0 +1,22 @@
+{
+  "name": "Sample Palace",
+  "theme": "Test",
+  "created": "2026-02-01T09:08:04.418Z",
+  "loci": [
+    {
+      "id": "locus-1",
+      "name": "Test Locus",
+      "anchor": "A test anchor",
+      "memories": [
+        {
+          "id": "mem-1",
+          "subject": "Test Memory",
+          "content": "This is test content for the export demo.",
+          "image": "A test image description",
+          "confidence": 4,
+          "created": "2026-02-01T09:08:04.418Z"
+        }
+      ]
+    }
+  ]
+}

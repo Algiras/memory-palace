@@ -1,0 +1,127 @@
+## Experiments {#sec-experiments}
+
+We evaluate the Memory Palace system across four dimensions: (1) retrieval accuracy compared to standard RAG, (2) hallucination prevention effectiveness, (3) memory decay prediction accuracy, and (4) learning efficiency versus state-of-the-art spaced repetition algorithms.
+
+### Datasets
+
+#### FSRS-Anki Dataset
+
+For decay model validation, we use the open-source FSRS-Anki-20k dataset [@ye2024fsrs], containing over 1.7 billion review records from approximately 20,000 Anki users. This dataset provides ground truth for human memory decay patterns across diverse learning materials.
+
+**Dataset Statistics:**
+
+| Statistic | Value |
+|-----------|-------|
+| Total reviews | 1.7 billion |
+| Users | ~20,000 |
+| Average cards per user | 2,500 |
+| Time span | 2018-2024 |
+| Languages | Multi-lingual |
+
+#### RAGBench
+
+For retrieval evaluation, we use RAGBench [@friel2024ragbench], a comprehensive benchmark with 100,000 examples across five industry domains. RAGBench provides the TRACe evaluation framework measuring:
+
+- **Utilization**: How much of the retrieved context is used
+- **Relevance**: Whether retrieved documents match the query
+- **Adherence**: Whether the response stays faithful to context
+- **Completeness**: Whether all relevant information is included
+
+#### Custom System Design Corpus
+
+We constructed a domain-specific corpus of 93 memories covering system design concepts:
+
+| Domain | Memories | Avg SMASHIN Score | Percentage |
+|--------|----------|-------------------|------------|
+| Fundamentals | 8 | 9.2 | 8.6% |
+| Scalability | 10 | 8.7 | 10.8% |
+| Data Storage | 8 | 10.1 | 8.6% |
+| Distributed Systems | 12 | 9.5 | 12.9% |
+| Patterns | 6 | 8.3 | 6.5% |
+| Reliability | 13 | 9.8 | 14.0% |
+| Cloud | 19 | 8.9 | 20.4% |
+| Security | 17 | 9.1 | 18.3% |
+
+: Memory Palace Corpus Distribution {#tbl-corpus}
+
+### Baselines
+
+We compare against the following state-of-the-art systems:
+
+#### Spaced Repetition Algorithms
+
+1. **SM-2** [@wozniak1990optimization]: The classic SuperMemo algorithm used in Anki and Mnemosyne. Tracks easiness factor (EF) and inter-repetition interval.
+
+2. **FSRS** [@ye2024fsrs]: Free Spaced Repetition Scheduler based on the DSR (Difficulty, Stability, Retrievability) model. Currently the state-of-the-art open-source algorithm, achieving 20-30% fewer reviews than SM-2 for equivalent retention.
+
+3. **Leitner System**: Simple box-based system where cards advance through boxes based on correct answers.
+
+#### RAG Systems
+
+1. **Flat RAG**: Standard vector similarity search over embedded chunks.
+
+2. **RAPTOR** [@sarthi2024raptor]: Hierarchical RAG using recursive abstractive processing for tree-organized retrieval.
+
+3. **GraphRAG** [@edge2024graphrag]: Knowledge graph-augmented retrieval for multi-hop reasoning.
+
+4. **HyDE** [@gao2022hyde]: Hypothetical document embeddings for improved query-document matching.
+
+### Evaluation Metrics
+
+#### Retrieval Metrics
+
+- **Recall@k**: Proportion of queries where the correct memory appears in top-k results
+- **MRR**: Mean Reciprocal Rank of the first correct result
+- **Context Size**: Total characters loaded into LLM context
+- **Retrieval Latency**: Time from query to memory retrieval
+
+#### Decay Prediction Metrics
+
+- **MAE**: Mean Absolute Error between predicted and actual recall probability
+- **RMSE**: Root Mean Square Error
+- **AUC-ROC**: Area under ROC curve for binary retention prediction
+
+#### Hallucination Metrics
+
+- **Faithfulness**: Proportion of responses grounded in retrieved context
+- **Token Verification Rate**: Success rate of verification token checks
+- **False Positive Rate**: Rate of rejecting valid, grounded responses
+
+### Experimental Setup
+
+#### Hardware
+
+All experiments were conducted on:
+
+- Apple M2 Max with 32GB RAM (local inference)
+- Ollama v0.1.29 with llama3.2 (8B) and nomic-embed-text
+- Google Gemini API (gemini-pro) for cloud comparison
+
+#### Retrieval Experiment Protocol
+
+For each query:
+
+1. Extract keywords and compute query embedding
+2. Retrieve top-k candidates using each method
+3. Generate response using retrieved context
+4. Verify response contains expected information and verification token
+5. Measure latency and context size
+
+#### Decay Prediction Protocol
+
+We partition the FSRS-Anki dataset:
+
+- Training: 80% of users (calibrate decay parameters)
+- Validation: 10% (hyperparameter tuning)
+- Test: 10% (final evaluation)
+
+For each review event, we predict the probability of successful recall and compare against the binary outcome (pass/fail).
+
+#### Learning Efficiency Protocol
+
+We simulate learning sessions over 30 days:
+
+1. Initialize with 50 new memories
+2. Schedule reviews according to each algorithm
+3. Simulate recall success based on ground truth decay curves
+4. Measure total reviews required to maintain target retention (90%)

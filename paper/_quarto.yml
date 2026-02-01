@@ -1,0 +1,45 @@
+project:
+  type: manuscript
+  output-dir: _output
+
+manuscript:
+  article: index.qmd
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: true
+    code-tools: true
+    theme: cosmo
+  pdf:
+    documentclass: article
+    papersize: letter
+    fontsize: 11pt
+    geometry:
+      - margin=1in
+    include-in-header:
+      - text: |
+          \usepackage{booktabs}
+          \usepackage{algorithm}
+          \usepackage{algorithmic}
+  docx: default
+
+execute:
+  enabled: false
+
+bibliography: references.bib
+csl: acm-sig-proceedings.csl
+
+author:
+  - name: Memory Palace Research Team
+    affiliation: Independent Research
+
+date: last-modified
+
+keywords:
+  - memory palace
+  - method of loci
+  - spaced repetition
+  - retrieval augmented generation
+  - knowledge management

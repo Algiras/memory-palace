@@ -1,0 +1,529 @@
+{
+  "name": "System Design Citadel",
+  "created": "2026-02-01",
+  "theme": "A massive floating citadel with specialized wings for each domain",
+  "description": "Comprehensive memory palace for mastering system design - from fundamentals to distributed systems patterns",
+  "activeLocus": "sky-bridge",
+  "loci": [
+    {
+      "id": "sky-bridge",
+      "name": "Sky Bridge Entrance",
+      "anchor": "a crystalline bridge suspended between clouds",
+      "description": "You stand on a translucent bridge made of pure crystal, clouds swirling below. The massive citadel looms ahead with distinct towers glowing different colors.",
+      "memories": [
+        {
+          "id": "sd-001",
+          "subject": "What is System Design",
+          "image": "A GIANT ARCHITECT in robes of pure light stands at the bridge entrance, holding a BLUEPRINT that's ALIVE - the lines are CRAWLING like ants, rearranging themselves. He bellows: 'SYSTEM DESIGN is defining the ARCHITECTURE, COMPONENTS, and INTERFACES!' Each word materializes as a floating golden letter that arranges itself into a building shape.",
+          "content": "System Design is the process of defining the architecture, components, and interfaces for a system that satisfies specific requirements. It bridges requirements to implementation.",
+          "created": "2026-02-01",
+          "linkedTo": ["fundamentals-tower"]
+        }
+      ],
+      "children": ["fundamentals-tower", "scalability-spire", "data-dungeon", "distributed-dome", "patterns-pavilion", "reliability-rampart"],
+      "parent": null
+    },
+    {
+      "id": "fundamentals-tower",
+      "name": "Tower of Fundamentals",
+      "anchor": "a stone tower with glowing runes",
+      "description": "Ancient stone tower covered in glowing blue runes. Inside, floating orbs represent core concepts. A spiral staircase winds upward.",
+      "memories": [
+        {
+          "id": "sd-002",
+          "subject": "Performance vs Scalability",
+          "image": "Two GLADIATORS locked in eternal combat! PERFORMANCE is a CHEETAH-MAN, blindingly fast but ALONE. SCALABILITY is a HYDRA - slower, but grows NEW HEADS when you cut one off! The cheetah wins sprints but the hydra handles the ARMY of requests flooding through the door.",
+          "content": "Performance: how fast for one user. Scalability: maintaining performance as load increases. A system can be fast but not scalable, or scalable but slow per-request.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-003"]
+        },
+        {
+          "id": "sd-003",
+          "subject": "Latency vs Throughput",
+          "image": "A WATER PARK with two attractions! LATENCY is a WATER SLIDE - how long ONE person takes to reach the bottom (milliseconds counter on the side). THROUGHPUT is the WAVE POOL - how many people are swimming at once (counter shows 'swimmers/second'). The slide can be fast but only fits one; the pool is slower per-person but handles thousands!",
+          "content": "Latency: time for single request (ms). Throughput: requests handled per unit time (req/sec). Optimizing both simultaneously is challenging - batching improves throughput but adds latency.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-002"]
+        },
+        {
+          "id": "sd-004",
+          "subject": "CAP Theorem",
+          "image": "A THREE-HEADED DRAGON named CAP guards a treasure chest! Head 1 (CONSISTENCY) breathes BLUE fire - 'Everyone sees the SAME data!' Head 2 (AVAILABILITY) breathes GREEN fire - 'I ALWAYS respond!' Head 3 (PARTITION TOLERANCE) breathes RED fire - 'Network splits won't stop me!' But the dragon is CURSED - only TWO heads can breathe at once! Pick your two flames wisely!",
+          "content": "CAP Theorem: Distributed systems can only guarantee 2 of 3: Consistency (all nodes see same data), Availability (every request gets response), Partition Tolerance (works despite network failures). In practice, P is mandatory, so choose CP or AP.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-005", "sd-006"]
+        },
+        {
+          "id": "sd-005",
+          "subject": "CP Systems (Consistency + Partition Tolerance)",
+          "image": "A BANK VAULT with a paranoid ROBOT BANKER. When the phone lines go down (partition), the robot LOCKS THE VAULT completely - 'No transactions until I can verify EVERYTHING!' Customers scream outside but the robot won't budge. Sign reads: 'Better UNAVAILABLE than WRONG!'",
+          "content": "CP systems: Prioritize consistency over availability. During partitions, may refuse requests to ensure data accuracy. Examples: MongoDB (in certain configs), HBase, traditional banks. Use when data correctness is critical.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-004"]
+        },
+        {
+          "id": "sd-006",
+          "subject": "AP Systems (Availability + Partition Tolerance)",
+          "image": "A 24/7 CONVENIENCE STORE run by CLONE WORKERS who can't communicate during a storm (partition). Each clone keeps selling and making changes independently. When the storm clears, they compare notes: 'Wait, we BOTH sold the last milk?!' They shrug and figure it out later. Sign: 'Always OPEN, sometimes CONFUSED!'",
+          "content": "AP systems: Prioritize availability over consistency. Always respond, even with potentially stale data. Resolve conflicts later. Examples: Cassandra, DynamoDB, DNS. Use when uptime matters more than immediate accuracy.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-004"]
+        }
+      ],
+      "children": ["consistency-corner"],
+      "parent": "sky-bridge"
+    },
+    {
+      "id": "consistency-corner",
+      "name": "Consistency Corner",
+      "anchor": "three mirrors showing different reflections",
+      "description": "A circular room with three magical mirrors, each showing a different version of 'truth'. Clocks tick at different speeds.",
+      "memories": [
+        {
+          "id": "sd-007",
+          "subject": "Strong Consistency",
+          "image": "A DRILL SERGEANT with a megaphone stands before a row of DATABASE SOLDIERS. When one soldier updates, the sergeant FREEZES everyone: 'NOBODY MOVES until EVERYONE has the new data!' The soldiers snap to attention, synchronize perfectly, then the sergeant unfreezes time. Slow but PERFECTLY aligned!",
+          "content": "Strong Consistency: After a write, all subsequent reads return that value. All clients see identical data after any operation. Requires coordination (locking/consensus). High latency but guaranteed correctness.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-008", "sd-009"]
+        },
+        {
+          "id": "sd-008",
+          "subject": "Eventual Consistency",
+          "image": "A game of TELEPHONE played by LAZY MONKS. One monk whispers an update, then takes a NAP. Eventually, he wakes and tells the next monk, who naps, then tells the next... After ENOUGH TIME, all monks know the message. A sign reads: 'Give us a minute... or ten... we'll ALL agree EVENTUALLY!'",
+          "content": "Eventual Consistency: Given enough time without new writes, all replicas converge to the same value. No guarantee when. Used by DNS, most NoSQL. Good for high availability when temporary inconsistency is acceptable.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-007"]
+        },
+        {
+          "id": "sd-009",
+          "subject": "Weak Consistency",
+          "image": "A LIVE CONCERT where the JUMBOTRON shows the stage. Some screens are 2 seconds behind, some 5 seconds, some show last week's concert! Nobody cares - they're vibing to the ENERGY, not the exact frame. Best effort, no promises, maximum SPEED!",
+          "content": "Weak Consistency: No guarantee that subsequent reads return the latest write. System makes best effort. Used in caches, real-time gaming, live video. Fastest but least reliable for accuracy.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-007"]
+        }
+      ],
+      "children": [],
+      "parent": "fundamentals-tower"
+    },
+    {
+      "id": "scalability-spire",
+      "name": "Scalability Spire",
+      "anchor": "a tower that visibly grows and shrinks",
+      "description": "A living tower that expands and contracts with load. Elevators multiply when crowded. The building breathes.",
+      "memories": [
+        {
+          "id": "sd-010",
+          "subject": "Horizontal Scaling (Scale Out)",
+          "image": "An army of CLONE WARRIORS! When enemies (requests) increase, a wizard DUPLICATES warriors - now there's 2, then 4, then 100! They spread out, each fighting their share. The wizard shouts: 'MORE MACHINES, MORE POWER!' But they need a GENERAL (load balancer) to coordinate!",
+          "content": "Horizontal Scaling: Add more machines to distribute load. Stateless services scale easily. Requires load balancer. Linear cost scaling. Examples: web servers, microservices. Preferred for cloud-native apps.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-011", "sd-012"]
+        },
+        {
+          "id": "sd-011",
+          "subject": "Vertical Scaling (Scale Up)",
+          "image": "A single warrior drinking GROWTH POTIONS! Each potion makes him BIGGER - more muscles (CPU), larger brain (RAM), longer arms (storage). But there's a CEILING he keeps hitting! Eventually he's maxed out, cramped, and the potions stop working. One giant vs the clone army...",
+          "content": "Vertical Scaling: Make existing machine more powerful (more CPU, RAM, storage). Simpler than horizontal but has hardware limits and single point of failure. Use for databases that are hard to distribute.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-010"]
+        },
+        {
+          "id": "sd-012",
+          "subject": "Load Balancer",
+          "image": "A TRAFFIC COP OCTOPUS at a busy intersection! Cars (requests) pour in from a highway. The octopus has 8 arms, each pointing to a different server lane. It spins, checking which lanes are empty: 'YOU go there! YOU go there!' If a lane is blocked (server down), that arm goes limp and traffic reroutes automatically!",
+          "content": "Load Balancer: Distributes incoming traffic across multiple servers. Algorithms: round-robin, least connections, IP hash, weighted. Prevents overload, enables horizontal scaling, provides failover. Can operate at L4 (TCP) or L7 (HTTP).",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-010", "sd-013"]
+        },
+        {
+          "id": "sd-013",
+          "subject": "Load Balancing Algorithms",
+          "image": "The OCTOPUS TRAFFIC COP has different HATS for different moods! ROUND-ROBIN HAT: points to each lane in order, 1-2-3-4-1-2-3-4. LEAST-CONNECTIONS HAT: has GLASSES that count cars in each lane, picks emptiest. IP-HASH HAT: looks at license plates and ALWAYS sends same plate to same lane. WEIGHTED HAT: bigger lanes get more traffic!",
+          "content": "Load Balancing Algorithms: Round-robin (rotate through servers), Least connections (pick server with fewest active), IP hash (consistent routing by client IP), Weighted (proportional to server capacity), Random. Choose based on session needs and server heterogeneity.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-012"]
+        }
+      ],
+      "children": ["caching-chamber"],
+      "parent": "sky-bridge"
+    },
+    {
+      "id": "caching-chamber",
+      "name": "Caching Chamber",
+      "anchor": "room of glowing memory crystals",
+      "description": "A crystal cave where memories are stored in glowing gems. Frequently accessed gems float closer to the entrance. Old gems fade and crumble.",
+      "memories": [
+        {
+          "id": "sd-014",
+          "subject": "What is Caching",
+          "image": "A SQUIRREL with a PHOTOGRAPHIC MEMORY! Instead of running to the oak tree (database) every time, he remembers where he buried the nuts (caches the locations). First trip is slow, but after that - INSTANT RECALL! The squirrel taps his head: 'Why walk when I can REMEMBER?'",
+          "content": "Caching: Store frequently accessed data in fast-access location to reduce latency and database load. Trade-off: memory cost vs speed gain. Critical for performance at scale.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-015", "sd-016"]
+        },
+        {
+          "id": "sd-015",
+          "subject": "Cache-Aside Pattern",
+          "image": "A LIBRARIAN who checks her PERSONAL NOTEBOOK before going to the stacks. Request comes in: she checks notebook (cache). HIT? Hand it over instantly! MISS? Sigh, walk to stacks (database), get book, WRITE IT IN NOTEBOOK, then hand over. She mutters: 'Application manages ME!'",
+          "content": "Cache-Aside (Lazy Loading): App checks cache first. On miss, fetch from DB, store in cache, return. On write, update DB and invalidate cache. Simple but can have stale data. App responsible for cache logic.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-014", "sd-016"]
+        },
+        {
+          "id": "sd-016",
+          "subject": "Write-Through Cache",
+          "image": "A DUPLICATE CLERK with TWO HANDS writing simultaneously! Every time you give him something to write, BOTH hands move in perfect sync - one writes to the cache notepad, one writes to the database ledger. SLOW to write (both hands), but reads are ALWAYS fresh! He never has to check twice.",
+          "content": "Write-Through: Write to cache AND database synchronously. Ensures consistency - cache always has latest. Higher write latency but eliminates stale reads. Good when reads >> writes.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-015", "sd-017"]
+        },
+        {
+          "id": "sd-017",
+          "subject": "Write-Behind (Write-Back) Cache",
+          "image": "A PROCRASTINATOR CLERK! He writes updates to his notebook IMMEDIATELY (cache), but stacks up the database updates in a TO-DO PILE. Every 5 minutes, he batch-processes the pile. SUPER FAST writes! But if he gets hit by a bus (crashes) before processing the pile... DATA LOST! He shrugs: 'Living dangerously!'",
+          "content": "Write-Behind: Write to cache immediately, asynchronously write to DB later. Very fast writes, reduced DB load. Risk: data loss on cache failure before persistence. Use when some data loss acceptable.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-016"]
+        },
+        {
+          "id": "sd-018",
+          "subject": "Cache Eviction Policies",
+          "image": "A BOUNCER at an exclusive NIGHTCLUB (cache) that's at capacity! LRU BOUNCER kicks out whoever hasn't danced (been accessed) longest. LFU BOUNCER counts dance moves - least popular dancer LEAVES. FIFO BOUNCER has a list - first one in, first one out regardless of popularity. TTL BOUNCER checks timestamps - expired wristbands OUT!",
+          "content": "Cache Eviction: LRU (Least Recently Used) - evict oldest access. LFU (Least Frequently Used) - evict lowest access count. FIFO - evict oldest entry. TTL - evict after time limit. Choose based on access patterns.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-014"]
+        },
+        {
+          "id": "sd-019",
+          "subject": "CDN (Content Delivery Network)",
+          "image": "A network of PIZZA DELIVERY CLONES stationed around the world! Main kitchen in New York, but clones with HOT PIZZA BOXES stationed in Tokyo, London, Sydney. User in Tokyo orders - local clone delivers in 2 minutes! No waiting for NY to ship across the ocean. Sign: 'Content, delivered LOCALLY!'",
+          "content": "CDN: Geographically distributed servers caching static content (images, CSS, JS, video) close to users. Reduces latency, offloads origin server. Types: Push (pre-position content) vs Pull (cache on demand). Examples: Cloudflare, Akamai, AWS CloudFront.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-014"]
+        }
+      ],
+      "children": [],
+      "parent": "scalability-spire"
+    },
+    {
+      "id": "data-dungeon",
+      "name": "Data Dungeon",
+      "anchor": "underground vault with rows of glowing chests",
+      "description": "Deep underground chambers with different rooms for different data types. Some rooms are rigid and structured, others are chaotic and flexible.",
+      "memories": [
+        {
+          "id": "sd-020",
+          "subject": "SQL vs NoSQL",
+          "image": "Two RIVAL KINGDOMS! SQL KINGDOM has rigid BRICK BUILDINGS - every house MUST have exactly 3 rooms, a door, 2 windows. Inspectors (schema) reject non-conforming houses. NOSQL KINGDOM is a WILD WEST TENT CITY - tents can be any shape, grow extra rooms anytime, neighbors have totally different layouts. SQL is organized but inflexible; NoSQL is chaotic but adaptable!",
+          "content": "SQL: Structured schema, ACID transactions, vertical scaling, complex queries with JOINs. NoSQL: Flexible schema, eventual consistency, horizontal scaling, simple queries. Choose based on data structure, consistency needs, and scale requirements.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-021", "sd-022"]
+        },
+        {
+          "id": "sd-021",
+          "subject": "Database Sharding",
+          "image": "A GIANT PIZZA being cut into slices and sent to different RESTAURANTS! Each restaurant only handles orders for their slice. Customer wants pepperoni? Check which restaurant has pepperoni slice! The SHARD KEY is the pizza cutter angle - determines which slice your data lands on. Careful: resharding is like re-cutting a pizza that's already been eaten!",
+          "content": "Sharding: Horizontal partitioning of data across multiple databases based on shard key. Distributes load and storage. Challenges: cross-shard queries, resharding, hotspots. Strategies: range-based, hash-based, directory-based.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-020", "sd-023"]
+        },
+        {
+          "id": "sd-022",
+          "subject": "Database Replication",
+          "image": "A MASTER SCRIBE with APPRENTICE SCRIBES! Master writes in the ORIGINAL TOME. Apprentices frantically copy everything to their own tomes. Readers can read from ANY apprentice (spreads the load), but ALL writing goes to the Master. If Master dies? Apprentices vote on new Master! Master-Slave in action.",
+          "content": "Replication: Copy data across multiple nodes. Master-Slave: one write node, multiple read replicas. Master-Master: multiple write nodes. Improves read throughput and fault tolerance. Trade-off: replication lag can cause inconsistency.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-020"]
+        },
+        {
+          "id": "sd-023",
+          "subject": "Consistent Hashing",
+          "image": "A CLOCK FACE with SERVER GNOMES sitting at different hours! Data items are THROWN at the clock like darts - they stick and roll CLOCKWISE until hitting a gnome. That gnome owns the data! When a gnome leaves, items just roll to the NEXT gnome. When a new gnome joins, only nearby items move. The ring is STABLE - no massive reshuffling!",
+          "content": "Consistent Hashing: Hash ring where both servers and data are mapped. Data assigned to next server clockwise. Adding/removing server only affects adjacent data. Minimizes redistribution. Virtual nodes improve balance. Used in: DynamoDB, Cassandra, load balancers.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-021"]
+        }
+      ],
+      "children": ["nosql-nook"],
+      "parent": "sky-bridge"
+    },
+    {
+      "id": "nosql-nook",
+      "name": "NoSQL Nook",
+      "anchor": "four alcoves with different creature types",
+      "description": "Four distinct alcoves, each inhabited by different creatures representing NoSQL database types.",
+      "memories": [
+        {
+          "id": "sd-024",
+          "subject": "Key-Value Stores",
+          "image": "A GIANT COAT CHECK! You hand over your coat with a NUMBER TAG. Later, you give the number, get your coat INSTANTLY. No browsing coats, no searching by color - just NUMBER IN, COAT OUT. The clerk (Redis) is BLAZINGLY FAST but can't answer 'which coats are blue?'. Simple but FAST!",
+          "content": "Key-Value Store: Hash table at scale. O(1) lookups by key. No complex queries. Use for: sessions, caching, simple lookups. Examples: Redis, DynamoDB, Memcached. Fast but limited query capability.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-020", "sd-025"]
+        },
+        {
+          "id": "sd-025",
+          "subject": "Document Stores",
+          "image": "A FILING CABINET of FLEXIBLE FOLDERS! Each folder (document) can have ANY papers inside - some have 3 pages, some have 50, some have photos, some have sticky notes. Folders are grouped in DRAWERS (collections). You can search INSIDE folders: 'Find folders where page 3 mentions cats'. More flexible than key-value!",
+          "content": "Document Store: Store semi-structured documents (JSON/BSON). Flexible schema - documents can vary. Rich queries within documents. Use for: content management, catalogs, user profiles. Examples: MongoDB, CouchDB.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-024", "sd-026"]
+        },
+        {
+          "id": "sd-026",
+          "subject": "Wide-Column Stores",
+          "image": "A MASSIVE SPREADSHEET where each row can have DIFFERENT COLUMNS! Row 1 has columns A, B, C. Row 2 has columns X, Y, Z, Q, R. Columns are GROUPED into FAMILIES that live together. Reading a column family is FAST because they're stored together. Great for SPARSE data - empty cells don't waste space!",
+          "content": "Wide-Column Store: Rows with variable columns, grouped into column families. Sparse data efficient. Optimized for heavy write loads. Use for: time-series, logging, IoT data. Examples: Cassandra, HBase, BigTable.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-025", "sd-027"]
+        },
+        {
+          "id": "sd-027",
+          "subject": "Graph Databases",
+          "image": "A SOCIAL NETWORK made of PHYSICAL STRINGS! Each person is a NODE (ball), relationships are STRINGS connecting them. Want to find friends-of-friends? Just FOLLOW THE STRINGS - no expensive table joins! The detective (query engine) traverses strings asking 'Who knows whom?' Lightning fast for relationship queries!",
+          "content": "Graph Database: Nodes (entities) and edges (relationships). Optimized for traversing connections. Use for: social networks, recommendations, fraud detection, knowledge graphs. Examples: Neo4j, Amazon Neptune. SQL struggles where graphs excel.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-026"]
+        }
+      ],
+      "children": [],
+      "parent": "data-dungeon"
+    },
+    {
+      "id": "distributed-dome",
+      "name": "Distributed Systems Dome",
+      "anchor": "a glass dome showing interconnected nodes as constellations",
+      "description": "A massive glass dome where distributed system concepts appear as star constellations, connected by light beams representing communication.",
+      "memories": [
+        {
+          "id": "sd-028",
+          "subject": "What is a Distributed System",
+          "image": "A HIVE MIND of ROBOT BEES! No single queen - every bee is autonomous but they work TOGETHER across different HIVES (nodes) connected by RADIO (network). They share POLLEN (data) and coordinate DANCES (messages). If one hive burns down, others continue! But radio static (network partitions) makes them confused sometimes.",
+          "content": "Distributed System: Multiple autonomous computers that appear as single coherent system. Communicate via network. Benefits: scalability, fault tolerance, locality. Challenges: partial failures, network unreliability, clock skew, consistency.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-004", "sd-029"]
+        },
+        {
+          "id": "sd-029",
+          "subject": "Consensus Algorithms (Paxos/Raft)",
+          "image": "A COUNCIL OF WIZARDS trying to agree on a spell! PAXOS: ancient, complex ritual - wizards send PROPOSALS, wait for MAJORITY ACCEPTANCE, then COMMIT. Centuries old, nobody fully understands it. RAFT: the 'understandable' version - elect a LEADER wizard, leader decides, followers copy. If leader disappears, survivors elect new one. Democracy for databases!",
+          "content": "Consensus: Agreement among distributed nodes despite failures. Paxos: original algorithm, complex. Raft: simpler, leader-based. Requires majority quorum (3 nodes tolerate 1 failure, 5 tolerate 2). Used in: etcd, Consul, CockroachDB.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-028", "sd-030"]
+        },
+        {
+          "id": "sd-030",
+          "subject": "Leader Election",
+          "image": "A PIRATE SHIP where the captain died! Surviving pirates hold an ELECTION - each pirate votes, whoever gets MAJORITY becomes captain. But MUTINY is possible if communication breaks down (partition) - two groups might elect DIFFERENT captains! Fencing tokens (term numbers) help: 'I'm captain of term 7, your term 5 orders are INVALID!'",
+          "content": "Leader Election: Process of designating one node as coordinator. Prevents split-brain with term/epoch numbers. Algorithms: Bully, Ring. Challenges: network partitions can cause multiple leaders. Solutions: leases, fencing tokens, quorum-based election.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-029"]
+        },
+        {
+          "id": "sd-031",
+          "subject": "Two-Phase Commit (2PC)",
+          "image": "A WEDDING CEREMONY for distributed transactions! PHASE 1 (Prepare): Priest asks each party 'Do you take this transaction?' All must say YES to proceed. PHASE 2 (Commit): If all said yes, priest declares 'I now pronounce you COMMITTED!' If anyone said no or stayed silent, 'This transaction is VOID!' But if priest dies mid-ceremony... everyone waits FOREVER!",
+          "content": "Two-Phase Commit: Coordinate transaction across multiple nodes. Phase 1: coordinator asks participants to prepare/vote. Phase 2: if all vote yes, commit; else abort. Problem: coordinator failure = blocking. Improved by 3PC, Saga pattern.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-028", "sd-032"]
+        },
+        {
+          "id": "sd-032",
+          "subject": "Saga Pattern",
+          "image": "A RELAY RACE where runners can RUN BACKWARDS! Each runner (service) does their part and passes the baton (event). If a runner trips (fails), they don't just stop - they RUN BACKWARDS undoing their leg, then pass the 'undo baton' to the previous runner. It's 'compensating transactions' - not atomic, but eventually consistent with ROLLBACK capability!",
+          "content": "Saga: Sequence of local transactions with compensating transactions for rollback. Unlike 2PC, no global lock. Each step publishes event triggering next. On failure, execute compensating transactions in reverse. Better availability than 2PC.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-031"]
+        }
+      ],
+      "children": ["clocks-corner", "message-maze"],
+      "parent": "sky-bridge"
+    },
+    {
+      "id": "clocks-corner",
+      "name": "Clocks Corner",
+      "anchor": "room of clocks all showing different times",
+      "description": "A disorienting room where every clock shows a different time. Some run fast, some slow, some backwards.",
+      "memories": [
+        {
+          "id": "sd-033",
+          "subject": "Clock Skew Problem",
+          "image": "A TIMEZONE NIGHTMARE! Every server has a WRISTWATCH but they're all slightly different. Server A says '3:00:00', Server B says '3:00:05', Server C says '2:59:58'. You CAN'T trust 'which happened first?' based on timestamps! The clocks are LYING to you - or at least, disagreeing. Physical time is UNRELIABLE in distributed systems!",
+          "content": "Clock Skew: Different machines have slightly different times, even with NTP sync. Can't reliably determine event ordering using wall-clock time. Drift can cause stale reads, duplicate processing, or lost writes. Solution: logical clocks.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-034", "sd-035"]
+        },
+        {
+          "id": "sd-034",
+          "subject": "Lamport Clocks (Logical Clocks)",
+          "image": "A COUNTER that NEVER lies about ORDER! Each server has a CLICK COUNTER. Rule 1: Before doing anything, click +1. Rule 2: When sending message, attach your count. Rule 3: When receiving, set your counter to MAX(yours, theirs)+1. Now event with count 5 DEFINITELY happened before count 7! It's not 'when' but 'what order'!",
+          "content": "Lamport Clock: Logical clock for event ordering. Rules: increment before each event, send timestamp with messages, on receive: max(local, received)+1. Provides partial ordering: if L(a) < L(b), a might have happened before b. Can't detect concurrent events.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-033", "sd-035"]
+        },
+        {
+          "id": "sd-035",
+          "subject": "Vector Clocks",
+          "image": "Each server carries a SCOREBOARD tracking EVERYONE's counters! Server A's board: [A:5, B:3, C:2]. Server B's board: [A:4, B:7, C:2]. When comparing: if ALL of A's scores >= B's scores, A happened after B. If SOME are higher, some lower? CONCURRENT! The scoreboard can detect 'we both did something at the same time' - Lamport can't!",
+          "content": "Vector Clock: Array of counters, one per node. Detects concurrent events (neither happened-before the other). If VC(a) < VC(b) in all components, a happened before b. Mixed comparison = concurrent. Used for conflict detection in DynamoDB, Riak.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-034"]
+        }
+      ],
+      "children": [],
+      "parent": "distributed-dome"
+    },
+    {
+      "id": "message-maze",
+      "name": "Messaging Maze",
+      "anchor": "tunnels with messages flying through as glowing packets",
+      "description": "A labyrinth of tunnels where colorful message packets zoom through, sometimes getting lost or duplicated.",
+      "memories": [
+        {
+          "id": "sd-036",
+          "subject": "Message Queues",
+          "image": "A POST OFFICE with INFINITE MAILBOXES! Senders drop letters (messages) in the outbox. Mail carriers don't deliver immediately - letters sit in the box until recipients CHECK THEIR MAILBOX. Sender and receiver don't need to be awake at the same time! The post office GUARANTEES delivery (eventually). Decoupling via delayed mail!",
+          "content": "Message Queue: Async communication where producers send messages to queue, consumers pull when ready. Decouples services, buffers load spikes, enables retry. Semantics: at-most-once, at-least-once, exactly-once. Examples: RabbitMQ, SQS, Kafka.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-037", "sd-038"]
+        },
+        {
+          "id": "sd-037",
+          "subject": "Pub/Sub Pattern",
+          "image": "A TOWN CRIER in the square! He shouts announcements (publishes events). Citizens don't talk TO him - they SUBSCRIBE to topics: 'Tell me about TAXES!' 'Tell me about FESTIVALS!' When the crier announces a festival, only festival-subscribers hear it. Publishers don't know subscribers; subscribers don't know publishers. Loose coupling via BROADCASTING!",
+          "content": "Pub/Sub: Publishers emit events to topics, subscribers receive events from subscribed topics. No direct coupling. Fan-out: one event to many consumers. Examples: Kafka topics, AWS SNS, Redis pub/sub. Use for event-driven architectures.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-036"]
+        },
+        {
+          "id": "sd-038",
+          "subject": "Event Sourcing",
+          "image": "A BANK that keeps EVERY TRANSACTION RECEIPT forever instead of just the balance! Account balance? Replay all receipts from the beginning! Want to know balance on March 5th? Replay receipts UP TO March 5th! The receipts (events) are the SOURCE OF TRUTH. Current state is just a CACHE computed from event history. Time travel for data!",
+          "content": "Event Sourcing: Store state changes as immutable sequence of events, not current state. Current state derived by replaying events. Benefits: complete audit trail, temporal queries, event replay. Complexity: event schema evolution, performance of replay.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-036", "sd-039"]
+        },
+        {
+          "id": "sd-039",
+          "subject": "CQRS (Command Query Responsibility Segregation)",
+          "image": "A RESTAURANT with separate KITCHEN (write) and DISPLAY CASE (read)! Orders (commands) go to kitchen where chefs MODIFY food. Customers BROWSE the display case showing what's available (query). Different optimizations: kitchen optimized for cooking speed, display case optimized for browsing. Two views of same data, each specialized!",
+          "content": "CQRS: Separate models for reading and writing data. Command model optimized for writes, Query model optimized for reads. Often paired with Event Sourcing. Enables independent scaling. Complexity: eventual consistency between models.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-038"]
+        }
+      ],
+      "children": [],
+      "parent": "distributed-dome"
+    },
+    {
+      "id": "patterns-pavilion",
+      "name": "Patterns Pavilion",
+      "anchor": "a garden of living architectural blueprints",
+      "description": "An open-air pavilion where architectural patterns grow like plants, each with unique shapes and properties.",
+      "memories": [
+        {
+          "id": "sd-040",
+          "subject": "Microservices Architecture",
+          "image": "A CITY of TINY SPECIALISTS! Instead of one mega-building (monolith), there's a tailor shop, a bakery, a bank - each TINY but EXPERT at one thing. They communicate via PHONE CALLS (APIs). Any shop can be rebuilt without tearing down others. But SO MANY PHONE BILLS! And what if the phone lines go down?",
+          "content": "Microservices: Decompose application into small, independently deployable services. Each owns its data, runs its process. Benefits: independent scaling/deployment, tech diversity. Challenges: network complexity, distributed data, operational overhead.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-041", "sd-042"]
+        },
+        {
+          "id": "sd-041",
+          "subject": "API Gateway",
+          "image": "A GRAND HOTEL CONCIERGE! Guests (clients) don't run around to restaurant, spa, gym separately. They tell the concierge what they need, and the concierge ROUTES requests to right departments, COMBINES responses, handles AUTHENTICATION (checking room keys). One point of contact, infinite services behind!",
+          "content": "API Gateway: Single entry point for clients. Handles routing, authentication, rate limiting, request aggregation, protocol translation. Examples: Kong, AWS API Gateway, Nginx. Prevents clients from knowing internal service topology.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-040"]
+        },
+        {
+          "id": "sd-042",
+          "subject": "Circuit Breaker Pattern",
+          "image": "An ELECTRICAL CIRCUIT BREAKER for your services! When downstream service keeps failing (sparking), the breaker TRIPS - it STOPS sending requests entirely. After a timeout, it cautiously tries ONE request (half-open). If it works, breaker CLOSES (normal operation). If it fails, TRIPS again. Prevents CASCADING FAILURES from electrocuting the whole system!",
+          "content": "Circuit Breaker: Prevent cascade failures by failing fast when downstream service is unhealthy. States: Closed (normal), Open (failing fast), Half-Open (testing). Trip on failure threshold, reset on success. Enables graceful degradation.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-040", "sd-043"]
+        },
+        {
+          "id": "sd-043",
+          "subject": "Bulkhead Pattern",
+          "image": "A SHIP with COMPARTMENTS! If one compartment floods (service fails), watertight doors PREVENT the flood from spreading. Each critical service gets its own thread pool / connection pool 'compartment'. Database connection leak in service A? Only A drowns - B, C stay dry! Isolation through PARTITIONING!",
+          "content": "Bulkhead: Isolate elements into pools so failure in one doesn't cascade. Separate thread pools, connection pools, or even instances per service/tenant. Sacrifices efficiency for resilience. Named after ship compartment design.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-042"]
+        },
+        {
+          "id": "sd-044",
+          "subject": "Strangler Fig Pattern",
+          "image": "A STRANGLER FIG TREE slowly wrapping around an old tree! The old tree (monolith) keeps living while the fig (microservices) grows around it. Gradually, fig takes over functions: first leaves, then branches, then trunk. Eventually the old tree is HOLLOW and the fig IS the tree. Migration without a big-bang rewrite!",
+          "content": "Strangler Fig: Incrementally replace legacy system by routing requests to new system piece by piece. Old and new coexist during transition. Reduces risk vs big-bang rewrite. Route by feature, URL path, or user segment.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-040"]
+        },
+        {
+          "id": "sd-045",
+          "subject": "Service Mesh",
+          "image": "Every microservice gets a SIDEKICK BODYGUARD! The sidekicks form a MESH network, handling all communication. Your service talks to its bodyguard, bodyguard talks to other bodyguards. The mesh handles encryption, retries, tracing, load balancing. Services just focus on business logic - the mesh handles the hard stuff!",
+          "content": "Service Mesh: Infrastructure layer handling service-to-service communication. Sidecar proxies (like Envoy) handle: mTLS, retries, circuit breaking, observability. Control plane manages config. Examples: Istio, Linkerd. Adds latency but simplifies service code.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-040", "sd-042"]
+        }
+      ],
+      "children": [],
+      "parent": "sky-bridge"
+    },
+    {
+      "id": "reliability-rampart",
+      "name": "Reliability Rampart",
+      "anchor": "fortress walls with redundant gates",
+      "description": "Defensive walls with multiple gates, backup systems, and self-healing mechanisms. Guards constantly patrol and repair.",
+      "memories": [
+        {
+          "id": "sd-046",
+          "subject": "Availability Nines",
+          "image": "A SCOREBOARD counting 9s! 99% = 'Two Nines' - 3.65 DAYS of downtime/year (crowd boos). 99.9% = 'Three Nines' - 8.76 HOURS/year (modest applause). 99.99% = 'Four Nines' - 52 MINUTES/year (cheering). 99.999% = 'Five Nines' - 5 MINUTES/year (standing ovation). Each additional 9 is 10x harder! The crowd chants: 'MORE NINES! MORE NINES!'",
+          "content": "Availability measured in 'nines': 99%=3.65 days down/year, 99.9%=8.76 hours, 99.99%=52 min, 99.999%=5.26 min. Each nine is 10x harder. SLAs define acceptable downtime. High availability requires redundancy, failover, monitoring.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-047"]
+        },
+        {
+          "id": "sd-047",
+          "subject": "Failover Strategies",
+          "image": "A RELAY RACE with backup runners! ACTIVE-PASSIVE: Star runner (primary) runs; backup sits on bench. If star trips, backup JUMPS IN - some lag as they get up to speed. ACTIVE-ACTIVE: BOTH runners run the whole race together - if one trips, other already running! Faster failover but complex coordination.",
+          "content": "Failover: Active-Passive: standby takes over when primary fails (cold standby = slow, warm = faster). Active-Active: both handle requests, share load, instant failover. Active-Active more complex but better availability.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-046", "sd-048"]
+        },
+        {
+          "id": "sd-048",
+          "subject": "Health Checks and Heartbeats",
+          "image": "A HOSPITAL MONITOR for your servers! Each server wears a HEART MONITOR beeping 'I'm alive!' (heartbeat). A DOCTOR (orchestrator) watches all monitors. Missed heartbeat? Doctor checks on patient. No response? 'CODE BLUE! Failover to backup!' Also: LIVENESS checks (alive?) vs READINESS checks (ready for traffic?).",
+          "content": "Health Checks: Periodic probes verifying service health. Heartbeats: services announce liveness. Types: Liveness (process alive), Readiness (can handle traffic), Startup (finished initializing). Used by load balancers, orchestrators for routing and restart decisions.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-047"]
+        },
+        {
+          "id": "sd-049",
+          "subject": "Rate Limiting",
+          "image": "A NIGHTCLUB with a strict BOUNCER counting entries! TOKEN BUCKET: bouncer has a bucket of tokens, refills slowly. Each person takes a token to enter. No tokens? Wait outside! SLIDING WINDOW: bouncer has a clicker counting entries in last hour. Hit 100? Nobody else gets in until old entries 'expire'. Prevents STAMPEDES crushing the club!",
+          "content": "Rate Limiting: Control request rate to prevent overload/abuse. Algorithms: Token Bucket (smooth bursts), Leaky Bucket (constant rate), Fixed Window, Sliding Window. Apply per user, IP, or API key. Return 429 Too Many Requests when exceeded.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-050"]
+        },
+        {
+          "id": "sd-050",
+          "subject": "Backpressure",
+          "image": "A PRESSURE VALVE in a pipe! When downstream is clogged (slow consumer), pressure builds up. Instead of EXPLODING (out of memory), the valve PUSHES BACK - tells upstream to SLOW DOWN. 'Stop sending! I can't handle more!' Producer adjusts rate. It's COMMUNICATION about capacity, not just failing silently.",
+          "content": "Backpressure: When consumer can't keep up, signal producer to slow down. Prevents unbounded queue growth and OOM. Strategies: blocking, dropping, buffering with limits. Essential for streaming systems. Reactive Streams uses demand signaling.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-049"]
+        }
+      ],
+      "children": [],
+      "parent": "sky-bridge"
+    }
+  ]
+}

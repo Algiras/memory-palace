@@ -1,0 +1,120 @@
+{
+  "name": "memory-palace",
+  "version": "1.0.0",
+  "description": "Build and navigate hierarchical memory palaces using the method of loci with Red Queen adversarial evolution",
+
+  "triggers": [
+    "remember this",
+    "memorize",
+    "create memory palace",
+    "recall",
+    "what did I store",
+    "memory palace",
+    "red queen"
+  ],
+
+  "commands": {
+    "create": {
+      "syntax": "/memory-palace create <name> [theme]",
+      "description": "Create a new memory palace",
+      "handler": "commands/create.md"
+    },
+    "store": {
+      "syntax": "/memory-palace store <topic>",
+      "description": "Store a memory in current palace",
+      "handler": "commands/store.md"
+    },
+    "recall": {
+      "syntax": "/memory-palace recall [topic]",
+      "description": "Walk through to recall memories",
+      "handler": "commands/recall.md"
+    },
+    "list": {
+      "syntax": "/memory-palace list",
+      "description": "Show all palaces",
+      "handler": "commands/list.md"
+    },
+    "red-queen": {
+      "syntax": "/memory-palace red-queen [strategy]",
+      "description": "Run adversarial recall testing",
+      "handler": "commands/red-queen.md",
+      "strategies": ["random", "weak-spots", "depth-first", "cross-link", "adversarial"]
+    },
+    "status": {
+      "syntax": "/memory-palace status",
+      "description": "Show memory statistics",
+      "handler": "commands/status.md"
+    },
+    "context": {
+      "syntax": "/memory-palace context <global|project>",
+      "description": "Switch memory context",
+      "handler": "commands/context.md"
+    }
+  },
+
+  "storage": {
+    "root": "~/memory",
+    "global": "~/memory/global",
+    "projects": "~/memory/project",
+    "config": "~/memory/config.json"
+  },
+
+  "subagents": {
+    "examiner": {
+      "model": "haiku",
+      "description": "Generate challenging questions from memory palace",
+      "prompt_template": "subagents/examiner.md",
+      "inputs": ["palace_json", "strategy", "focus_area", "weak_spots"],
+      "outputs": ["questions"]
+    },
+    "learner": {
+      "model": "haiku",
+      "description": "Attempt blind recall from anchors only",
+      "prompt_template": "subagents/learner.md",
+      "inputs": ["questions", "anchors"],
+      "outputs": ["answers", "confidence_ratings"]
+    },
+    "evaluator": {
+      "model": "haiku",
+      "description": "Score accuracy and identify gaps",
+      "prompt_template": "subagents/evaluator.md",
+      "inputs": ["ground_truth", "learner_answers"],
+      "outputs": ["scores", "gaps", "priority_improvements"]
+    },
+    "evolver": {
+      "model": "opus",
+      "description": "Strengthen weak memories with vivid imagery",
+      "prompt_template": "subagents/evolver.md",
+      "inputs": ["weak_memories", "gap_analysis"],
+      "outputs": ["enhanced_images"]
+    }
+  },
+
+  "hooks": {
+    "on_topic_mentioned": {
+      "description": "When a topic with stored memories is discussed",
+      "action": "offer_recall",
+      "condition": "topic_in_palace"
+    },
+    "on_learning_detected": {
+      "description": "When user is learning something new",
+      "action": "offer_store",
+      "condition": "learning_intent"
+    },
+    "on_session_start": {
+      "description": "Check for due spaced repetition",
+      "action": "suggest_review",
+      "condition": "review_due"
+    }
+  },
+
+  "files": {
+    "skill": "SKILL.md",
+    "toc": "TOC.md",
+    "approach": "APPROACH.md",
+    "red_queen_protocol": "red-queen-protocol.md",
+    "references": "references/",
+    "examples": "examples/",
+    "palaces": "palaces/"
+  }
+}

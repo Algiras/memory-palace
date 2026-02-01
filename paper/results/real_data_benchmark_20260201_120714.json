@@ -1,0 +1,16 @@
+{
+  "timestamp": "2026-02-01T12:07:14.675366",
+  "corpus_size": 93,
+  "queries": 93,
+  "flat": {
+    "accuracy": 0.978494623655914,
+    "avg_context": 50243.0
+  },
+  "hierarchical": {
+    "accuracy": 1.0,
+    "avg_context": 11112.010752688173,
+    "avg_hops": 2.0
+  },
+  "context_reduction": 0.7788346485542629,
+  "hallucination_detection": 1.0
+}

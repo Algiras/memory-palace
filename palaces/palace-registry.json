@@ -1,0 +1,103 @@
+{
+  "version": "1.0",
+  "created": "2026-02-01",
+  "lastUpdated": "2026-02-01",
+  "description": "Central registry for all memory palaces - enables infinite scaling through chunked loading",
+
+  "palaces": [
+    {
+      "id": "system-design-citadel",
+      "name": "System Design Citadel",
+      "file": "system-design-citadel.json",
+      "memoryCount": 50,
+      "lociCount": 12,
+      "theme": "Floating citadel with specialized wings",
+      "topics": ["fundamentals", "scalability", "caching", "databases", "distributed-systems", "patterns", "reliability"],
+      "extensions": ["distributed-patterns-wing", "failure-modes-annex"],
+      "created": "2026-02-01",
+      "lastAccessed": "2026-02-01",
+      "accessCount": 1,
+      "priority": "high"
+    },
+    {
+      "id": "distributed-patterns-wing",
+      "name": "Distributed Patterns Wing",
+      "file": "distributed-patterns-wing.json",
+      "memoryCount": 18,
+      "lociCount": 5,
+      "theme": "Extension wing with mechanical gears",
+      "topics": ["durability", "consensus", "coordination", "partitioning"],
+      "parentPalace": "system-design-citadel",
+      "attachPoint": "distributed-dome",
+      "created": "2026-02-01",
+      "lastAccessed": "2026-02-01",
+      "accessCount": 1,
+      "priority": "high"
+    },
+    {
+      "id": "failure-modes-annex",
+      "name": "Failure Modes Annex",
+      "file": "failure-modes-annex.json",
+      "memoryCount": 8,
+      "lociCount": 4,
+      "theme": "Dark basement studying failures",
+      "topics": ["cascade-failure", "split-brain", "data-loss", "hot-spots"],
+      "parentPalace": "system-design-citadel",
+      "attachPoint": "reliability-rampart",
+      "created": "2026-02-01",
+      "lastAccessed": "2026-02-01",
+      "accessCount": 1,
+      "priority": "high"
+    },
+    {
+      "id": "cloud-and-security-wing",
+      "name": "Cloud & Security Wing",
+      "file": "cloud-and-security-wing.json",
+      "memoryCount": 17,
+      "lociCount": 4,
+      "theme": "High-tech facility with AWS, Security, and Big Tech zones",
+      "topics": ["aws-well-architected", "security-patterns", "netflix", "uber", "google", "mtls", "zero-trust", "chaos-engineering"],
+      "parentPalace": "system-design-citadel",
+      "attachPoint": "patterns-pavilion",
+      "created": "2026-02-01",
+      "lastAccessed": "2026-02-01",
+      "accessCount": 1,
+      "priority": "high"
+    }
+  ],
+
+  "topicIndex": {
+    "CAP theorem": {"palace": "system-design-citadel", "locus": "fundamentals-tower", "memoryId": "sd-004"},
+    "consistency": {"palace": "system-design-citadel", "locus": "consistency-corner", "memoryIds": ["sd-007", "sd-008", "sd-009"]},
+    "caching": {"palace": "system-design-citadel", "locus": "caching-chamber", "memoryIds": ["sd-014", "sd-015", "sd-016", "sd-017", "sd-018", "sd-019"]},
+    "sharding": {"palace": "system-design-citadel", "locus": "data-dungeon", "memoryId": "sd-021"},
+    "consistent hashing": {"palace": "system-design-citadel", "locus": "data-dungeon", "memoryId": "sd-023"},
+    "consensus": {"palace": "distributed-patterns-wing", "locus": "consensus-chamber", "memoryIds": ["dp-005", "dp-006", "dp-007", "dp-008", "dp-009"]},
+    "write-ahead log": {"palace": "distributed-patterns-wing", "locus": "durability-hall", "memoryId": "dp-001"},
+    "circuit breaker": {"palace": "system-design-citadel", "locus": "patterns-pavilion", "memoryId": "sd-042"},
+    "saga pattern": {"palace": "system-design-citadel", "locus": "distributed-dome", "memoryId": "sd-032"},
+    "vector clocks": {"palace": "system-design-citadel", "locus": "clocks-corner", "memoryId": "sd-035"}
+  },
+
+  "stats": {
+    "totalPalaces": 2,
+    "totalMemories": 68,
+    "totalLoci": 17,
+    "topicsIndexed": 10
+  },
+
+  "loadingStrategy": {
+    "description": "How to handle context limits",
+    "rules": [
+      "Load meta-index.md first for anchor-based recall",
+      "Load specific palace only when deep recall needed",
+      "Load palace registry for navigation",
+      "Extensions load with parent palace"
+    ],
+    "contextBudget": {
+      "minimal": ["meta-index.md"],
+      "standard": ["meta-index.md", "palace-registry.json"],
+      "full": ["all palace JSONs"]
+    }
+  }
+}

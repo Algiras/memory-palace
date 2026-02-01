@@ -1,0 +1,48 @@
+{
+  "metrics": {
+    "gamified": {
+      "totalReviews": 183.9,
+      "activeDays": 29.01,
+      "retention": 96.70000000000002,
+      "satisfaction": 3.8900000000000006,
+      "completion": 100,
+      "maxStreak": 13.11
+    },
+    "utility": {
+      "totalReviews": 169.71,
+      "activeDays": 1,
+      "retention": 3.3333333333333313,
+      "satisfaction": 3.700000000000001,
+      "completion": 100,
+      "maxStreak": 12.54
+    }
+  },
+  "comparison": {
+    "totalReviews": {
+      "gamified": "183.9",
+      "utility": "169.7",
+      "difference": "8.4"
+    },
+    "retention": {
+      "gamified": "96.7",
+      "utility": "3.3",
+      "difference": "2801.0"
+    },
+    "satisfaction": {
+      "gamified": "3.89",
+      "utility": "3.70",
+      "difference": "5.1"
+    },
+    "completion": {
+      "gamified": "100.0",
+      "utility": "100.0",
+      "difference": "0.0"
+    }
+  },
+  "significant": false,
+  "verdict": {
+    "verdict": "⚠️  HYBRID RECOMMENDED",
+    "recommendation": "Gamification for beginners (< 1 month), utility for advanced users. Auto-switch at 30 days."
+  },
+  "recommendation": "Gamification for beginners (< 1 month), utility for advanced users. Auto-switch at 30 days."
+}

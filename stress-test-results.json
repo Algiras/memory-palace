@@ -1,0 +1,70 @@
+{
+  "timestamp": "2026-02-01T08:47:43.197Z",
+  "config": {
+    "iterations": 50,
+    "memoriesPerLocus": 5,
+    "testQueries": 50
+  },
+  "results": {
+    "small": {
+      "palaceType": "small",
+      "totalMemories": 25,
+      "summary": {
+        "avgSuccessRate": "100.0",
+        "avgTime": "0.00",
+        "avgSteps": "2.0",
+        "avgWrongTurns": "0.00",
+        "avgBacktracks": "0.00",
+        "avgMemoryPressure": "0.0"
+      }
+    },
+    "medium": {
+      "palaceType": "medium",
+      "totalMemories": 45,
+      "summary": {
+        "avgSuccessRate": "100.0",
+        "avgTime": "0.00",
+        "avgSteps": "4.0",
+        "avgWrongTurns": "0.00",
+        "avgBacktracks": "0.00",
+        "avgMemoryPressure": "0.0"
+      }
+    },
+    "large": {
+      "palaceType": "large",
+      "totalMemories": 75,
+      "summary": {
+        "avgSuccessRate": "100.0",
+        "avgTime": "0.00",
+        "avgSteps": "7.1",
+        "avgWrongTurns": "0.00",
+        "avgBacktracks": "0.00",
+        "avgMemoryPressure": "0.0"
+      }
+    },
+    "hierarchical": {
+      "palaceType": "hierarchical",
+      "totalMemories": 75,
+      "summary": {
+        "avgSuccessRate": "100.0",
+        "avgTime": "0.00",
+        "avgSteps": "7.0",
+        "avgWrongTurns": "0.00",
+        "avgBacktracks": "0.00",
+        "avgMemoryPressure": "73.1"
+      }
+    }
+  },
+  "decision": {
+    "winner": "small",
+    "scores": {
+      "small": 100,
+      "medium": 100,
+      "large": 100,
+      "hierarchical": 89.035
+    },
+    "margin": 0
+  },
+  "hypothesis": "Palace Size: Miller's Law vs Chunking",
+  "status": "completed"
+}

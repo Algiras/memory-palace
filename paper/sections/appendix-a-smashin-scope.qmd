@@ -1,0 +1,94 @@
+### Appendix A: SMASHIN SCOPE Reference {#sec-appendix-smashin}
+
+This appendix provides detailed guidance for applying each SMASHIN SCOPE factor when encoding memories.
+
+#### Complete Factor Reference
+
+| Factor | Technique | Example (CAP Theorem) | Score |
+|--------|-----------|----------------------|-------|
+| Substitute | Replace abstract with concrete objects | Dragon with two heads | 1 |
+| Movement | Add animation, action, verbs | Dragon breathing fire | 1 |
+| Absurd | Make impossible, exaggerated, weird | Dragon wearing a bowtie | 1 |
+| Sensory | Engage sight, sound, smell, taste, touch | Sound of roaring, smell of smoke | 1 |
+| Humor | Include jokes, puns, funny situations | Dragon arguing with itself | 1 |
+| Interact | Put yourself in the scene as participant | You riding the dragon | 1 |
+| Numbers | Encode quantities with memorable shapes | Two heads = 2 of 3 guarantees | 1 |
+| Symbols | Use visual puns, logos, icons | P-A-C letters on dragon scales | 1 |
+| Color | Add vivid, unusual, contrasting colors | Red and blue heads (opposite colors) | 1 |
+| Oversize | Make things giant or tiny | 50-foot tall dragon | 1 |
+| Position | Place precisely in space (left/right/up/down) | Perched on database server | 1 |
+| Emotion | Evoke fear, joy, disgust, surprise | Fear of choosing wrong head | 1 |
+
+: SMASHIN SCOPE Complete Reference {#tbl-smashin-full}
+
+#### Scoring Guidelines
+
+Each factor is scored 0 or 1 based on presence:
+
+- **0**: Factor not present or weakly applied
+- **1**: Factor clearly present and effective
+
+**Total SMASHIN SCOPE Score**: Sum of all factors (0-12)
+
+| Score Range | Quality Level | Expected Decay Rate |
+|-------------|---------------|---------------------|
+| 0-3 | Poor | λ = 0.15-0.20 |
+| 4-6 | Moderate | λ = 0.08-0.12 |
+| 7-9 | Good | λ = 0.04-0.06 |
+| 10-12 | Excellent | λ = 0.015-0.025 |
+
+#### Example Encodings by Score
+
+##### Low Score (3): Two-Phase Commit
+> "A transaction that happens in two phases."
+
+Missing: Substitute (abstract), Movement, Absurd, Sensory, Humor, Interact, Scale, Position, Emotion
+
+##### Medium Score (7): Two-Phase Commit
+> "Imagine 47 couples at a wedding ceremony, all standing frozen like statues. They can't move until the priest says 'I do' for everyone at once."
+
+Present: Substitute (couples = nodes), Movement (frozen), Numbers (47), Position (altar), Emotion (wedding anxiety)
+Missing: Sensory, Humor, Color
+
+##### High Score (12): Two-Phase Commit
+> "You're the wedding officiant at the strangest ceremony ever. 47 couples stand before you, all FROZEN IN GRANITE—cold stone statues that you can hear creaking in the wind. Each couple wears matching neon pink and electric blue outfits (commit/abort colors). You must say 'PREPARE!' and hear 47 synchronized 'I PREPARE' echoes bounce off the cathedral walls. Only when ALL 47 confirm can you shout 'COMMIT!' and watch them transform into living, dancing, laughing couples. But if even ONE stays silent? You whisper 'ABORT' and they crumble to dust, leaving you sweeping 47 piles of regret. [Verify: two heads breathe]"
+
+All 12 factors present with high intensity.
+
+#### Memory Template
+
+```markdown
+## [Concept Name]
+
+**Locus**: [Specific location in palace]
+**Anchor**: [Memorable keyword/phrase]
+
+### Image
+[SMASHIN SCOPE encoded description - 200-400 words]
+
+### Content
+[Factual information - 50-150 words]
+
+### Verification
+[Verify: unique-phrase-here]
+
+### Links
+- Related to: [other-memory-ids]
+- Contrasts with: [opposite concepts]
+- Prerequisite: [required knowledge]
+
+### Metadata
+- SMASHIN Score: X/12
+- Created: YYYY-MM-DD
+- Last Recalled: YYYY-MM-DD
+- Confidence: 0.XX
+```
+
+#### Anti-Patterns to Avoid
+
+1. **Generic imagery**: "A big computer doing transactions" (no distinctiveness)
+2. **Purely visual**: Missing other senses (sound, smell, touch)
+3. **Passive scenes**: Static descriptions without action
+4. **Safe/boring**: Avoiding absurdity reduces memorability
+5. **No personal connection**: Third-person perspective
+6. **Missing verification token**: Enables hallucination

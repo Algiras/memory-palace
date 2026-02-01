@@ -1,0 +1,186 @@
+{
+  "name": "Cloud & Security Wing",
+  "created": "2026-02-01",
+  "theme": "A high-tech facility with different zones for AWS, Security, and Big Tech case studies",
+  "description": "Extension covering AWS Well-Architected pillars, security patterns, and how Netflix/Uber/Google solve problems",
+  "activeLocus": "facility-entrance",
+  "parentPalace": "system-design-citadel",
+  "attachPoint": "patterns-pavilion",
+  "loci": [
+    {
+      "id": "facility-entrance",
+      "name": "Tech Facility Entrance",
+      "anchor": "a sliding glass door with biometric scanner",
+      "description": "A modern tech facility entrance with biometric scanners and holographic displays showing system metrics.",
+      "memories": [],
+      "children": ["aws-atrium", "security-vault", "bigtech-hall"],
+      "parent": null
+    },
+    {
+      "id": "aws-atrium",
+      "name": "AWS Well-Architected Atrium",
+      "anchor": "six glowing pillars holding up a cloud",
+      "description": "A grand atrium with six massive pillars, each a different color, supporting a floating cloud structure above.",
+      "memories": [
+        {
+          "id": "aws-001",
+          "subject": "AWS Well-Architected Overview",
+          "image": "SIX MASSIVE PILLARS supporting a FLOATING CLOUD CASTLE! Each pillar is a different color and PULSES with energy. Remove one pillar? The CLOUD WOBBLES! Remove two? CASTLE CRASHES DOWN! An architect with an AWS cape walks around inspecting each pillar with a checklist: 'Is this pillar STRONG ENOUGH?' The pillars are labeled with glowing runes.",
+          "content": "AWS Well-Architected Framework: 6 pillars that together support a robust cloud architecture. Each pillar addresses a different concern. Weakness in any pillar compromises the whole structure.",
+          "created": "2026-02-01",
+          "linkedTo": ["aws-002", "aws-003", "aws-004", "aws-005", "aws-006", "aws-007"]
+        },
+        {
+          "id": "aws-002",
+          "subject": "Operational Excellence Pillar",
+          "image": "PILLAR 1 (ORANGE): A CONTROL ROOM with 50 MONITORS showing every system metric! ROBOTS run around automating changes - they have PLAYBOOKS tattooed on their arms. One robot shouts: 'INCIDENT DETECTED!' and the whole room SWINGS INTO ACTION following documented procedures. A giant FEEDBACK LOOP arrow circles overhead - 'Learn and improve!'",
+          "content": "Operational Excellence: Running and monitoring systems, automating changes, responding to events. Key: operations as code, frequent small changes, anticipate failure, learn from all failures.",
+          "created": "2026-02-01",
+          "linkedTo": ["aws-001"]
+        },
+        {
+          "id": "aws-003",
+          "subject": "Security Pillar",
+          "image": "PILLAR 2 (RED): A FORTRESS within a fortress! EVERY LAYER has guards checking IDs. Data flows through ENCRYPTION TUNNELS that glow BLUE. A PARANOID DETECTIVE with a magnifying glass follows EVERY request: 'Who are you? What do you want? Why?' ALARMS ready to blare. Sign: 'TRUST NO ONE - VERIFY EVERYTHING!'",
+          "content": "Security: Protect information and systems. Identity management, detective controls, infrastructure protection, data protection. Principle of least privilege. Automate security best practices.",
+          "created": "2026-02-01",
+          "linkedTo": ["aws-001", "security-vault"]
+        },
+        {
+          "id": "aws-004",
+          "subject": "Reliability Pillar",
+          "image": "PILLAR 3 (BLUE): A PHOENIX that BURNS and REBIRTHS continuously! It has MULTIPLE HEARTS (redundancy), each in a different GEOGRAPHIC LOCATION. When one heart stops, another takes over INSTANTLY. The phoenix practices DYING daily (chaos engineering) to get better at recovery. Sign: 'I EXPECT TO FAIL - I PREPARE TO RECOVER!'",
+          "content": "Reliability: Workloads perform intended function and recover quickly from failures. Test recovery procedures, scale horizontally, stop guessing capacity, automate change management.",
+          "created": "2026-02-01",
+          "linkedTo": ["aws-001", "sd-046"]
+        },
+        {
+          "id": "aws-005",
+          "subject": "Performance Efficiency Pillar",
+          "image": "PILLAR 4 (GREEN): A RACE CAR constantly being TUNED by a pit crew! They measure EVERYTHING - lap times, fuel efficiency, tire wear. SERVERLESS MECHANICS appear only when needed, then VANISH. The car MORPHS its shape based on the race conditions. Crew chief yells: 'Use the RIGHT TOOL for each track!'",
+          "content": "Performance Efficiency: Use computing resources efficiently to meet requirements. Democratize advanced technologies, go global in minutes, use serverless, experiment more often.",
+          "created": "2026-02-01",
+          "linkedTo": ["aws-001"]
+        },
+        {
+          "id": "aws-006",
+          "subject": "Cost Optimization Pillar",
+          "image": "PILLAR 5 (PURPLE): A FINANCIAL DASHBOARD with a giant METER showing DOLLARS BURNING! A frugal accountant runs around TURNING OFF UNUSED LIGHTS (idle resources). He has a MAGNIFYING GLASS examining every expense: 'Do we NEED this?' Reserved instances are BUYING SEASON TICKETS - cheaper long-term! Spot instances are LAST-MINUTE STANDBY tickets - cheap but risky!",
+          "content": "Cost Optimization: Avoid unnecessary costs. Implement cloud financial management, adopt consumption model, measure efficiency, stop spending on undifferentiated heavy lifting, analyze and attribute expenditure.",
+          "created": "2026-02-01",
+          "linkedTo": ["aws-001"]
+        },
+        {
+          "id": "aws-007",
+          "subject": "Sustainability Pillar",
+          "image": "PILLAR 6 (TEAL): A TREE GROWING from the pillar with LEAVES made of RECYCLED COMPUTE! Carbon footprint meters show DECLINING numbers. Resources are SHARED among multiple tenants (apartment building vs individual houses). The tree ABSORBS inefficiency and EXHALES optimized workloads. Sign: 'MAXIMIZE UTILIZATION, MINIMIZE WASTE!'",
+          "content": "Sustainability: Minimize environmental impact. Understand your impact, establish sustainability goals, maximize utilization, anticipate and adopt more efficient offerings, reduce downstream impact.",
+          "created": "2026-02-01",
+          "linkedTo": ["aws-001"]
+        }
+      ],
+      "children": [],
+      "parent": "facility-entrance"
+    },
+    {
+      "id": "security-vault",
+      "name": "Security Patterns Vault",
+      "anchor": "a massive bank vault door with multiple locks",
+      "description": "A high-security vault with multiple authentication layers. Laser grids, biometric scanners, and encrypted communication channels.",
+      "memories": [
+        {
+          "id": "sec-001",
+          "subject": "Authentication vs Authorization",
+          "image": "TWO BOUNCERS at a nightclub! BOUNCER 1 (AuthN) checks your ID: 'WHO are you? Prove it!' He has a STAMP that marks your hand. BOUNCER 2 (AuthZ) checks your WRISTBAND COLOR: 'WHAT can you access? VIP? General?' He has a LIST of who can go where. First you prove WHO you are, THEN they decide WHAT you can do!",
+          "content": "Authentication (AuthN): Verify identity - WHO are you? Authorization (AuthZ): Verify permissions - WHAT can you access? AuthN must happen before AuthZ. Never skip AuthN!",
+          "created": "2026-02-01",
+          "linkedTo": ["sec-002"]
+        },
+        {
+          "id": "sec-002",
+          "subject": "Mutual TLS (mTLS)",
+          "image": "A SECRET HANDSHAKE between two SPIES! But both spies must show their BADGE (certificate) SIMULTANEOUSLY - 'I verify YOU verify ME!' If either badge is fake, ALARMS BLARE and connection SEVERED. The handshake creates an ENCRYPTED TUNNEL (glowing green tube) that only those two can use. Eavesdroppers see only GIBBERISH!",
+          "content": "mTLS: Both client and server authenticate each other with certificates. Creates encrypted channel. Essential for service-to-service communication. Prevents man-in-the-middle attacks.",
+          "created": "2026-02-01",
+          "linkedTo": ["sec-001", "sec-003"]
+        },
+        {
+          "id": "sec-003",
+          "subject": "Zero Trust Architecture",
+          "image": "A PARANOID SECURITY GUARD who trusts NOBODY - not even his own mother! Every request must be verified: 'Show ID!' (even if you showed it 5 seconds ago). He RE-CHECKS credentials at EVERY DOOR. His motto: 'NEVER TRUST, ALWAYS VERIFY!' He gives you a TEMPORARY PASS (token) that expires in MINUTES. Sign: 'The perimeter is DEAD - verify EVERYTHING!'",
+          "content": "Zero Trust: Never trust, always verify. No implicit trust based on network location. Verify every request. Use temporary, limited-scope credentials. Assume breach. Minimize blast radius.",
+          "created": "2026-02-01",
+          "linkedTo": ["sec-002"]
+        },
+        {
+          "id": "sec-004",
+          "subject": "Service Mesh Security",
+          "image": "An INVISIBLE BODYGUARD NETWORK! Every service gets a SIDEKICK (sidecar proxy) that handles ALL security automatically. The sidekicks form a MESH - they gossip, share certificates, encrypt traffic. Your service code is BLISSFULLY UNAWARE of security complexity. It just talks to its sidekick: 'Handle the scary stuff!' Istio/Linkerd = mesh commanders.",
+          "content": "Service Mesh: Dedicated infrastructure layer for service-to-service communication. Handles mTLS, certificate rotation, encryption automatically. Services don't need security code. Examples: Istio, Linkerd.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-045", "sec-002"]
+        }
+      ],
+      "children": [],
+      "parent": "facility-entrance"
+    },
+    {
+      "id": "bigtech-hall",
+      "name": "Big Tech Hall of Fame",
+      "anchor": "a hallway with company logos as glowing portals",
+      "description": "A grand hallway with portals to different tech companies. Each portal shows their unique architectural solutions.",
+      "memories": [
+        {
+          "id": "bt-001",
+          "subject": "Netflix: Chaos Engineering",
+          "image": "A MAD SCIENTIST in a Netflix lab DELIBERATELY BREAKING things! He has a CHAOS MONKEY on his shoulder that randomly PULLS PLUGS and CUTS WIRES. Engineers scramble to fix things - but they're SMILING! Sign: 'WE BREAK IN PRODUCTION SO PRODUCTION DOESN'T BREAK US!' The monkey wears a cape: 'CHAOS KONG!' for bigger disasters. Lesson: Practice failure so you're ready for it.",
+          "content": "Netflix Chaos Engineering: Deliberately inject failures in production to test resilience. Chaos Monkey kills random instances. Chaos Kong simulates region failures. Philosophy: If you're afraid to break it, you don't understand it well enough.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-042", "aws-004"]
+        },
+        {
+          "id": "bt-002",
+          "subject": "Netflix: Database Per Service",
+          "image": "A FOOD COURT where each restaurant has its OWN KITCHEN and PANTRY! The Chinese place doesn't share ingredients with the Mexican place. Each kitchen is OPTIMIZED for its cuisine - one has WOKs, another has TORTILLA PRESSES. They NEVER reach into each other's fridges! Communication is via DELIVERY ORDERS (APIs), not shared ingredients.",
+          "content": "Database Per Service: Each microservice owns its data. No shared databases. Services communicate via APIs, not direct DB access. Enables independent evolution, optimized storage choices. Trade-off: data consistency complexity.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-040"]
+        },
+        {
+          "id": "bt-003",
+          "subject": "Uber: Ringpop Consistent Hashing",
+          "image": "A RING OF DANCERS holding hands, each wearing a NUMBER! When a request comes in, it starts at any dancer and gets PASSED AROUND the ring until reaching the dancer whose number MATCHES the request hash. If a dancer leaves, the ring CLOSES UP - minimal disruption! This is how Uber routes driver/rider matching across servers.",
+          "content": "Ringpop: Uber's library implementing consistent hashing ring for distributed coordination. Nodes arranged in ring, requests routed by hash. Enables DISCO (dispatch optimization) to match riders with drivers across distributed servers.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-023"]
+        },
+        {
+          "id": "bt-004",
+          "subject": "Uber: S2 Geometry for Location",
+          "image": "A GLOBE covered in HEXAGONAL TILES like a soccer ball! Each tile has a UNIQUE ID based on its position. Searching 'drivers near me' becomes: 'Find drivers in MY TILE and ADJACENT TILES!' No edge cases at poles or date line - the hexagons wrap SEAMLESSLY! The S2 library turns Earth into a searchable GRID.",
+          "content": "Google S2 Geometry: Hierarchical geographic indexing. Divides Earth into cells at multiple resolutions. Used by Uber for location queries (find nearby drivers). No edge cases at poles. Efficient spatial queries on massive scale.",
+          "created": "2026-02-01",
+          "linkedTo": []
+        },
+        {
+          "id": "bt-005",
+          "subject": "Google: Stateless Architecture",
+          "image": "WORKERS who have AMNESIA after every task! They complete a request, then FORGET EVERYTHING. Next request? Fresh start! This means ANY worker can handle ANY request. Workers can be CLONED infinitely, KILLED instantly, REPLACED immediately. No 'but that server has the SESSION!' emergencies. State lives in EXTERNAL STORAGE, not workers.",
+          "content": "Stateless Architecture: Services maintain no internal state between requests. All state externalized to databases/caches. Benefits: easy horizontal scaling, instant recovery, no sticky sessions. Trade-off: need external state management.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-010"]
+        },
+        {
+          "id": "bt-006",
+          "subject": "Google: Non-Abstract Large System Design (NALSD)",
+          "image": "An architect who REFUSES to draw boxes without NUMBERS! Every box has: '500 QPS, 100ms latency, 10TB storage, 3 regions'. He YELLS at anyone drawing 'a database' without specifying size. His whiteboard has REAL HARDWARE SPECS, not wishful abstractions. Motto: 'If you can't SIZE it, you can't BUILD it!'",
+          "content": "NALSD (Google SRE): Design systems with concrete numbers, not abstract boxes. Specify QPS, latency, storage, regions. Calculate resource requirements. Translate whiteboard to real infrastructure. Abstract designs fail when they meet reality.",
+          "created": "2026-02-01",
+          "linkedTo": []
+        }
+      ],
+      "children": [],
+      "parent": "facility-entrance"
+    }
+  ]
+}

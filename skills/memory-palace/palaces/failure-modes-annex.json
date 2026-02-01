@@ -1,0 +1,114 @@
+{
+  "name": "Failure Modes Annex",
+  "created": "2026-02-01",
+  "theme": "A dark basement beneath the Citadel where failures are studied",
+  "description": "What happens when things go WRONG - failure scenarios and how to handle them",
+  "activeLocus": "descent",
+  "parentPalace": "system-design-citadel",
+  "attachPoint": "reliability-rampart",
+  "loci": [
+    {
+      "id": "descent",
+      "name": "The Descent",
+      "anchor": "crumbling stairs leading down into darkness",
+      "description": "Stone stairs descending into a basement. Warning signs everywhere. The sound of alarms echoing.",
+      "memories": [],
+      "children": ["cascade-cavern", "split-brain-cell", "data-loss-pit"],
+      "parent": null
+    },
+    {
+      "id": "cascade-cavern",
+      "name": "Cascade Failure Cavern",
+      "anchor": "dominoes falling in chain reaction",
+      "description": "A cavern where giant dominoes are set up. One push creates an unstoppable chain reaction.",
+      "memories": [
+        {
+          "id": "fm-001",
+          "subject": "Cascade Failure",
+          "image": "GIANT DOMINOES in a spiral! Service A tips over (fails), hits Service B, hits Service C... The whole spiral COLLAPSES in seconds! A SINGLE POINT started the avalanche. Someone screams: 'Why did A have 100% dependency on B?!' The circuit breakers are UNPLUGGED - nobody installed them!",
+          "content": "Cascade Failure: One service failure causes dependent services to fail, causing their dependents to fail. Prevention: circuit breakers, bulkheads, timeouts, retries with backoff, graceful degradation.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-042", "sd-043"]
+        },
+        {
+          "id": "fm-002",
+          "subject": "Thundering Herd",
+          "image": "A STAMPEDE of BUFFALO (clients) all crashing through the same door at once! The cache expired - EVERYONE rushes to the database simultaneously. The database is TRAMPLED! A sign says 'Cache miss at scale = DEATH'. Solution: staggered TTLs, cache warming, request coalescing.",
+          "content": "Thundering Herd: Many clients simultaneously request same resource (often after cache expiry). Overwhelms backend. Solutions: jitter/randomize TTLs, cache warming before expiry, request coalescing (one fetches, others wait).",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-014"]
+        },
+        {
+          "id": "fm-003",
+          "subject": "Retry Storm",
+          "image": "A SERVICE is sick (slow), and every client is HAMMERING it with retries! Each retry makes it SICKER. The retries compound - client 1 retries 3x, client 2 retries 3x... now 9x the load on a dying server! A doctor shouts: 'EXPONENTIAL BACKOFF! JITTER! Stop the storm!'",
+          "content": "Retry Storm: Failed requests trigger retries, increasing load on already-struggling service. Solutions: exponential backoff, jitter (random delay), circuit breakers, rate limiting retries, dead letter queues.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-042", "sd-049"]
+        }
+      ],
+      "children": [],
+      "parent": "descent"
+    },
+    {
+      "id": "split-brain-cell",
+      "name": "Split-Brain Cell",
+      "anchor": "a brain literally split in two, each half giving orders",
+      "description": "A prison cell containing a brain split down the middle. Both halves think they're in charge.",
+      "memories": [
+        {
+          "id": "fm-004",
+          "subject": "Split-Brain Scenario",
+          "image": "TWO KINGS both wearing the crown! Network partition split the kingdom - each side elected their OWN king. Both are issuing CONTRADICTING ORDERS! Citizens are CONFUSED. When the network heals... 'Wait, we have TWO kings and they made DIFFERENT laws!' Data divergence chaos!",
+          "content": "Split-Brain: Network partition causes multiple nodes to believe they are leader. Both accept writes, causing data divergence. Prevention: quorum (majority required), fencing tokens, lease expiry. Detection: heartbeat monitoring.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-030", "dp-008", "dp-011"]
+        },
+        {
+          "id": "fm-005",
+          "subject": "Zombie Leader",
+          "image": "The old king DIED but his GHOST keeps issuing orders! He doesn't know he's dead (GC pause made him miss heartbeats). New king is elected but zombie king's orders are still arriving! The ghost tries to write to the database but his FENCING TOKEN is expired - 'TOKEN 5? We're on TOKEN 7! REJECTED, ghost!'",
+          "content": "Zombie Leader: Old leader (paused by GC, network) doesn't know it's been replaced, continues issuing commands. Prevention: fencing tokens (monotonic IDs), lease expiry, generation numbers. Resources reject stale tokens.",
+          "created": "2026-02-01",
+          "linkedTo": ["dp-008", "dp-011"]
+        }
+      ],
+      "children": [],
+      "parent": "descent"
+    },
+    {
+      "id": "data-loss-pit",
+      "name": "Data Loss Pit",
+      "anchor": "a bottomless pit where data falls forever",
+      "description": "A deep pit with data packets falling into the void. Some are caught by nets, others are lost forever.",
+      "memories": [
+        {
+          "id": "fm-006",
+          "subject": "Data Loss from Async Replication",
+          "image": "The MASTER SCRIBE wrote in his tome and DIED before apprentices copied it! The last 10 entries are GONE FOREVER. A mourner cries: 'He was using ASYNC replication! If only he'd waited for at least ONE apprentice to copy...' Trade-off: sync is slow but safe; async is fast but risky.",
+          "content": "Async Replication Data Loss: Leader accepts write, fails before followers replicate. Write is lost. Trade-off: sync replication (wait for followers) = durable but slow. Semi-sync (wait for 1) = balanced. Async = fast but can lose data.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-022"]
+        },
+        {
+          "id": "fm-007",
+          "subject": "Write-Behind Cache Crash",
+          "image": "The PROCRASTINATOR CLERK is hit by a bus! His to-do pile of database updates SCATTERS in the wind - gone forever! The cache was the only copy of recent writes. A ghost whispers: 'Should have used write-through...' Fast writes, but PERMANENT LOSS on crash.",
+          "content": "Write-Behind Crash: Cache fails before async database writes complete. Cached changes lost. Mitigation: persistent queue for pending writes, replication of cache layer, shorter flush intervals. Accept this risk only for non-critical data.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-017"]
+        },
+        {
+          "id": "fm-008",
+          "subject": "Hot Spot / Uneven Distribution",
+          "image": "A CROWDED RESTAURANT where everyone wants to sit at TABLE 7! Other tables are EMPTY but the waiter at table 7 is OVERWHELMED. The shard key was 'celebrity_name' and Taylor Swift's table is on fire! Someone shouts: 'Should have hashed the key!' Uneven distribution kills one shard.",
+          "content": "Hot Spot: One shard/partition receives disproportionate traffic due to key distribution. Solutions: hash-based sharding, salting/prefixing hot keys, splitting hot partitions, caching hot data. Monitor for uneven load.",
+          "created": "2026-02-01",
+          "linkedTo": ["sd-021", "dp-016"]
+        }
+      ],
+      "children": [],
+      "parent": "descent"
+    }
+  ]
+}

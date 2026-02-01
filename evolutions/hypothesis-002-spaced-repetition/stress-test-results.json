@@ -1,0 +1,86 @@
+{
+  "timestamp": "2026-02-01T08:43:28.472Z",
+  "config": {
+    "duration": 90,
+    "sampleSize": 50,
+    "iterations": 100,
+    "significanceThreshold": 0.05
+  },
+  "regression": {
+    "passed": 6,
+    "failed": 0,
+    "total": 6
+  },
+  "results": {
+    "averages": {
+      "30": {
+        "fibonacci": {
+          "retentionRate": "50.5",
+          "avgConfidence": "0.499",
+          "avgReviews": "5.0"
+        },
+        "exponential": {
+          "retentionRate": "69.6",
+          "avgConfidence": "0.688",
+          "avgReviews": "4.0"
+        }
+      },
+      "60": {
+        "fibonacci": {
+          "retentionRate": "69.7",
+          "avgConfidence": "0.693",
+          "avgReviews": "7.0"
+        },
+        "exponential": {
+          "retentionRate": "71.4",
+          "avgConfidence": "0.719",
+          "avgReviews": "5.0"
+        }
+      },
+      "90": {
+        "fibonacci": {
+          "retentionRate": "86.0",
+          "avgConfidence": "0.865",
+          "avgReviews": "8.0"
+        },
+        "exponential": {
+          "retentionRate": "19.8",
+          "avgConfidence": "0.200",
+          "avgReviews": "5.0"
+        }
+      }
+    },
+    "totalReviews": {
+      "fibonacci": "400.0",
+      "exponential": "250.0"
+    },
+    "statistics": {
+      "fibonacci": {
+        "mean": "85.98",
+        "std": "4.69",
+        "min": "76.0",
+        "max": "98.0"
+      },
+      "exponential": {
+        "mean": "19.76",
+        "std": "5.45",
+        "min": "6.0",
+        "max": "36.0"
+      },
+      "tTest": {
+        "t": 92.13052985927786,
+        "df": 193,
+        "p": "< 0.05",
+        "significant": true
+      }
+    }
+  },
+  "decision": {
+    "verdict": "✅ FIBONACHI WINS - Replace exponential as default",
+    "reason": "Superior retention (86% vs 19.8%) with statistical significance",
+    "retentionDiff": 66.2,
+    "significant": true
+  },
+  "hypothesis": "Spaced Repetition: Fibonacci vs Exponential",
+  "status": "completed"
+}

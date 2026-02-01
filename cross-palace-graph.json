@@ -1,0 +1,563 @@
+{
+  "nodes": [
+    {
+      "id": "Cloud & Security Wing::aws-001",
+      "palace": "Cloud & Security Wing",
+      "locus": "AWS Well-Architected Atrium",
+      "label": "AWS Well-Architected Overview"
+    },
+    {
+      "id": "Cloud & Security Wing::aws-002",
+      "palace": "Cloud & Security Wing",
+      "locus": "AWS Well-Architected Atrium",
+      "label": "Operational Excellence Pillar"
+    },
+    {
+      "id": "Cloud & Security Wing::aws-003",
+      "palace": "Cloud & Security Wing",
+      "locus": "AWS Well-Architected Atrium",
+      "label": "Security Pillar"
+    },
+    {
+      "id": "Cloud & Security Wing::aws-004",
+      "palace": "Cloud & Security Wing",
+      "locus": "AWS Well-Architected Atrium",
+      "label": "Reliability Pillar"
+    },
+    {
+      "id": "Cloud & Security Wing::aws-005",
+      "palace": "Cloud & Security Wing",
+      "locus": "AWS Well-Architected Atrium",
+      "label": "Performance Efficiency Pillar"
+    },
+    {
+      "id": "Cloud & Security Wing::aws-006",
+      "palace": "Cloud & Security Wing",
+      "locus": "AWS Well-Architected Atrium",
+      "label": "Cost Optimization Pillar"
+    },
+    {
+      "id": "Cloud & Security Wing::aws-007",
+      "palace": "Cloud & Security Wing",
+      "locus": "AWS Well-Architected Atrium",
+      "label": "Sustainability Pillar"
+    },
+    {
+      "id": "Cloud & Security Wing::sec-001",
+      "palace": "Cloud & Security Wing",
+      "locus": "Security Patterns Vault",
+      "label": "Authentication vs Authorization"
+    },
+    {
+      "id": "Cloud & Security Wing::sec-002",
+      "palace": "Cloud & Security Wing",
+      "locus": "Security Patterns Vault",
+      "label": "Mutual TLS (mTLS)"
+    },
+    {
+      "id": "Cloud & Security Wing::sec-003",
+      "palace": "Cloud & Security Wing",
+      "locus": "Security Patterns Vault",
+      "label": "Zero Trust Architecture"
+    },
+    {
+      "id": "Cloud & Security Wing::sec-004",
+      "palace": "Cloud & Security Wing",
+      "locus": "Security Patterns Vault",
+      "label": "Service Mesh Security"
+    },
+    {
+      "id": "Cloud & Security Wing::bt-001",
+      "palace": "Cloud & Security Wing",
+      "locus": "Big Tech Hall of Fame",
+      "label": "Netflix: Chaos Engineering"
+    },
+    {
+      "id": "Cloud & Security Wing::bt-002",
+      "palace": "Cloud & Security Wing",
+      "locus": "Big Tech Hall of Fame",
+      "label": "Netflix: Database Per Service"
+    },
+    {
+      "id": "Cloud & Security Wing::bt-003",
+      "palace": "Cloud & Security Wing",
+      "locus": "Big Tech Hall of Fame",
+      "label": "Uber: Ringpop Consistent Hashing"
+    },
+    {
+      "id": "Cloud & Security Wing::bt-004",
+      "palace": "Cloud & Security Wing",
+      "locus": "Big Tech Hall of Fame",
+      "label": "Uber: S2 Geometry for Location"
+    },
+    {
+      "id": "Cloud & Security Wing::bt-005",
+      "palace": "Cloud & Security Wing",
+      "locus": "Big Tech Hall of Fame",
+      "label": "Google: Stateless Architecture"
+    },
+    {
+      "id": "Cloud & Security Wing::bt-006",
+      "palace": "Cloud & Security Wing",
+      "locus": "Big Tech Hall of Fame",
+      "label": "Google: Non-Abstract Large System Design (NALSD)"
+    },
+    {
+      "id": "Distributed Patterns Wing::dp-001",
+      "palace": "Distributed Patterns Wing",
+      "locus": "Durability Hall",
+      "label": "Write-Ahead Log (WAL)"
+    },
+    {
+      "id": "Distributed Patterns Wing::dp-002",
+      "palace": "Distributed Patterns Wing",
+      "locus": "Durability Hall",
+      "label": "Segmented Log"
+    },
+    {
+      "id": "Distributed Patterns Wing::dp-003",
+      "palace": "Distributed Patterns Wing",
+      "locus": "Durability Hall",
+      "label": "Low-Water Mark"
+    },
+    {
+      "id": "Distributed Patterns Wing::dp-004",
+      "palace": "Distributed Patterns Wing",
+      "locus": "Durability Hall",
+      "label": "High-Water Mark"
+    },
+    {
+      "id": "Distributed Patterns Wing::dp-005",
+      "palace": "Distributed Patterns Wing",
+      "locus": "Consensus Chamber",
+      "label": "Leader and Followers"
+    },
+    {
+      "id": "Distributed Patterns Wing::dp-006",
+      "palace": "Distributed Patterns Wing",
+      "locus": "Consensus Chamber",
+      "label": "Heartbeat"
+    },
+    {
+      "id": "Distributed Patterns Wing::dp-007",
+      "palace": "Distributed Patterns Wing",
+      "locus": "Consensus Chamber",
+      "label": "Majority Quorum"
+    },
+    {
+      "id": "Distributed Patterns Wing::dp-008",
+      "palace": "Distributed Patterns Wing",
+      "locus": "Consensus Chamber",
+      "label": "Generation Clock / Epoch"
+    },
+    {
+      "id": "Distributed Patterns Wing::dp-009",
+      "palace": "Distributed Patterns Wing",
+      "locus": "Consensus Chamber",
+      "label": "Replicated Log"
+    },
+    {
+      "id": "Distributed Patterns Wing::dp-010",
+      "palace": "Distributed Patterns Wing",
+      "locus": "Coordination Corridor",
+      "label": "Lease"
+    },
+    {
+      "id": "Distributed Patterns Wing::dp-011",
+      "palace": "Distributed Patterns Wing",
+      "locus": "Coordination Corridor",
+      "label": "Fencing Token"
+    },
+    {
+      "id": "Distributed Patterns Wing::dp-012",
+      "palace": "Distributed Patterns Wing",
+      "locus": "Coordination Corridor",
+      "label": "State Watch"
+    },
+    {
+      "id": "Distributed Patterns Wing::dp-013",
+      "palace": "Distributed Patterns Wing",
+      "locus": "Coordination Corridor",
+      "label": "Consistent Core"
+    },
+    {
+      "id": "Distributed Patterns Wing::dp-014",
+      "palace": "Distributed Patterns Wing",
+      "locus": "Coordination Corridor",
+      "label": "Idempotent Receiver"
+    },
+    {
+      "id": "Distributed Patterns Wing::dp-015",
+      "palace": "Distributed Patterns Wing",
+      "locus": "Partitioning Pit",
+      "label": "Fixed Partitions"
+    },
+    {
+      "id": "Distributed Patterns Wing::dp-016",
+      "palace": "Distributed Patterns Wing",
+      "locus": "Partitioning Pit",
+      "label": "Key-Range Partitions"
+    },
+    {
+      "id": "Distributed Patterns Wing::dp-017",
+      "palace": "Distributed Patterns Wing",
+      "locus": "Partitioning Pit",
+      "label": "Gossip Dissemination"
+    },
+    {
+      "id": "Distributed Patterns Wing::dp-018",
+      "palace": "Distributed Patterns Wing",
+      "locus": "Partitioning Pit",
+      "label": "Emergent Leader"
+    },
+    {
+      "id": "Failure Modes Annex::fm-001",
+      "palace": "Failure Modes Annex",
+      "locus": "Cascade Failure Cavern",
+      "label": "Cascade Failure"
+    },
+    {
+      "id": "Failure Modes Annex::fm-002",
+      "palace": "Failure Modes Annex",
+      "locus": "Cascade Failure Cavern",
+      "label": "Thundering Herd"
+    },
+    {
+      "id": "Failure Modes Annex::fm-003",
+      "palace": "Failure Modes Annex",
+      "locus": "Cascade Failure Cavern",
+      "label": "Retry Storm"
+    },
+    {
+      "id": "Failure Modes Annex::fm-004",
+      "palace": "Failure Modes Annex",
+      "locus": "Split-Brain Cell",
+      "label": "Split-Brain Scenario"
+    },
+    {
+      "id": "Failure Modes Annex::fm-005",
+      "palace": "Failure Modes Annex",
+      "locus": "Split-Brain Cell",
+      "label": "Zombie Leader"
+    },
+    {
+      "id": "Failure Modes Annex::fm-006",
+      "palace": "Failure Modes Annex",
+      "locus": "Data Loss Pit",
+      "label": "Data Loss from Async Replication"
+    },
+    {
+      "id": "Failure Modes Annex::fm-007",
+      "palace": "Failure Modes Annex",
+      "locus": "Data Loss Pit",
+      "label": "Write-Behind Cache Crash"
+    },
+    {
+      "id": "Failure Modes Annex::fm-008",
+      "palace": "Failure Modes Annex",
+      "locus": "Data Loss Pit",
+      "label": "Hot Spot / Uneven Distribution"
+    },
+    {
+      "id": "System Design Citadel::sd-001",
+      "palace": "System Design Citadel",
+      "locus": "Sky Bridge Entrance",
+      "label": "What is System Design"
+    },
+    {
+      "id": "System Design Citadel::sd-002",
+      "palace": "System Design Citadel",
+      "locus": "Tower of Fundamentals",
+      "label": "Performance vs Scalability"
+    },
+    {
+      "id": "System Design Citadel::sd-003",
+      "palace": "System Design Citadel",
+      "locus": "Tower of Fundamentals",
+      "label": "Latency vs Throughput"
+    },
+    {
+      "id": "System Design Citadel::sd-004",
+      "palace": "System Design Citadel",
+      "locus": "Tower of Fundamentals",
+      "label": "CAP Theorem"
+    },
+    {
+      "id": "System Design Citadel::sd-005",
+      "palace": "System Design Citadel",
+      "locus": "Tower of Fundamentals",
+      "label": "CP Systems (Consistency + Partition Tolerance)"
+    },
+    {
+      "id": "System Design Citadel::sd-006",
+      "palace": "System Design Citadel",
+      "locus": "Tower of Fundamentals",
+      "label": "AP Systems (Availability + Partition Tolerance)"
+    },
+    {
+      "id": "System Design Citadel::sd-007",
+      "palace": "System Design Citadel",
+      "locus": "Consistency Corner",
+      "label": "Strong Consistency"
+    },
+    {
+      "id": "System Design Citadel::sd-008",
+      "palace": "System Design Citadel",
+      "locus": "Consistency Corner",
+      "label": "Eventual Consistency"
+    },
+    {
+      "id": "System Design Citadel::sd-009",
+      "palace": "System Design Citadel",
+      "locus": "Consistency Corner",
+      "label": "Weak Consistency"
+    },
+    {
+      "id": "System Design Citadel::sd-010",
+      "palace": "System Design Citadel",
+      "locus": "Scalability Spire",
+      "label": "Horizontal Scaling (Scale Out)"
+    },
+    {
+      "id": "System Design Citadel::sd-011",
+      "palace": "System Design Citadel",
+      "locus": "Scalability Spire",
+      "label": "Vertical Scaling (Scale Up)"
+    },
+    {
+      "id": "System Design Citadel::sd-012",
+      "palace": "System Design Citadel",
+      "locus": "Scalability Spire",
+      "label": "Load Balancer"
+    },
+    {
+      "id": "System Design Citadel::sd-013",
+      "palace": "System Design Citadel",
+      "locus": "Scalability Spire",
+      "label": "Load Balancing Algorithms"
+    },
+    {
+      "id": "System Design Citadel::sd-014",
+      "palace": "System Design Citadel",
+      "locus": "Caching Chamber",
+      "label": "What is Caching"
+    },
+    {
+      "id": "System Design Citadel::sd-015",
+      "palace": "System Design Citadel",
+      "locus": "Caching Chamber",
+      "label": "Cache-Aside Pattern"
+    },
+    {
+      "id": "System Design Citadel::sd-016",
+      "palace": "System Design Citadel",
+      "locus": "Caching Chamber",
+      "label": "Write-Through Cache"
+    },
+    {
+      "id": "System Design Citadel::sd-017",
+      "palace": "System Design Citadel",
+      "locus": "Caching Chamber",
+      "label": "Write-Behind (Write-Back) Cache"
+    },
+    {
+      "id": "System Design Citadel::sd-018",
+      "palace": "System Design Citadel",
+      "locus": "Caching Chamber",
+      "label": "Cache Eviction Policies"
+    },
+    {
+      "id": "System Design Citadel::sd-019",
+      "palace": "System Design Citadel",
+      "locus": "Caching Chamber",
+      "label": "CDN (Content Delivery Network)"
+    },
+    {
+      "id": "System Design Citadel::sd-020",
+      "palace": "System Design Citadel",
+      "locus": "Data Dungeon",
+      "label": "SQL vs NoSQL"
+    },
+    {
+      "id": "System Design Citadel::sd-021",
+      "palace": "System Design Citadel",
+      "locus": "Data Dungeon",
+      "label": "Database Sharding"
+    },
+    {
+      "id": "System Design Citadel::sd-022",
+      "palace": "System Design Citadel",
+      "locus": "Data Dungeon",
+      "label": "Database Replication"
+    },
+    {
+      "id": "System Design Citadel::sd-023",
+      "palace": "System Design Citadel",
+      "locus": "Data Dungeon",
+      "label": "Consistent Hashing"
+    },
+    {
+      "id": "System Design Citadel::sd-024",
+      "palace": "System Design Citadel",
+      "locus": "NoSQL Nook",
+      "label": "Key-Value Stores"
+    },
+    {
+      "id": "System Design Citadel::sd-025",
+      "palace": "System Design Citadel",
+      "locus": "NoSQL Nook",
+      "label": "Document Stores"
+    },
+    {
+      "id": "System Design Citadel::sd-026",
+      "palace": "System Design Citadel",
+      "locus": "NoSQL Nook",
+      "label": "Wide-Column Stores"
+    },
+    {
+      "id": "System Design Citadel::sd-027",
+      "palace": "System Design Citadel",
+      "locus": "NoSQL Nook",
+      "label": "Graph Databases"
+    },
+    {
+      "id": "System Design Citadel::sd-028",
+      "palace": "System Design Citadel",
+      "locus": "Distributed Systems Dome",
+      "label": "What is a Distributed System"
+    },
+    {
+      "id": "System Design Citadel::sd-029",
+      "palace": "System Design Citadel",
+      "locus": "Distributed Systems Dome",
+      "label": "Consensus Algorithms (Paxos/Raft)"
+    },
+    {
+      "id": "System Design Citadel::sd-030",
+      "palace": "System Design Citadel",
+      "locus": "Distributed Systems Dome",
+      "label": "Leader Election"
+    },
+    {
+      "id": "System Design Citadel::sd-031",
+      "palace": "System Design Citadel",
+      "locus": "Distributed Systems Dome",
+      "label": "Two-Phase Commit (2PC)"
+    },
+    {
+      "id": "System Design Citadel::sd-032",
+      "palace": "System Design Citadel",
+      "locus": "Distributed Systems Dome",
+      "label": "Saga Pattern"
+    },
+    {
+      "id": "System Design Citadel::sd-033",
+      "palace": "System Design Citadel",
+      "locus": "Clocks Corner",
+      "label": "Clock Skew Problem"
+    },
+    {
+      "id": "System Design Citadel::sd-034",
+      "palace": "System Design Citadel",
+      "locus": "Clocks Corner",
+      "label": "Lamport Clocks (Logical Clocks)"
+    },
+    {
+      "id": "System Design Citadel::sd-035",
+      "palace": "System Design Citadel",
+      "locus": "Clocks Corner",
+      "label": "Vector Clocks"
+    },
+    {
+      "id": "System Design Citadel::sd-036",
+      "palace": "System Design Citadel",
+      "locus": "Messaging Maze",
+      "label": "Message Queues"
+    },
+    {
+      "id": "System Design Citadel::sd-037",
+      "palace": "System Design Citadel",
+      "locus": "Messaging Maze",
+      "label": "Pub/Sub Pattern"
+    },
+    {
+      "id": "System Design Citadel::sd-038",
+      "palace": "System Design Citadel",
+      "locus": "Messaging Maze",
+      "label": "Event Sourcing"
+    },
+    {
+      "id": "System Design Citadel::sd-039",
+      "palace": "System Design Citadel",
+      "locus": "Messaging Maze",
+      "label": "CQRS (Command Query Responsibility Segregation)"
+    },
+    {
+      "id": "System Design Citadel::sd-040",
+      "palace": "System Design Citadel",
+      "locus": "Patterns Pavilion",
+      "label": "Microservices Architecture"
+    },
+    {
+      "id": "System Design Citadel::sd-041",
+      "palace": "System Design Citadel",
+      "locus": "Patterns Pavilion",
+      "label": "API Gateway"
+    },
+    {
+      "id": "System Design Citadel::sd-042",
+      "palace": "System Design Citadel",
+      "locus": "Patterns Pavilion",
+      "label": "Circuit Breaker Pattern"
+    },
+    {
+      "id": "System Design Citadel::sd-043",
+      "palace": "System Design Citadel",
+      "locus": "Patterns Pavilion",
+      "label": "Bulkhead Pattern"
+    },
+    {
+      "id": "System Design Citadel::sd-044",
+      "palace": "System Design Citadel",
+      "locus": "Patterns Pavilion",
+      "label": "Strangler Fig Pattern"
+    },
+    {
+      "id": "System Design Citadel::sd-045",
+      "palace": "System Design Citadel",
+      "locus": "Patterns Pavilion",
+      "label": "Service Mesh"
+    },
+    {
+      "id": "System Design Citadel::sd-046",
+      "palace": "System Design Citadel",
+      "locus": "Reliability Rampart",
+      "label": "Availability Nines"
+    },
+    {
+      "id": "System Design Citadel::sd-047",
+      "palace": "System Design Citadel",
+      "locus": "Reliability Rampart",
+      "label": "Failover Strategies"
+    },
+    {
+      "id": "System Design Citadel::sd-048",
+      "palace": "System Design Citadel",
+      "locus": "Reliability Rampart",
+      "label": "Health Checks and Heartbeats"
+    },
+    {
+      "id": "System Design Citadel::sd-049",
+      "palace": "System Design Citadel",
+      "locus": "Reliability Rampart",
+      "label": "Rate Limiting"
+    },
+    {
+      "id": "System Design Citadel::sd-050",
+      "palace": "System Design Citadel",
+      "locus": "Reliability Rampart",
+      "label": "Backpressure"
+    }
+  ],
+  "edges": []
+}

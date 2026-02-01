@@ -1,0 +1,10 @@
+{
+  "timestamp": "2026-02-01T12:14:48.455232",
+  "embedding_model": "nomic-embed-text",
+  "llm_model": "llama3.2",
+  "memories": 93,
+  "queries": 50,
+  "flat_accuracy": 0.1,
+  "hier_accuracy": 0.18,
+  "context_reduction": -0.1610921867875439
+}

@@ -1,0 +1,57 @@
+## Related Work {#sec-related-work}
+
+### Memory Palace and Method of Loci
+
+The method of loci dates to ancient Greece, attributed to the poet Simonides of Ceos [@yates1966art]. The technique involves:
+
+1. Visualizing a familiar location (the "palace")
+2. Placing memorable images at specific locations (loci)
+3. Mentally walking through the palace to recall information
+
+Modern studies confirm its effectiveness. @bower1970analysis showed 2-3x improvement in recall when using the method of loci compared to rote memorization. @legge2012building found that even brief training improved memory performance significantly.
+
+### Spaced Repetition Systems
+
+The Ebbinghaus forgetting curve [@ebbinghaus1885memory] describes how memory retention decays exponentially without reinforcement:
+
+$$R(t) = e^{-t/S}$$
+
+where $R$ is retention, $t$ is time since learning, and $S$ is memory stability.
+
+Modern spaced repetition algorithms build on this foundation:
+
+- **SM-2** (SuperMemo): Adjusts review intervals based on recall quality [@wozniak1990optimization]
+- **FSRS** (Free Spaced Repetition Scheduler): Uses machine learning to optimize intervals [@ye2024fsrs]
+- **Anki**: Popular implementation with customizable algorithms
+
+### Retrieval-Augmented Generation
+
+RAG systems address LLM limitations by retrieving relevant documents before generation [@lewis2020retrieval]. Key developments include:
+
+- **Dense Retrieval**: Using embeddings for semantic search [@karpukhin2020dense]
+- **Multi-hop RAG**: Reasoning across multiple documents [@yang2018hotpotqa]
+- **Self-RAG**: Adaptive retrieval decisions [@asai2023self]
+
+### Evaluation Benchmarks
+
+Several benchmarks evaluate RAG and QA systems:
+
+| Benchmark | Focus | Size |
+|-----------|-------|------|
+| RAGBench [@chen2024ragbench] | Industry RAG | 100K |
+| RepLiQA [@monteiro2024repliqa] | Unseen content | 5 splits |
+| RAGAS [@es2023ragas] | Reference-free eval | Framework |
+| FSRS-Anki [@ye2024fsrs] | Memory decay | 1.7B reviews |
+
+: Key evaluation benchmarks {#tbl-benchmarks}
+
+### Gap in Literature
+
+No existing system combines:
+
+1. Mnemonic encoding principles with RAG retrieval
+2. Hierarchical indexing with hallucination detection
+3. Spaced repetition calibrated to individual decay rates
+4. Multi-agent adversarial testing for memory strengthening
+
+Our work addresses this gap.
