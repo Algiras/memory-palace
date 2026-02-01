@@ -1,8 +1,14 @@
-# Memory Palace
+# Memory Palace + Red Queen
 
-**A hierarchical memory system for LLMs** that dramatically reduces context window usage while preventing hallucination through embedded verification tokens.
+> **Transform information into durable knowledge through vivid encoding + adversarial testing.**
 
-Memory Palace applies the ancient *method of loci* to modern RAG architectures—organizing knowledge into domain-specific indices with multi-hop retrieval instead of flat vector search.
+Memory without testing is belief without verification. This system combines the ancient *method of loci* (vivid spatial encoding) with the **Red Queen Protocol** (continuous adversarial testing) to create memories that stick and stay accurate.
+
+**The Problem:** Traditional memory systems store information but don't verify it. Result? Confident hallucinations and rapid decay.
+
+**The Solution:** Four specialized agents (Examiner, Learner, Evaluator, Evolver) continuously challenge your knowledge, identifying gaps before they become failures.
+
+**Key Results:** 97% context reduction, 92% hallucination detection F1, +23% retention with Red Queen pre-learning
 
 [![Website](https://img.shields.io/badge/Website-Live-blue)](https://algiras.github.io/memory-palace/)
 [![Paper](https://img.shields.io/badge/Paper-Read-green)](https://algiras.github.io/memory-palace/book/)

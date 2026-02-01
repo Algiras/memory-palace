@@ -1,7 +1,10 @@
-import { AbsoluteFill, useCurrentFrame, useVideoConfig, interpolate, spring } from "remotion";
+import { AbsoluteFill, useCurrentFrame, useVideoConfig, interpolate, spring, Easing } from "remotion";
 import { COLORS } from "../config";
 
-// Fade transition wrapper
+// Smooth easing for transitions
+const smoothEasing = Easing.bezier(0.25, 0.1, 0.25, 1);
+
+// Fade transition wrapper with smooth easing
 export const FadeTransition: React.FC<{
   children: React.ReactNode;
   durationInFrames: number;
@@ -14,7 +17,11 @@ export const FadeTransition: React.FC<{
     frame,
     [0, fadeInFrames, durationInFrames - fadeOutFrames, durationInFrames],
     [0, 1, 1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: smoothEasing,
+    }
   );
 
   return (
@@ -51,9 +58,9 @@ export const SlideTransition: React.FC<{
 
   const isExiting = frame > durationInFrames - fadeOutFrames;
 
-  // Calculate transform based on direction
+  // Calculate transform based on direction - reduced distance for subtler movement
   const getTransform = (progress: number, entering: boolean) => {
-    const distance = entering ? 60 : 40;
+    const distance = entering ? 40 : 30;
     const offset = (1 - progress) * distance;
 
     switch (direction) {
@@ -72,7 +79,11 @@ export const SlideTransition: React.FC<{
     frame,
     [0, fadeInFrames, durationInFrames - fadeOutFrames, durationInFrames],
     [0, 1, 1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: smoothEasing,
+    }
   );
 
   const transform = isExiting
@@ -104,23 +115,31 @@ export const ScaleTransition: React.FC<{
   const enterScale = spring({
     frame,
     fps,
-    config: { damping: 18, stiffness: 80 },
-    from: 0.9,
+    config: { damping: 25, stiffness: 45, mass: 1.2 },
+    from: 0.92,
     to: 1,
   });
 
   const exitScale = interpolate(
     frame,
     [durationInFrames - fadeOutFrames, durationInFrames],
-    [1, 1.05],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+    [1, 1.03],
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: smoothEasing,
+    }
   );
 
   const opacity = interpolate(
     frame,
     [0, fadeInFrames, durationInFrames - fadeOutFrames, durationInFrames],
     [0, 1, 1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: smoothEasing,
+    }
   );
 
   const isExiting = frame > durationInFrames - fadeOutFrames;
@@ -148,18 +167,18 @@ export const WipeTransition: React.FC<{
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // Wipe in
+  // Wipe in - smooth reveal
   const wipeInProgress = spring({
     frame,
     fps,
-    config: { damping: 25, stiffness: 100 },
+    config: { damping: 30, stiffness: 60, mass: 1 },
   });
 
-  // Wipe out
+  // Wipe out - smooth exit
   const wipeOutProgress = spring({
     frame: frame - (durationInFrames - 25),
     fps,
-    config: { damping: 25, stiffness: 100 },
+    config: { damping: 30, stiffness: 60, mass: 1 },
   });
 
   const showContent = frame > 15 && frame < durationInFrames - 10;
@@ -198,7 +217,7 @@ export const WipeTransition: React.FC<{
   );
 };
 
-// Blur transition
+// Blur transition - creates a dreamy, cinematic effect
 export const BlurTransition: React.FC<{
   children: React.ReactNode;
   durationInFrames: number;
@@ -207,16 +226,21 @@ export const BlurTransition: React.FC<{
 }> = ({ children, durationInFrames, fadeInFrames = 20, fadeOutFrames = 15 }) => {
   const frame = useCurrentFrame();
 
-  const blurIn = interpolate(frame, [0, fadeInFrames], [10, 0], {
+  const blurIn = interpolate(frame, [0, fadeInFrames], [8, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
+    easing: smoothEasing,
   });
 
   const blurOut = interpolate(
     frame,
     [durationInFrames - fadeOutFrames, durationInFrames],
-    [0, 8],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+    [0, 6],
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: smoothEasing,
+    }
   );
 
   const blur = frame < fadeInFrames ? blurIn : blurOut;
@@ -225,7 +249,11 @@ export const BlurTransition: React.FC<{
     frame,
     [0, fadeInFrames, durationInFrames - fadeOutFrames, durationInFrames],
     [0, 1, 1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+    {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+      easing: smoothEasing,
+    }
   );
 
   return (
