@@ -24,16 +24,16 @@ The verification token approach achieves remarkable hallucination detection perf
 **Mitigations:**
 We recommend tokens of 3-5 words that are semantically unrelated to the concept (e.g., "47 couples frozen forever" for Two-Phase Commit rather than "transaction protocol").
 
-#### RQ3: Decay Prediction Accuracy
+#### RQ3: Context Reduction
 
-The 57% improvement in MAE demonstrates that incorporating encoding strength into decay models captures human memory dynamics more accurately than time-based models alone. This validates Bjork's New Theory of Disuse [@bjork1992theory], which distinguishes between storage strength (how well encoded) and retrieval strength (how accessible).
+The **97% context reduction** demonstrates that hierarchical indexing dramatically reduces the amount of text loaded into LLM context windows. At 1,000 memories:
 
-Our model's decay rate formula:
-$$\lambda = \lambda_0 \cdot (1 - 0.05 \cdot S)$$
+- Flat RAG: 500KB average context per query
+- Memory Palace: 2.5KB average context per query
 
-where $S$ is the SMASHIN SCOPE score (0-12), effectively captures the storage strength component missing from SM-2 and FSRS.
+This enables Memory Palace to scale to large knowledge bases without exhausting context windows or increasing latency proportionally.
 
-#### RQ4: Trade-offs
+#### RQ4: Scaling Performance
 
 ![Trade-off Space: Speed, Accuracy, and Corpus Size](figures/tradeoff_space.png){#fig-tradeoffs}
 

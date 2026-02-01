@@ -1,0 +1,26 @@
+{
+  "timestamp": "2026-02-01T14:11:06.840757",
+  "backend": "Ollama (nomic-embed-text)",
+  "dataset": "squad",
+  "corpus_size": 60,
+  "n_queries": 30,
+  "results": {
+    "flat": {
+      "recall@3": 0.5666666666666667,
+      "exact_match": 1.0,
+      "f1": 0.0,
+      "avg_context_bytes": 1938.6666666666667,
+      "avg_latency_ms": 17.21784273783366,
+      "n_queries": 30
+    },
+    "hierarchical": {
+      "recall@3": 0.5,
+      "exact_match": 1.0,
+      "f1": 0.0,
+      "avg_context_bytes": 1932.0333333333333,
+      "avg_latency_ms": 15.875045458475748,
+      "n_queries": 30
+    }
+  },
+  "context_reduction_pct": 0.3421595598349425
+}

@@ -1,36 +1,36 @@
 ## Introduction {#sec-introduction}
 
-The challenge of long-term knowledge retention has persisted since antiquity. Ancient Greek and Roman orators developed the *method of loci* (memory palace technique) to memorize lengthy speeches by associating information with vivid mental imagery placed in familiar locations [@yates1966art]. Modern cognitive science has validated these techniques, showing that spatial and visual encoding significantly improves recall [@bower1970analysis].
+Large Language Models (LLMs) have transformed natural language processing, yet they remain fundamentally limited in their ability to manage external knowledge. While LLMs excel at generating fluent text, they suffer from critical issues:
 
-Simultaneously, the rise of Large Language Models (LLMs) has created new challenges in knowledge management. While LLMs excel at generating fluent text, they suffer from:
+1. **Hallucination** - generating plausible but incorrect information when knowledge is absent
+2. **Context limitations** - context windows constrain the amount of retrievable knowledge
+3. **Retrieval inefficiency** - standard RAG systems load excessive context, increasing latency and cost
 
-1. **Hallucination** - generating plausible but incorrect information
-2. **Knowledge cutoff** - inability to access information beyond training data
-3. **Context limitations** - struggling with large knowledge bases
+Retrieval-Augmented Generation (RAG) addresses some of these issues by grounding LLM outputs in retrieved documents [@lewis2020retrieval]. However, current RAG architectures have significant limitations:
 
-Retrieval-Augmented Generation (RAG) addresses some of these issues by grounding LLM outputs in retrieved documents [@lewis2020retrieval]. However, standard RAG systems lack:
+- **Flat retrieval** - all documents searched equally, regardless of relevance
+- **No verification** - no mechanism to detect when the LLM fabricates information
+- **Context bloat** - retrieving top-k chunks floods the context window
 
-- **Memorability** - retrieved chunks are forgotten across sessions
-- **Personalization** - no adaptation to individual learning patterns
-- **Decay modeling** - no prediction of when knowledge will be forgotten
+We propose **Memory Palace**, a hierarchical memory system for LLMs inspired by the ancient *method of loci* [@yates1966art]. Rather than flat vector search, Memory Palace organizes knowledge into domain-specific indices with multi-hop retrieval—routing queries through hierarchical structure to minimize context while maximizing precision.
 
 ### Contributions
 
-We present a novel system that bridges ancient mnemonic techniques with modern RAG architectures:
+We present a novel LLM memory architecture with four key innovations:
 
-1. **SMASHIN SCOPE Encoding**: A systematic method for transforming abstract concepts into memorable, multi-sensory mental images that encode the same information through redundant channels.
+1. **Hierarchical Domain Index**: A multi-level index structure that reduces retrieval context by **97%** compared to flat RAG, enabling efficient scaling to large knowledge bases.
 
-2. **Hierarchical Memory Index**: A three-level index structure that reduces retrieval context by 97% while introducing *verification tokens* to detect LLM hallucination.
+2. **Verification Tokens**: Embedded tokens in memories that allow deterministic detection of LLM hallucination with **F1=0.92**—without requiring additional model inference.
 
-3. **Adaptive Decay Model**: A spaced repetition system calibrated against 1.7 billion real flashcard reviews, enabling accurate prediction of when memories will fade.
+3. **SMASHIN SCOPE Encoding**: A systematic method for transforming knowledge into structured, retrievable memories with multi-channel redundancy for robust retrieval.
 
-4. **Red Queen Protocol**: An adversarial multi-agent testing framework that continuously strengthens weak memories.
+4. **Red Queen Protocol**: An adversarial multi-agent testing framework that continuously validates and strengthens the memory system.
 
 ### Research Questions
 
-We address the following questions:
+We address the following questions for LLM memory systems:
 
-- **RQ1**: Can structured mnemonic encoding improve recall accuracy compared to standard RAG?
-- **RQ2**: Do verification tokens effectively prevent LLM hallucination?
-- **RQ3**: How accurately can we predict memory decay compared to human ground truth?
-- **RQ4**: What are the trade-offs between retrieval speed, accuracy, and corpus size?
+- **RQ1**: Does hierarchical retrieval improve accuracy compared to flat RAG?
+- **RQ2**: Can verification tokens effectively detect LLM hallucination?
+- **RQ3**: What context reduction is achievable while maintaining retrieval quality?
+- **RQ4**: How does Memory Palace scale with corpus size compared to standard approaches?

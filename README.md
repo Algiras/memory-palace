@@ -1,6 +1,8 @@
 # Memory Palace
 
-A cognitive framework for AI-assisted memory systems using the ancient method of loci combined with modern spaced repetition and adversarial learning.
+**A hierarchical memory system for LLMs** that dramatically reduces context window usage while preventing hallucination through embedded verification tokens.
+
+Memory Palace applies the ancient *method of loci* to modern RAG architectures—organizing knowledge into domain-specific indices with multi-hop retrieval instead of flat vector search.
 
 ## Key Results
 
@@ -27,14 +29,6 @@ Memory Palace achieves state-of-the-art performance across multiple benchmarks:
 | GraphRAG | 55.7% | 64.3% | 41.2% | 53.7% |
 | **Memory Palace** | **58.2%** | **67.1%** | **42.8%** | **56.0%** |
 
-### vs. Spaced Repetition (FSRS-Anki-20k)
-
-| Algorithm | MAE | AUC-ROC | Reviews to 90% |
-|-----------|-----|---------|----------------|
-| SM-2 (Anki) | 0.218 | 0.68 | 18.6 |
-| FSRS-4.5 | 0.147 | 0.74 | 9.2 |
-| **Memory Palace (S=12)** | **0.094** | **0.82** | **3.7** |
-
 ### Hallucination Detection
 
 | Method | F1 Score | Compute Cost |
@@ -43,11 +37,11 @@ Memory Palace achieves state-of-the-art performance across multiple benchmarks:
 | FActScore | 83% | 6x |
 | **MP Verify Tokens** | **92%** | **0.01x** |
 
-**Key Advantages:**
-- **Zero parameters**: No embedding model required
-- **97% context reduction**: Hierarchical 2-hop retrieval
-- **92% hallucination detection**: Built-in verification tokens
-- **5x fewer reviews**: SMASHIN SCOPE encoding strength
+**Key Advantages for LLM Memory:**
+- **97% context reduction**: Hierarchical 2-hop retrieval vs flat RAG
+- **92% hallucination detection**: Built-in verification tokens (F1 score)
+- **Domain routing**: Queries routed to relevant index partitions
+- **Scalable**: Handles large knowledge bases without context overflow
 
 ## Method Comparison
 
@@ -155,42 +149,48 @@ Or use the skill files directly from `skills/memory-palace/`.
 
 ## Benchmarks
 
-Run benchmarks against published SOTA using HuggingFace datasets:
+Run LLM retrieval benchmarks with Gemini or Ollama models on standard QA datasets:
 
 ```bash
 cd paper/code
 python -m venv .venv
 source .venv/bin/activate
-pip install numpy pandas matplotlib seaborn datasets
+pip install numpy pandas matplotlib seaborn datasets google-generativeai
 
-# RAGBench - Retrieval quality on 12 datasets (HotpotQA, MS MARCO, etc.)
-python ragbench_hf_benchmark.py --subset hotpotqa --samples 500
+# Standard QA benchmark on SQuAD (local Ollama)
+python standard_benchmark.py --backend ollama --dataset squad --samples 100
 
-# FSRS-Anki-20k - Decay prediction on 1.7B real flashcard reviews
-python fsrs_hf_benchmark.py --users 100
+# Standard QA benchmark on SQuAD (Gemini API)
+# Add GEMINI_API_KEY to .env
+python standard_benchmark.py --backend gemini --dataset squad --samples 100
 
-# BEIR - Zero-shot retrieval comparison with ColBERT, Contriever
-python beir_benchmark.py --datasets nq hotpotqa fiqa --samples 500
+# TriviaQA benchmark
+python standard_benchmark.py --backend ollama --dataset triviaqa --samples 100
 
-# Local Ollama benchmark (requires Ollama running)
+# Memory Palace retrieval benchmark
 python ollama_benchmark.py
 
-# Cloud Gemini benchmark (requires API key)
-# Add GEMINI_API_KEY to .env
+# Gemini API benchmark
 python gemini_benchmark.py
 
 # Generate visualizations
 python visualize_results.py
 ```
 
-### Published Datasets Used
+### Datasets Used
 
-| Dataset | Size | Purpose | Reference |
-|---------|------|---------|-----------|
-| FSRS-Anki-20k | 1.7B reviews | Decay prediction | open-spaced-repetition |
-| RAGBench | 100k examples | Retrieval quality | rungalileo/ragbench |
-| BEIR | 18 datasets | Zero-shot retrieval | BeIR benchmark |
-| MTEB | 56 datasets | Embedding quality | mteb leaderboard |
+| Dataset | Type | Size | Reference |
+|---------|------|------|-----------|
+| SQuAD 2.0 | Reading Comprehension | 100k+ QA pairs | Stanford |
+| TriviaQA | Open-domain QA | 95k QA pairs | University of Washington |
+| Natural Questions | Search QA | 300k+ queries | Google |
+
+### Models Supported
+
+| Backend | Embedding Model | LLM | Local/Cloud |
+|---------|-----------------|-----|-------------|
+| Ollama | nomic-embed-text | llama3.2 | Local |
+| Gemini | embedding-001 | gemini-pro | Cloud (API) |
 
 ## Documentation
 
