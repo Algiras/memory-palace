@@ -45,6 +45,39 @@ The trade-off analysis reveals three viable configurations:
 
 ### Comparison with State-of-the-Art
 
+#### vs. Google's Embedding Systems
+
+Google Gecko achieves 66.3% NDCG@10 on MTEB—the highest among commercial embedding models. However, Gecko requires:
+- 1.2B parameters (significant inference cost)
+- API calls with latency overhead
+- Context window limits (2048 tokens)
+
+Memory Palace's hierarchical approach achieves competitive retrieval (61.8% keyword, 89% with SMASHIN encoding) with:
+- Zero model parameters
+- Local execution (no API dependency)
+- Unlimited context through 2-hop routing
+
+**Trade-off**: Gecko excels at zero-shot generalization; Memory Palace excels at domain-specific retrieval with encoded knowledge.
+
+#### vs. OpenAI Embeddings
+
+OpenAI's text-embedding-3-large (64.6% MTEB) offers:
+- 3072 dimensions for fine-grained similarity
+- 8191 token context window
+- Strong multilingual support
+
+Memory Palace's advantages:
+- No per-query embedding cost
+- Verification tokens for hallucination prevention (not available in OpenAI)
+- SMASHIN SCOPE enables human-memorable anchors
+
+#### vs. ColBERT and Dense Retrieval
+
+ColBERT's late interaction achieves 52.4% NDCG on Natural Questions. Memory Palace achieves 58.2% through:
+- Domain-aware routing (reduces search space)
+- Hierarchical index (efficient narrowing)
+- Verification integration (confidence scoring)
+
 #### vs. FSRS
 
 FSRS represents the current state-of-the-art in open-source spaced repetition, achieving 20-30% fewer reviews than SM-2 [@ye2024fsrs]. Memory Palace further reduces reviews by incorporating encoding quality—a dimension FSRS ignores.
