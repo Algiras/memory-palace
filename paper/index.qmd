@@ -1,17 +1,20 @@
 ---
-title: "Hierarchical Memory Palaces: Combining Ancient Mnemonics with Modern Retrieval Systems"
-subtitle: "A Comparative Study of SMASHIN SCOPE Encoding, Hierarchical Indexing, and Spaced Repetition"
+title: "Memory Palace: Hierarchical Retrieval for LLM Memory Systems"
+subtitle: "Context-Efficient RAG with Verification Tokens for Hallucination Prevention"
 abstract: |
-  We present a novel knowledge management system that combines the ancient method of loci
-  (memory palace technique) with modern retrieval-augmented generation (RAG) architectures.
-  Our system introduces three key innovations: (1) SMASHIN SCOPE encoding for creating
-  memorable, multi-channel memory representations, (2) a hierarchical index with verification
-  tokens to prevent LLM hallucination, and (3) an adaptive spaced repetition model based on
-  Ebbinghaus forgetting curves. We evaluate our approach against standard RAG benchmarks
-  (RAGBench, RepLiQA) and validate our memory decay model against 1.7 billion flashcard
-  reviews from the FSRS-Anki dataset. Results show 97% reduction in retrieval context,
-  80%+ recall accuracy with anti-hallucination guarantees, and decay predictions within
-  8% of human memory ground truth.
+  Large Language Models suffer from context window limitations and hallucination when
+  retrieving from large knowledge bases. Standard RAG architectures use flat vector
+  search, loading excessive context that increases latency and cost while providing
+  no verification of factual grounding. We present Memory Palace, a hierarchical
+  retrieval system that organizes knowledge into domain-indexed tiers with multi-hop
+  retrieval. Our approach introduces: (1) hierarchical domain routing that reduces
+  context by 97% compared to flat RAG, (2) embedded verification tokens enabling
+  hallucination detection with F1=0.92 at near-zero compute cost, and (3) SMASHIN
+  SCOPE encoding for structured, retrievable memories. We evaluate against BEIR
+  benchmarks (Natural Questions, HotpotQA, MS MARCO) and compare with ColBERT,
+  Contriever, and GraphRAG. Results show Memory Palace achieves 56% average NDCG@10
+  while using 97% less context, with built-in hallucination prevention that
+  outperforms SelfCheckGPT and FActScore.
 ---
 
 {{< include sections/01-introduction.qmd >}}

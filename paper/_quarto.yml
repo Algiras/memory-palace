@@ -38,8 +38,9 @@ author:
 date: last-modified
 
 keywords:
-  - memory palace
-  - method of loci
-  - spaced repetition
+  - LLM memory
   - retrieval augmented generation
-  - knowledge management
+  - hierarchical retrieval
+  - hallucination detection
+  - context efficiency
+  - RAG systems
