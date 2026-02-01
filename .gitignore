@@ -25,5 +25,13 @@ paper/.quarto/
 # Jupyter
 .ipynb_checkpoints/
 
+# Node
+**/node_modules/
+
+# Large files
+*.onnx
+*.bin
+chrome-headless-shell
+
 # Results (optional - comment out to include)
 # paper/results/
