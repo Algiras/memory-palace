@@ -2,55 +2,63 @@
 
 export const FPS = 30;
 
-// Scene definitions with timing
+// Scene definitions with timing - matched to Kokoro voiceover durations
 export const SCENES = [
   {
     id: "intro",
     title: "Memory Palace",
     subtitle: "Ancient Wisdom Meets Modern AI",
-    durationInFrames: 150, // 5 seconds
+    durationInFrames: 220, // ~7.3s - matched to audio + buffer
+    audioFile: "01-intro.wav",
   },
   {
     id: "problem",
     title: "The Problem",
     subtitle: "LLMs Forget & Hallucinate",
-    durationInFrames: 120, // 4 seconds
+    durationInFrames: 380, // ~12.7s
+    audioFile: "02-problem.wav",
   },
   {
     id: "smashin",
     title: "SMASHIN SCOPE",
     subtitle: "12-Factor Memorable Encoding",
-    durationInFrames: 180, // 6 seconds
+    durationInFrames: 480, // ~16s
+    audioFile: "03-smashin.wav",
   },
   {
     id: "hierarchy",
     title: "Hierarchical Index",
     subtitle: "97% Context Reduction",
-    durationInFrames: 150, // 5 seconds
+    durationInFrames: 430, // ~14.3s
+    audioFile: "04-hierarchy.wav",
   },
   {
     id: "verification",
     title: "Verification Tokens",
     subtitle: "F1=0.92 Hallucination Detection",
-    durationInFrames: 150, // 5 seconds
+    durationInFrames: 365, // ~12.2s
+    audioFile: "05-verification.wav",
   },
   {
     id: "redqueen",
     title: "Red Queen Protocol",
     subtitle: "Adversarial Pre-Learning",
-    durationInFrames: 150, // 5 seconds
+    durationInFrames: 375, // ~12.5s
+    audioFile: "06-redqueen.wav",
   },
   {
     id: "benchmarks",
     title: "Benchmarks",
     subtitle: "Competitive with Billion-Parameter Models",
-    durationInFrames: 180, // 6 seconds
+    durationInFrames: 420, // ~14s
+    audioFile: "07-benchmarks.wav",
   },
   {
     id: "outro",
     title: "Get Started",
     subtitle: "npx skills add memory-palace",
-    durationInFrames: 120, // 4 seconds
+    durationInFrames: 245, // ~8.2s
+    audioFile: "08-outro.wav",
   },
 ];
 

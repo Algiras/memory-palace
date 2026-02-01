@@ -5,6 +5,8 @@ import {
   Sequence,
   interpolate,
   spring,
+  Audio,
+  staticFile,
 } from "remotion";
 import { SCENES, getSceneStart, COLORS, FONTS } from "./config";
 import { IntroScene } from "./scenes/IntroScene";
@@ -33,41 +35,49 @@ export const MemoryPalaceExplainer: React.FC = () => {
       {/* Scene 1: Intro */}
       <Sequence from={getSceneStart(0)} durationInFrames={SCENES[0].durationInFrames}>
         <IntroScene />
+        <Audio src={staticFile(`audio/${SCENES[0].audioFile}`)} volume={0.9} />
       </Sequence>
 
       {/* Scene 2: Problem */}
       <Sequence from={getSceneStart(1)} durationInFrames={SCENES[1].durationInFrames}>
         <ProblemScene />
+        <Audio src={staticFile(`audio/${SCENES[1].audioFile}`)} volume={0.9} />
       </Sequence>
 
       {/* Scene 3: SMASHIN SCOPE */}
       <Sequence from={getSceneStart(2)} durationInFrames={SCENES[2].durationInFrames}>
         <SmashinScene />
+        <Audio src={staticFile(`audio/${SCENES[2].audioFile}`)} volume={0.9} />
       </Sequence>
 
       {/* Scene 4: Hierarchical Index */}
       <Sequence from={getSceneStart(3)} durationInFrames={SCENES[3].durationInFrames}>
         <HierarchyScene />
+        <Audio src={staticFile(`audio/${SCENES[3].audioFile}`)} volume={0.9} />
       </Sequence>
 
       {/* Scene 5: Verification Tokens */}
       <Sequence from={getSceneStart(4)} durationInFrames={SCENES[4].durationInFrames}>
         <VerificationScene />
+        <Audio src={staticFile(`audio/${SCENES[4].audioFile}`)} volume={0.9} />
       </Sequence>
 
       {/* Scene 6: Red Queen Protocol */}
       <Sequence from={getSceneStart(5)} durationInFrames={SCENES[5].durationInFrames}>
         <RedQueenScene />
+        <Audio src={staticFile(`audio/${SCENES[5].audioFile}`)} volume={0.9} />
       </Sequence>
 
       {/* Scene 7: Benchmarks */}
       <Sequence from={getSceneStart(6)} durationInFrames={SCENES[6].durationInFrames}>
         <BenchmarksScene />
+        <Audio src={staticFile(`audio/${SCENES[6].audioFile}`)} volume={0.9} />
       </Sequence>
 
       {/* Scene 8: Outro */}
       <Sequence from={getSceneStart(7)} durationInFrames={SCENES[7].durationInFrames}>
         <OutroScene />
+        <Audio src={staticFile(`audio/${SCENES[7].audioFile}`)} volume={0.9} />
       </Sequence>
 
       {/* Progress bar */}
