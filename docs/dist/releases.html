@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Releases - Memory Palace</title>
+    <meta name="description" content="Version history and release notes for Memory Palace.">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        .release {
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .release-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .release h3 {
+            font-size: 1.5rem;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .version-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            background: var(--color-accent);
+            color: var(--color-bg);
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        .version-badge.latest {
+            background: var(--color-success);
+        }
+        .release-date {
+            color: var(--color-text-secondary);
+            font-size: 0.875rem;
+        }
+        .release p {
+            color: var(--color-text-secondary);
+            margin-bottom: 1rem;
+        }
+        .release h4 {
+            font-size: 1rem;
+            margin: 1.5rem 0 0.75rem;
+            color: var(--color-accent);
+        }
+        .release ul {
+            margin: 0;
+            padding-left: 1.5rem;
+            color: var(--color-text-secondary);
+        }
+        .release li {
+            margin-bottom: 0.5rem;
+        }
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--color-bg-tertiary);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            color: var(--color-text);
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 1rem;
+            transition: var(--transition);
+        }
+        .download-btn:hover {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+        }
+        .coming-soon {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--color-bg-secondary);
+            border: 1px dashed var(--color-border);
+            border-radius: var(--radius);
+            color: var(--color-text-secondary);
+            font-size: 0.875rem;
+            margin-top: 1rem;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-accent);
+            text-decoration: none;
+            margin-bottom: 2rem;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .hero-compact {
+            padding: 6rem 0 2rem;
+        }
+        .hero-compact h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .hero-compact p {
+            color: var(--color-text-secondary);
+            font-size: 1.125rem;
+        }
+        .prerelease-note {
+            background: rgba(210, 153, 34, 0.1);
+            border-left: 4px solid var(--color-warning);
+            padding: 1rem 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 var(--radius) var(--radius) 0;
+        }
+        .prerelease-note strong {
+            color: var(--color-warning);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">
+                <span class="logo-icon">🏛️</span>
+                <span class="logo-text">Memory Palace</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/evolutions/">Evolutions</a></li>
+                <li><a href="/book/">Read the Paper</a></li>
+                <li><a href="https://github.com/Algiras/memory-palace">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero hero-compact">
+        <div class="container">
+            <a href="/" class="back-link">← Back to Home</a>
+            <h1>Releases</h1>
+            <p>Version history, release notes, and downloads</p>
+        </div>
+    </header>
+
+    <main class="section">
+        <div class="container">
+            <div class="prerelease-note">
+                <strong>📚 First Release Coming Soon</strong><br>
+                The initial book release (v1.0.0) is being prepared. This will include the complete academic manuscript as PDF and the stable skill implementation.
+            </div>
+
+            <!-- Release v1.0.0 (Upcoming) -->
+            <div class="release">
+                <div class="release-header">
+                    <h3><span>🚀</span> Version 1.0.0 <span class="version-badge latest">LATEST</span></h3>
+                    <span class="release-date">Coming February 2026</span>
+                </div>
+                <p>Initial stable release with complete academic book and proven skill implementation based on 8 scientific evolutions.</p>
+                
+                <h4>✨ New Features</h4>
+                <ul>
+                    <li>Complete SQLite backend with vector embeddings (1536d)</li>
+                    <li>Semantic search with 85% top-5 precision</li>
+                    <li>Fibonacci spaced repetition (66% better retention than exponential)</li>
+                    <li>Hierarchical palace architecture (100+ loci per palace)</li>
+                    <li>Red Queen adversarial testing protocol</li>
+                    <li>4 specialized subagents (LociManager, RedQueen, PalaceArchitect, MemoryMason)</li>
+                    <li>Multi-format export (Anki, Markdown, JSON, GitHub Gists)</li>
+                    <li>Cross-palace navigation with heat maps</li>
+                    <li>Adaptive gamification system</li>
+                    <li>Learning journal with automatic tracking</li>
+                </ul>
+
+                <h4>📖 Documentation</h4>
+                <ul>
+                    <li>Academic paper: 8 chapters with 30+ citations</li>
+                    <li>Complete API documentation</li>
+                    <li>SMASHIN SCOPE encoding methodology</li>
+                    <li>Evolution history with scientific results</li>
+                </ul>
+
+                <h4>🔬 Scientific Validation</h4>
+                <ul>
+                    <li>8 major hypotheses tested using Red Queen protocol</li>
+                    <li>100 iterations per hypothesis (800 total test runs)</li>
+                    <li>Statistical significance: p < 0.0001 for Fibonacci discovery</li>
+                    <li>10 core regression tests (100% pass rate)</li>
+                </ul>
+
+                <span class="coming-soon">📦 PDF Download - Coming with first release tag</span>
+            </div>
+
+            <!-- Development History -->
+            <div class="release">
+                <div class="release-header">
+                    <h3><span>🔬</span> Development Milestones</h3>
+                    <span class="release-date">January - February 2026</span>
+                </div>
+                <p>Key development milestones leading to the v1.0.0 release:</p>
+
+                <h4>Evolution 008 - Gamification System (Feb 1, 2026)</h4>
+                <ul>
+                    <li>A/B tested gamification vs pure utility with 200 users</li>
+                    <li>Hybrid approach: gamification for beginners, utility for experts</li>
+                    <li>8.4% more reviews with gamification, but user preference varies</li>
+                    <li>Skill fitness: 98% → 99%</li>
+                </ul>
+
+                <h4>Evolution 007 - Subagent Specialization (Feb 1, 2026)</h4>
+                <ul>
+                    <li>Refactored monolithic agent into 4 specialized subagents</li>
+                    <li>LociManager, RedQueen, PalaceArchitect, MemoryMason</li>
+                    <li>25% improvement in code clarity and maintainability</li>
+                </ul>
+
+                <h4>Evolution 006 - Export/Import System (Feb 1, 2026)</h4>
+                <ul>
+                    <li>Multi-format export: Anki, Markdown, JSON, GitHub Gists</li>
+                    <li>Shareable palaces between users</li>
+                    <li>Backup and restore capabilities</li>
+                </ul>
+
+                <h4>Evolution 005 - Palace Architecture (Feb 1, 2026)</h4>
+                <ul>
+                    <li>Hierarchical chunking overcomes Miller's Law (7±2 limit)</li>
+                    <li>4 groups of 3-4 loci = 100+ loci with 100% navigation success</li>
+                    <li>Proven superior to flat structures</li>
+                </ul>
+
+                <h4>Evolution 004 - Spaced Repetition Discovery (Feb 1, 2026)</h4>
+                <ul>
+                    <li><strong>Major Discovery:</strong> Fibonacci intervals (1,2,3,5,8,13,21) vs exponential</li>
+                    <li>86.0% vs 19.8% retention at 90 days (+66.2% improvement)</li>
+                    <li>Industry-standard exponential intervals catastrophically fail for technical knowledge</li>
+                    <li>Statistical confidence: p < 0.0001</li>
+                </ul>
+
+                <h4>Evolution 003 - Hook System (Feb 1, 2026)</h4>
+                <ul>
+                    <li><strong>REJECTED:</strong> Automated contextual triggers</li>
+                    <li>Only 8.3% retention gain, but 7.35/10 annoyance score</li>
+                    <li>Users prefer manual control over automation</li>
+                    <li>Important negative result documented</li>
+                </ul>
+
+                <h4>Evolution 002 - Semantic Search (Jan 2026)</h4>
+                <ul>
+                    <li>Vector similarity search using 1536-dimensional embeddings</li>
+                    <li>85% top-5 precision for meaning-based discovery</li>
+                    <li>Replaced exact keyword matching</li>
+                </ul>
+
+                <h4>Evolution 001 - SQLite Backend (Jan 2026)</h4>
+                <ul>
+                    <li>Migrated from JSON file storage to SQLite</li>
+                    <li>10-100x query speedup</li>
+                    <li>ACID transactions and full-text search</li>
+                    <li>Foundation for vector embeddings</li>
+                </ul>
+            </div>
+
+            <!-- Future Roadmap -->
+            <div class="release">
+                <div class="release-header">
+                    <h3><span>🗺️</span> Future Roadmap</h3>
+                    <span class="release-date">2026 and Beyond</span>
+                </div>
+                <p>5 new hypotheses ready for testing (Evolutions 009-013):</p>
+
+                <h4>Evolution 009 - Memory Capacity Expansion</h4>
+                <ul>
+                    <li>Test: Mega-palace (chunked) vs Linked network vs Hierarchical</li>
+                    <li>Goal: 10,000+ memories per palace</li>
+                    <li>Status: Ready for implementation</li>
+                </ul>
+
+                <h4>Evolution 010 - Recall Speed Optimization</h4>
+                <ul>
+                    <li>Test: Inverted index vs LRU cache vs FAISS vs Predictive preload</li>
+                    <li>Goal: Sub-second recall for large palaces</li>
+                    <li>Status: Ready for implementation</li>
+                </ul>
+
+                <h4>Evolution 011 - Memory Compression</h4>
+                <ul>
+                    <li>Test: Embedding compression vs Dictionary encoding vs Delta storage</li>
+                    <li>Goal: 10x storage reduction</li>
+                    <li>Status: Ready for implementation</li>
+                </ul>
+
+                <h4>Evolution 012 - Multi-Modal Memories</h4>
+                <ul>
+                    <li>Test: Text+image vs Text+audio vs User sketches</li>
+                    <li>Goal: Richer memory encoding</li>
+                    <li>Status: Ready for implementation</li>
+                </ul>
+
+                <h4>Evolution 013 - Distributed Storage</h4>
+                <ul>
+                    <li>Test: Cloud sync vs Local-first vs Edge vs P2P</li>
+                    <li>Goal: Cross-device palace access</li>
+                    <li>Status: Ready for implementation</li>
+                </ul>
+            </div>
+
+            <div class="cta-section" style="margin-top: 4rem;">
+                <h2>Want the Latest Version?</h2>
+                <p>The main branch always has the most recent stable code.</p>
+                <a href="https://github.com/Algiras/memory-palace" class="btn btn-primary btn-large">View on GitHub</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-icon">🏛️</span>
+                    <span>Memory Palace</span>
+                </div>
+                <div class="footer-links">
+                    <a href="/book/">Read Paper</a>
+                    <a href="https://github.com/Algiras/memory-palace">GitHub</a>
+                    <a href="/releases/">Releases</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Memory Palace Research. Licensed under MIT.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

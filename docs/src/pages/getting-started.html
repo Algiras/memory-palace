@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started - Memory Palace</title>
+    <meta name="description" content="Quick start guide for building your first memory palace using the method of loci.">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        .step {
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem;
+            height: 3rem;
+            background: var(--color-accent);
+            color: var(--color-bg);
+            border-radius: 50%;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .step p {
+            color: var(--color-text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+        .command-box {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+        }
+        .command-box .prompt {
+            color: var(--color-success-light);
+        }
+        .command-box .command {
+            color: var(--color-text);
+        }
+        .tip-box {
+            background: rgba(210, 153, 34, 0.1);
+            border-left: 4px solid var(--color-warning);
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 var(--radius) var(--radius) 0;
+        }
+        .tip-box strong {
+            color: var(--color-warning);
+        }
+        .smashin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .smashin-item {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            padding: 1rem;
+            text-align: center;
+        }
+        .smashin-letter {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+        }
+        .smashin-word {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            margin-top: 0.25rem;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-accent);
+            text-decoration: none;
+            margin-bottom: 2rem;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .hero-compact {
+            padding: 6rem 0 2rem;
+        }
+        .hero-compact h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .hero-compact p {
+            color: var(--color-text-secondary);
+            font-size: 1.125rem;
+        }
+        .quick-nav {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        .quick-nav a {
+            padding: 0.5rem 1rem;
+            background: var(--color-bg-tertiary);
+            border: 1px solid var(--color-border);
+            border-radius: 100px;
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: var(--transition);
+        }
+        .quick-nav a:hover {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">
+                <span class="logo-icon">🏛️</span>
+                <span class="logo-text">Memory Palace</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/evolutions/">Evolutions</a></li>
+                <li><a href="/book/">Read the Paper</a></li>
+                <li><a href="https://github.com/Algiras/memory-palace">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero hero-compact">
+        <div class="container">
+            <a href="/" class="back-link">← Back to Home</a>
+            <h1>Getting Started</h1>
+            <p>Build your first memory palace in 5 minutes</p>
+        </div>
+    </header>
+
+    <main class="section">
+        <div class="container">
+            <div class="quick-nav">
+                <a href="#create">1. Create Palace</a>
+                <a href="#store">2. Store Memory</a>
+                <a href="#recall">3. Practice Recall</a>
+                <a href="#redqueen">4. Red Queen</a>
+                <a href="#advanced">Advanced Tips</a>
+            </div>
+
+            <!-- Step 1: Create Your Palace -->
+            <div class="step" id="create">
+                <div class="step-number">1</div>
+                <h3>Create Your First Palace</h3>
+                <p>A memory palace is an imagined space where you place vivid images representing things you want to remember. Choose a theme that resonates with what you're learning.</p>
+                
+                <div class="command-box">
+                    <span class="prompt">You:</span> <span class="command">/memory-palace create "System Design Patterns" "Ancient Library"</span>
+                </div>
+
+                <p>The skill will create a palace with:</p>
+                <ul style="margin: 1rem 0; padding-left: 1.5rem; color: var(--color-text-secondary);">
+                    <li>A vivid entrance description to anchor your memory</li>
+                    <li>Initial loci (locations) to place memories</li>
+                    <li>Proper JSON structure stored in <code>~/memory/</code></li>
+                </ul>
+
+                <div class="tip-box">
+                    <strong>💡 Pro Tip:</strong> Choose themes that match your learning style:
+                    <br>• Ancient Library - for hierarchical knowledge
+                    <br>• Space Station - for technical systems
+                    <br>• Journey Path - for sequential learning
+                </div>
+            </div>
+
+            <!-- Step 2: Store a Memory -->
+            <div class="step" id="store">
+                <div class="step-number">2</div>
+                <h3>Store Your First Memory</h3>
+                <p>Transform abstract concepts into unforgettable mental images using the <strong>SMASHIN SCOPE</strong> encoding system:</p>
+
+                <div class="smashin-grid">
+                    <div class="smashin-item">
+                        <div class="smashin-letter">S</div>
+                        <div class="smashin-word">Substitute</div>
+                    </div>
+                    <div class="smashin-item">
+                        <div class="smashin-letter">M</div>
+                        <div class="smashin-word">Movement</div>
+                    </div>
+                    <div class="smashin-item">
+                        <div class="smashin-letter">A</div>
+                        <div class="smashin-word">Absurd</div>
+                    </div>
+                    <div class="smashin-item">
+                        <div class="smashin-letter">S</div>
+                        <div class="smashin-word">Sensory</div>
+                    </div>
+                    <div class="smashin-item">
+                        <div class="smashin-letter">H</div>
+                        <div class="smashin-word">Humor</div>
+                    </div>
+                    <div class="smashin-item">
+                        <div class="smashin-letter">I</div>
+                        <div class="smashin-word">Interact</div>
+                    </div>
+                    <div class="smashin-item">
+                        <div class="smashin-letter">N</div>
+                        <div class="smashin-word">Numbers</div>
+                    </div>
+                    <div class="smashin-item">
+                        <div class="smashin-letter">S</div>
+                        <div class="smashin-word">Symbols</div>
+                    </div>
+                    <div class="smashin-item">
+                        <div class="smashin-letter">C</div>
+                        <div class="smashin-word">Color</div>
+                    </div>
+                    <div class="smashin-item">
+                        <div class="smashin-letter">O</div>
+                        <div class="smashin-word">Oversize</div>
+                    </div>
+                    <div class="smashin-item">
+                        <div class="smashin-letter">P</div>
+                        <div class="smashin-word">Position</div>
+                    </div>
+                    <div class="smashin-item">
+                        <div class="smashin-letter">E</div>
+                        <div class="smashin-word">Emotion</div>
+                    </div>
+                </div>
+
+                <div class="command-box">
+                    <span class="prompt">You:</span> <span class="command">/memory-palace store "CAP theorem"</span>
+                </div>
+
+                <p>The skill will guide you through creating a vivid image. For example:</p>
+                <div class="tip-box">
+                    <strong>Example - CAP Theorem:</strong><br>
+                    "A three-headed dragon (Consistency, Availability, Partition-tolerance) guarding a triangle-shaped mountain. The heads fight each other - when two heads roar together, the third must sleep. You can only have 2 of 3 at once!"
+                </div>
+
+                <p>Your memory is now stored at a specific locus with:</p>
+                <ul style="margin: 1rem 0; padding-left: 1.5rem; color: var(--color-text-secondary);">
+                    <li>Vector embedding for semantic search</li>
+                    <li>Next review date (Fibonacci intervals: Day 1, 2, 3, 5, 8...)</li>
+                    <li>Links to related concepts</li>
+                </ul>
+            </div>
+
+            <!-- Step 3: Recall -->
+            <div class="step" id="recall">
+                <div class="step-number">3</div>
+                <h3>Practice Recall</h3>
+                <p>Strengthen memories by actively recalling them. The skill uses semantic search to help you find memories by meaning, not just exact keywords.</p>
+
+                <div class="command-box">
+                    <span class="prompt">You:</span> <span class="command">/memory-palace recall</span>
+                </div>
+
+                <p>The skill offers options:</p>
+                <ul style="margin: 1rem 0; padding-left: 1.5rem; color: var(--color-text-secondary);">
+                    <li><strong>Full tour</strong> - Walk through all loci systematically</li>
+                    <li><strong>Recent</strong> - Review last 5 memories</li>
+                    <li><strong>Random quiz</strong> - Surprise yourself</li>
+                </ul>
+
+                <div class="command-box">
+                    <span class="prompt">You:</span> <span class="command">/memory-palace recall "consistency tradeoffs"</span>
+                </div>
+
+                <p>Semantic search finds "CAP theorem" even though you searched for different words!</p>
+            </div>
+
+            <!-- Step 4: Red Queen -->
+            <div class="step" id="redqueen">
+                <div class="step-number">4</div>
+                <h3>Run the Red Queen Protocol</h3>
+                <p>The Red Queen protocol adversarially tests your memories to prevent decay. Named after "Alice in Wonderland" - you must run to stay in the same place.</p>
+
+                <div class="command-box">
+                    <span class="prompt">You:</span> <span class="command">/memory-palace red-queen weak-spots</span>
+                </div>
+
+                <p>Available strategies:</p>
+                <ul style="margin: 1rem 0; padding-left: 1.5rem; color: var(--color-text-secondary);">
+                    <li><strong>random</strong> - Sample across all memories</li>
+                    <li><strong>weak-spots</strong> - Focus on low-confidence items</li>
+                    <li><strong>depth-first</strong> - Complete palace tour</li>
+                    <li><strong>cross-link</strong> - Connect related concepts</li>
+                    <li><strong>adversarial</strong> - Edge cases and failure modes</li>
+                </ul>
+
+                <div class="tip-box">
+                    <strong>🎯 How It Works:</strong><br>
+                    1. Examiner agent generates questions<br>
+                    2. Learner agent attempts blind recall<br>
+                    3. Evaluator agent scores accuracy<br>
+                    4. Weak memories get strengthened<br>
+                    5. Learning journal tracks progress
+                </div>
+            </div>
+
+            <!-- Advanced Tips -->
+            <div class="step" id="advanced">
+                <div class="step-number">5</div>
+                <h3>Advanced Tips</h3>
+                
+                <h4 style="margin: 1.5rem 0 0.5rem; color: var(--color-accent);">Interview Mode</h4>
+                <p>Timed rapid-fire Q&A for exam preparation:</p>
+                <div class="command-box">
+                    <span class="prompt">You:</span> <span class="command">/memory-palace interview "system design" 20m</span>
+                </div>
+
+                <h4 style="margin: 1.5rem 0 0.5rem; color: var(--color-accent);">Cross-Palace Navigation</h4>
+                <p>Explore connections between different knowledge domains:</p>
+                <div class="command-box">
+                    <span class="prompt">You:</span> <span class="command">/memory-palace navigate "distributed systems"</span>
+                </div>
+
+                <h4 style="margin: 1.5rem 0 0.5rem; color: var(--color-accent);">Export & Share</h4>
+                <p>Share palaces with others or backup your memories:</p>
+                <ul style="margin: 1rem 0; padding-left: 1.5rem; color: var(--color-text-secondary);">
+                    <li>Export to Anki for mobile review</li>
+                    <li>Share via GitHub Gist</li>
+                    <li>Markdown for documentation</li>
+                    <li>JSON for programmatic access</li>
+                </ul>
+
+                <h4 style="margin: 1.5rem 0 0.5rem; color: var(--color-accent);">Status & Analytics</h4>
+                <p>Track your memory health:</p>
+                <div class="command-box">
+                    <span class="prompt">You:</span> <span class="command">/memory-palace status</span>
+                </div>
+                <p>Shows: Total memories, retention rate, upcoming reviews, palace statistics.</p>
+            </div>
+
+            <div class="cta-section" style="margin-top: 4rem;">
+                <h2>Ready to Build Your Palace?</h2>
+                <p>Start with one palace, one memory. The ancient method of loci awaits.</p>
+                <div class="cta-buttons">
+                    <a href="/book/" class="btn btn-primary btn-large">Read the Paper</a>
+                    <a href="/evolutions/" class="btn btn-secondary btn-large">See the Science</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-icon">🏛️</span>
+                    <span>Memory Palace</span>
+                </div>
+                <div class="footer-links">
+                    <a href="/book/">Read Paper</a>
+                    <a href="https://github.com/Algiras/memory-palace">GitHub</a>
+                    <a href="/releases/">Releases</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Memory Palace Research. Licensed under MIT.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
