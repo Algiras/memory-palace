@@ -1,6 +1,10 @@
 ---
 name: memory-palace
-description: Build and navigate hierarchical memory palaces using the method of loci. Use when memorizing information, creating knowledge structures, studying, or recalling stored memories. Triggers: "remember this", "memorize", "create memory palace", "recall", "what did I store", "memory palace", "red queen".
+description: Build and navigate hierarchical memory palaces using the method of loci. Use when memorizing information, creating knowledge structures, studying, or recalling stored memories. Triggers on "remember this", "memorize", "create memory palace", "recall", "what did I store", "memory palace", "red queen".
+license: MIT
+metadata:
+  author: Algiras
+  version: "2.0.0"
 ---
 
 # Memory Palace Skill
