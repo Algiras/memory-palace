@@ -5,13 +5,12 @@ export const IntroScene: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // Animations
-  const titleScale = spring({ frame, fps, config: { damping: 12, stiffness: 100 } });
-  const subtitleOpacity = interpolate(frame, [30, 50], [0, 1], { extrapolateRight: "clamp" });
-  const iconRotation = interpolate(frame, [0, 150], [0, 360]);
+  // Animations - smoother spring configs
+  const titleScale = spring({ frame, fps, config: { damping: 20, stiffness: 80 } });
+  const subtitleOpacity = interpolate(frame, [40, 70], [0, 1], { extrapolateRight: "clamp" });
 
-  // Palace icon elements animation
-  const pillarScale = spring({ frame: frame - 20, fps, config: { damping: 15 } });
+  // Palace icon elements animation - delayed and smoother
+  const pillarScale = spring({ frame: frame - 30, fps, config: { damping: 18, stiffness: 60 } });
 
   return (
     <AbsoluteFill

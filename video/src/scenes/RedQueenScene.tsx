@@ -14,8 +14,8 @@ export const RedQueenScene: React.FC = () => {
 
   const titleOpacity = interpolate(frame, [0, 20], [0, 1], { extrapolateRight: "clamp" });
 
-  // Pulse animation for the cycle
-  const cycleRotation = interpolate(frame, [0, 150], [0, 360]);
+  // Slower, smoother cycle rotation
+  const cycleRotation = interpolate(frame, [0, 150], [0, 180]);
 
   return (
     <AbsoluteFill
@@ -104,15 +104,15 @@ export const RedQueenScene: React.FC = () => {
           const x = Math.cos(angle) * radius;
           const y = Math.sin(angle) * radius;
 
-          const delay = 30 + i * 20;
+          const delay = 40 + i * 20;
           const scale = spring({
             frame: frame - delay,
             fps,
-            config: { damping: 12, stiffness: 100 },
+            config: { damping: 18, stiffness: 70 },
           });
 
-          // Highlight current agent
-          const isActive = Math.floor(((frame + 20) % 80) / 20) === i;
+          // Highlight current agent - slower cycle
+          const isActive = Math.floor(((frame + 30) % 120) / 30) === i;
 
           return (
             <div

@@ -62,11 +62,11 @@ export const BenchmarksScene: React.FC = () => {
         }}
       >
         {BENCHMARKS.map((benchmark, i) => {
-          const delay = 30 + i * 15;
+          const delay = 40 + i * 20;
           const barWidth = spring({
             frame: frame - delay,
             fps,
-            config: { damping: 15, stiffness: 80 },
+            config: { damping: 20, stiffness: 60 },
           });
 
           const isMemoryPalace = benchmark.name === "Memory Palace";

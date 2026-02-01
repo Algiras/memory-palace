@@ -65,13 +65,13 @@ export const SmashinScene: React.FC = () => {
         }}
       >
         {SMASHIN_FACTORS.map((factor, i) => {
-          const delay = 20 + i * 8;
+          const delay = 30 + i * 10;
           const scale = spring({
             frame: frame - delay,
             fps,
-            config: { damping: 12, stiffness: 100 },
+            config: { damping: 18, stiffness: 80 },
           });
-          const isActive = frame > delay + 30;
+          const isActive = frame > delay + 40;
 
           return (
             <div
