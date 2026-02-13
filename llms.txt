@@ -1,0 +1,48 @@
+# Memory Palace + Red Queen Protocol
+
+## Overview
+A Claude Code skill combining the ancient *method of loci* (vivid spatial encoding) with the **Red Queen Protocol** (adversarial testing) for creating durable, verifiable knowledge.
+
+## Core Concept
+Memory without testing is belief without verification. This system:
+- Encodes information vividly using spatial memory techniques
+- Continuously challenges knowledge through adversarial testing
+- Identifies gaps before they become failures
+- Prevents confident hallucinations
+
+## Features
+- Four specialized agents (Examiner, Learner, Evaluator, Evolver)
+- Vivid memory palace construction
+- Adversarial recall testing
+- Knowledge decay prevention
+- Interactive memory exploration
+
+## Documentation
+https://algiras.github.io/memory-palace/
+
+## Research Paper
+https://algiras.github.io/memory-palace/book/
+
+## Repository
+https://github.com/Algiras/memory-palace
+
+## Installation
+- Via npm: `npx memory-palace-red-queen`
+- Claude Code skill integration
+
+## Use Cases
+- Interview preparation
+- Exam studying
+- Technical certification prep
+- Building durable knowledge
+- Combat knowledge decay
+- Mastery development
+
+## Technologies
+- Claude Code
+- Knowledge graphs
+- Spaced repetition
+- Adversarial testing
+
+## License
+MIT
