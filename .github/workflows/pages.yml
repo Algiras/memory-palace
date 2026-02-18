@@ -43,6 +43,9 @@ jobs:
           quarto render index.qmd --to html
           cp -r _output/* ../docs/dist/book/
 
+      - name: Add llms.txt
+        run: cp docs/public/llms.txt docs/dist/llms.txt
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
