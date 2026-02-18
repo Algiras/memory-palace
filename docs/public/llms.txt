@@ -1,0 +1,46 @@
+# Memory Palace + Red Queen
+
+> A Claude Code skill for durable knowledge through vivid spatial encoding and adversarial testing.
+
+## About
+
+Memory Palace combines the ancient method of loci (vivid spatial memory encoding) with the Red Queen Protocol (continuous adversarial testing) to build AI knowledge that sticks and stays accurate. Four specialized agents — Examiner, Learner, Evaluator, Evolver — continuously challenge stored knowledge to catch hallucinations before they become failures.
+
+**Key results:** 97% context reduction | 92% hallucination detection F1 | +23% retention with Red Queen pre-learning
+
+## Install
+
+```bash
+npx memory-palace-red-queen
+```
+
+Or via Skills CLI:
+```bash
+npx skills add https://github.com/Algiras/memory-palace --skill memory-palace-red-queen
+```
+
+npm: https://www.npmjs.com/package/memory-palace-red-queen
+
+## How It Works
+
+1. **Examiner** — creates vivid spatial memory cues (method of loci)
+2. **Learner** — encodes knowledge using SMASHIN technique
+3. **Evaluator** — tests recall and detects gaps/hallucinations
+4. **Evolver** — strengthens weak memories, discards stale ones
+
+## Features
+
+- Method of loci: anchor knowledge to vivid spatial locations
+- Red Queen Protocol: adversarial testing prevents memory decay
+- Hallucination detection: catches confident-but-wrong answers
+- Works as a Claude Code skill (no separate server needed)
+- Available via npm for easy installation
+
+## Source
+
+- Repository: https://github.com/Algiras/memory-palace
+- Website: https://algiras.github.io/memory-palace/
+- Paper: https://algiras.github.io/memory-palace/book/
+- npm: https://www.npmjs.com/package/memory-palace-red-queen
+- License: MIT
+- Language: JavaScript
